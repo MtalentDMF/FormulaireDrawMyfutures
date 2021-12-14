@@ -4,18 +4,22 @@ VERIFICATION DE LA RECEPTION DES DONNES SOUMISES PAR LE FORMULAIRE
 
 console.log('demarrage du fichier');
 
-let myresult = document.getElementById('myResult');
+
+let myresult = document.getElementById('myresult');
+let myresult2 = document.getElementById('myresult2');
 let myButton = document.getElementById('buttonSubmit');
 let trancheAge = document.getElementsByName('boutonradio1');
 let genre = document.getElementsByName('genre');
 let etude = document.getElementsByName('etude');
 let situationPro = document.getElementsByName('situationPro');
 // let situationProText = document.getElementById('situationProText').value;
+//Jai enlevé la variable situationProText pourtant, l'element est quand meme recuperé 
 
 
-myButton.addEventListener('click', function() {
-    console.log('onClick submit');
-    myresult.textContent = 'nom: ' + document.getElementById('nom').value;
+myButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    alert('Formulaire envoyé');
+    myresult.textContent += 'nom: ' + document.getElementById('nom').value;
     myresult.textContent += ', prenom: ' + document.getElementById('prenom').value;
     myresult.textContent += ', email : ' + document.getElementById('email').value;
     myresult.textContent += ', CP : ' + document.getElementById('CP').value;
@@ -64,36 +68,29 @@ myButton.addEventListener('click', function() {
 
     for (i = 0; i < etude.length; i++) {
         if (etude[i].checked)
-            myresult.textContent += ', niveau etude : ' + etude[i].value;
+            myresult2.textContent += ', niveau etude : ' + etude[i].value;
     }
 
-    myresult.textContent += ', domaine etude : ' + document.getElementById('domEtude').value;
+    myresult2.textContent += ', domaine etude : ' + document.getElementById('domEtude').value;
     
     for (i = 0; i < situationPro.length; i++) {
         if (situationPro[i].checked)
-            myresult.textContent += ', situation Pro : ' + situationPro[i].value;
+            myresult2.textContent += ', situation Pro : ' + situationPro[i].value;
     }
-    // if(situationProText)
-    //     myresult.textContent += 'situation pro texte :  ' + situationProText;
+
+    // Pour afficher le contenue du text area uniquement s'il y a une valeur.
+
+    if(situationProText.value){
+        console.log('after if situationProText.value = "' + situationProText.value + '"');
+        // JAI RAJOUTE DES GUILLEMETS POUR VERIFIER QU'IL Y AVAIT BIEN DU CONTENU
+        myresult2.textContent += ', situation pro texte :  ' + situationProText.value;
     
-    // Il faut trouver une façon de faire apparaitre la situationProText uniquement s'il y a une valeur dedans
-    myresult.textContent += ', ' + document.getElementById('situationProText').value;
+    }
+    else
+        console.log('after else situationProText.value = ' + situationProText.value);
+    // SYSTEMATIQUEMENT RAJOUTER DU CONSOLE LOG LORSQU'IL Y A UN BUG. 
     
-    myresult.textContent += 'Poste avant reconversion : ' + document.getElementById('posteAvantReconv').value;
+    myresult2.textContent += ', Poste avant reconversion : ' + document.getElementById('posteAvantReconv').value;
 });
 
-
-
-// myButton.addEventListener('click', function() {
-//     console.log('onClick submit');
-//     myresult2.textContent = 'nom: ' + document.getElementById('nom').value;
-//     myresult2.textContent += ', prenom: ' + document.getElementById('prenom').value;
-//     myresult2.textContent += ', email : ' + document.getElementById('email').value;
-//     myresult2.textContent += ', CP : ' + document.getElementById('CP').value;
-//     for(i =0; i<trancheAge.length;i++)
-//     {
-//         if(trancheAge[i].checked)
-//         myresult2.textContent += ", tranche d'age : "  + trancheAge[i].value;
-//     }
-// });
 

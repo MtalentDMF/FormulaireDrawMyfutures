@@ -15,19 +15,24 @@
         <div id="image">
             <img src="logo_dmf_white.png" alt="drawMyFutures">
         </div>
-        <div id="box">
+        <form id="box">
             <div class="ligne">
             </div>
             <div id="inscription" class="formBloc">
 
-                <label for="nom" id="labelNom"><b>Nom :</b></label>
+                <label for="nom" id="labelNom"><b>Nom :</b></label><br>
                 <input class="aligne" type="text" name="nom" id="nom" placeholder="nom..." maxlength="30"><br><br>
-                <label for="prenom"><b>Prénom :</b></label><input class="aligne" type="text" name="prenom"
+                <label for="prenom"><b>Prénom :</b></label><br>
+                <input class="aligne" type="text" name="prenom"
                     placeholder="prenom..." id="prenom"><br><br>
-                <label for="email"><b>Email :</b></label><input class="aligne" type="mail" name="mail"
+                <label for="email"><b>Email :</b></label><br>
+                <input class="aligne" type="email" name="mail"
                     placeholder="Email..." id="email"><br>
                 <br>
-                <label for="age"><b>Quel est votre tranche d'âge ?</b></label><br><br>
+                <label for="CP"><b>Code Postal :</b></label><br>
+                <input class="aligne" type="number" name="CP"
+                    placeholder="75009" id="CP"><br><br>
+                <label for="age"><b>Quelle est votre tranche d'âge ?</b></label><br><br>
 
                 <input type="radio" name="boutonradio1" value="moins18" checked><label for="moins18"><b>Moins de 18 ans</b></label><br>
                 <input type="radio" name="boutonradio1" value="18-25"><label for="age"><b>18 - 25 ans</b></label><br>
@@ -42,8 +47,7 @@
                 <input type="radio" name="genre" value="homme"><b>Un homme</b><br>
                 <input type="radio" name="genre" value="autre"><b>Autre</b><br><br>
 
-                <label for="CP"><b>Code Postal :</b></label><input class="aligne" type="number" name="CP"
-                    placeholder="75009" id="CP"><br><br>
+               
 
                 <!-- USER STORY numero 2-->
 
@@ -58,39 +62,36 @@
                     <input type="radio" name="etude" value=">BAC+5"><b> > Bac + 5</b><br><br>
                 
                 <label for="domaineEtude"><b>Quel est votre domaine d'etudes ?</b> </label><br><br>
-                <textarea name="domaineEtude" id="domEtude" cols="38" rows="10">
-                </textarea><br><br>
+                <textarea name="domaineEtude" id="domEtude" cols="38" rows="10"></textarea><br><br>
 
                 <label for="situationPro"><b>Quelle est votre situation professionnelle actuelle ?</b></label><br><br>
-                <input type="radio" name="situationPro" value="Contrat long"><label for="situationPro"><b>- En contrat long (CDI, CDD de plusieurs années, …)</b></label><br>
+                <input type="radio" name="situationPro" value="Contrat long" checked><label for="situationPro"><b>- En contrat long (CDI, CDD de plusieurs années, …)</b></label><br>
                 <input type="radio" name="situationPro" value="Contrat court"><label for="situationPro"><b>- En contrat court (CDD, intérim,…)</b></label><br>
                 <input type="radio" name="situationPro" value="Chomage Partiel"><label for="situationPro"><b>- En chômage partiel</b></label><br>
                 <input type="radio" name="situationPro" value="Sans activité"><label for="situationPro"><b>- Sans activité professionnelle</b></label><br>
                 <input type="radio" name="situationPro" value="Demandeur d'emploi"><label for="situationPro"><b>- Demandeur d'emploi</b></label><br><br>
                 <!--champs texte pour autre-->
                 <input type="radio" name="situationPro" value="Autre"><label for="situationPro"><b>- Autre. (Renseigner votre situation ci-dessous)</b></label><br>
-                <textarea name="situationPro" id="situationProText" cols="38" rows="10">
-                </textarea>
+                <textarea name="situationPro" id="situationProText" cols="38" rows="10"></textarea>
 
                 <br><br>
 
                 <label for="posteAvantReconversion"><b>- Quel est l'intitulé de votre poste avant la reconversion</b></label><br>
-                <textarea name="posteAvantReconversion" id="posteAvantReconv" cols="38" rows="10">
-                </textarea>
+                <textarea name="posteAvantReconversion" id="posteAvantReconv" cols="38" rows="10"></textarea>
 
                 <!--USER STORY numero 3-->
                 
                 <div class="button">
-                    <button class="bouton" id="buttonSubmit">Soumettre le formuler</button>
-                    <button class="bouton" id="buttonCancel" type="submit">Annuler la saisie</button>
+                    <button class="bouton" id="buttonSubmit" type="submit">Soumettre le formuler</button>
+                    <button class="bouton" id="buttonCancel" >Annuler la saisie</button>
                 </div>
 
             </div>
             <div id="ligne2">
             </div>
-        </div>
-        <div id="myResult"></div>
-        <div id="myResult2"></div>
+        </form>
+        <div id="myResult"><h2>infos profil</h2><br><p id="myresult"></p></div>
+        <div id="myResult2"><h2>infos professionnelles</h2><br><p id="myresult2"></p></div>
 
     </div>
     <script src="script.js"></script>
