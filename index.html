@@ -20,64 +20,59 @@
             <div id="inscription" class="formBloc">
 
                 <label for="nom" id="labelNom" class="atLine">Nom :</label>
+                <input type="text" name="nom" id="nom" placeholder="Doe" maxlength="30" class="blockSizeOfForm">
                 <p id="validName" class="champObligatoire"></p>
-                <p id="nameVerification"></p>
-                <input type="text" name="nom" id="nom" placeholder="nom..." maxlength="30" class="blockSizeOfForm">
                 <label for="prenom" class="atLine">Prénom :</label>
+                <input type="text" name="prenom" placeholder="John" id="prenom" class="blockSizeOfForm">
                 <p id="validPrenom" class="champObligatoire"></p>
-                <input type="text" name="prenom" placeholder="prenom..." id="prenom" class="blockSizeOfForm">
                 <label for="email" class="atLine">Email :</label>
+                <input type="text" name="mail" placeholder="John.Doe@gmail.com" id="email" class="blockSizeOfForm">
                 <p id="validEmail" class="champObligatoire"></p>
-                <p id="emailVerification"></p>
-                <input type="email" name="mail" placeholder="Email..." id="email" class="blockSizeOfForm">
                 <label for="CP" class="atLine">Code postal de résidence :</label>
-                <p id="validCP" class="champObligatoire"></p>
                 <input type="text" name="CP" placeholder="75009" id="CP" class="blockSizeOfForm">
+                <p id="validCP" class="champObligatoire"></p>
 
                 <p>Quelle est votre tranche d'âge ?</p>
+                <label for="moins18" ><input type="radio" name="boutonradio1" value="moins18" id="moins18">Moins de 18 ans</label>
+                <label for="18-25" ><input type="radio" name="boutonradio1" value="18-25" id="18-25">18 - 25 ans</label>
+                <label for="26-35" ><input type="radio" name="boutonradio1" value="26-35" id="26-35">26 - 35 ans</label>
+                <label for="36-45" ><input type="radio" name="boutonradio1" value="36-45" id="36-45">36 - 45 ans</label>
+                <label for="46-55" ><input type="radio" name="boutonradio1" value="46-55" id="46-55">46 - 55 ans</label>
+                <label for="plus 55" ><input type="radio" name="boutonradio1" value="plus 55" id="plus 55">plus de 55 ans</label>
                 <p id="emptyCase" class="champObligatoire"></p>
-                <label for="moins18" class="atLine"><input type="radio" name="boutonradio1" value="moins18" id="moins18">Moins de 18 ans</label>
-                <label for="18-25" class="atLine"><input type="radio" name="boutonradio1" value="18-25" id="18-25">18 - 25 ans</label>
-                <label for="26-35" class="atLine"><input type="radio" name="boutonradio1" value="26-35" id="26-35">26 - 35 ans</label>
-                <label for="36-45" class="atLine"><input type="radio" name="boutonradio1" value="36-45" id="36-45">36 - 45 ans</label>
-                <label for="46-55" class="atLine"><input type="radio" name="boutonradio1" value="46-55" id="46-55">46 - 55 ans</label>
-                <label for="plus 55" class="atLine"><input type="radio" name="boutonradio1" value="plus 55" id="plus 55">plus de 55 ans</label>
 
                 <p class="atLine">Êtes-vous ?</p>
+                <label for="femme" ><input type="radio" name="gender" value="femme" id="femme">Une femme<label>
+                <label for="homme" ><input type="radio" name="gender" value="homme" id="homme">Un homme</label>
                 <p id="emptyCaseGender" class="champObligatoire"></p>
-                <label for="femme" class="atLine"><input type="radio" name="gender" value="femme" id="femme">Une femme<label>
-                <label for="homme" class="atLine"><input type="radio" name="gender" value="homme" id="homme">Un homme</label>
 
                
 
                 <!-- USER STORY numero 2 renseigner les champs professionnelles du profil-->
                 
                 <p>Quel est votre niveau d'étude ?</p>
-                <label for="" class="atLine"><input type="radio" name="etude" value="PAS BAC" checked>sans le Bac</label>
-                <label for="" class="atLine"><input type="radio" name="etude" value="BAC">Bac</label>
-                <label for="" class="atLine"><input type="radio" name="etude" value="BAC +1">Bac +1</label>
-                <label for="" class="atLine"><input type="radio" name="etude" value="BAC +2">Bac +2</label>
-                <label for="" class="atLine"><input type="radio" name="etude" value="BAC +3">Bac +3</label>
-                <label for="" class="atLine"><input type="radio" name="etude" value="BAC +4">Bac +4</label>
-                <label for="" class="atLine"><input type="radio" name="etude" value="BAC +5">Bac +5</label>
-                <label for="" class="atLine"><input type="radio" name="etude" value=">BAC+5"> > Bac + 5</label>
+                <label for="" ><input type="radio" name="etude" value="PAS BAC" checked>sans le Bac</label>
+                <label for="" ><input type="radio" name="etude" value="BAC">Bac</label>
+                <label for="" ><input type="radio" name="etude" value="BAC +1">Bac +1</label>
+                <label for="" ><input type="radio" name="etude" value="BAC +2">Bac +2</label>
+                <label for="" ><input type="radio" name="etude" value="BAC +3">Bac +3</label>
+                <label for="" ><input type="radio" name="etude" value="BAC +4">Bac +4</label>
+                <label for="" ><input type="radio" name="etude" value="BAC +5">Bac +5</label>
+                <label for="" ><input type="radio" name="etude" value=">BAC+5"> > Bac + 5</label>
                 
-                <label for="domEtude">Quel est votre domaine d'etudes ?</label>
+                <label for="domEtude" class="atLine">Quel est votre domaine d'etudes ?</label>
                 <textarea name="domaineEtude" id="domEtude" cols="38" rows="10" class="blockSizeOfForm"></textarea>
 
                 <p>Quelle est votre situation professionnelle actuelle ?</p>
-                <label for="contratLong" class="atLine"><input type="radio" name="situationPro" value="Contrat long" id="contratLong" checked>En contrat long (CDI, CDD de plusieurs années, …)</label>
-                <label for="contratCourt" class="atLine"><input type="radio" name="situationPro" value="Contrat court" id="contratCour">En contrat court (CDD, intérim,…)</label>
-                <label for="chomagePartiel" class="atLine"><input type="radio" name="situationPro" value="Chomage Partiel" id="chomagePartiel">En chômage partiel</label>
-                <label for="sansActivité" class="atLine"><input type="radio" name="situationPro" value="Sans activité" id="sansActivité">Sans activité professionnelle</label>
-                <label for="demandeurEmploi" class="atLine"><input type="radio" name="situationPro" value="Demandeur d'emploi" id="demandeurEmploi">Demandeur d'emploi</label>
+                <label for="contratLong"><input type="radio" name="situationPro" value="Contrat long" id="contratLong" checked>En contrat long (CDI, CDD de plusieurs années, …)</label>
+                <label for="contratCourt"><input type="radio" name="situationPro" value="Contrat court" id="contratCour">En contrat court (CDD, intérim,…)</label>
+                <label for="chomagePartiel"><input type="radio" name="situationPro" value="Chomage Partiel" id="chomagePartiel">En chômage partiel</label>
+                <label for="sansActivité"><input type="radio" name="situationPro" value="Sans activité" id="sansActivité">Sans activité professionnelle</label>
+                <label for="demandeurEmploi"><input type="radio" name="situationPro" value="Demandeur d'emploi" id="demandeurEmploi">Demandeur d'emploi</label>
                 <!--champs texte pour autre-->
                 <label for="other" class="atLine"><input type="radio" name="situationPro" value="Autre" id="other">Autre. (Renseigner votre situation ci-dessous)</label>
                 <textarea name="situationProText" id="situationProText" cols="38" rows="10" class="blockSizeOfForm"></textarea>
-
-                
-
-                <label for="posteAvantReconv">Quel est l'intitulé de votre poste avant la reconversion ?</label>
+                <label for="posteAvantReconv" class="atLine">Quel est l'intitulé de votre poste avant la reconversion ?</label>
                 <textarea name="posteAvantReconv" id="posteAvantReconv" cols="38" rows="10" class="blockSizeOfForm"></textarea>
 
                 <!--USER STORY numero 3 validation des champs du formulaire-->

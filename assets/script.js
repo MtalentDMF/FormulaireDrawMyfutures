@@ -180,29 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
         //
         //Si le bouton radio n'est pas coché
         //
-        
-        
-        // let emptyCase = document.getElementById("emptyCase");
-        // let boolEmptyCase = 1;
-    
-        // for(i= 0; i<trancheAge.length; i++) {
-        //     if(boolEmptyCase == 1 && !trancheAge[i].checked){
-        //         console.log('after if trancheAge[i].checked');
-        //         emptyCase.textContent = 'veuillez cocher une case';
-        //         boolEmptyCase=0;
-        //     }
-        //     else{
-        //         console.log('je sors de la boucle');
-        //         return false;
-        //     }
-        // }
-        
-        //
-        // Version simplifié
-        //
     
         //Pour la tranche d'age
-    
     
         let emptyCase = document.getElementById("emptyCase");
         
