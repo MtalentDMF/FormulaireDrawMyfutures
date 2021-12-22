@@ -2,6 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin:0;
+    font-family: 'Quantico', 'Arial Narrow', Arial, sans-serif;
 }
 
 /* PAGE*/
@@ -87,7 +88,7 @@ body{
     text-decoration: underline;
 }
 
-.champObligatoire{
+.obligatoryField{
     color: red;
 }
 
@@ -96,6 +97,10 @@ body{
 }
 
 /* Element du formulaire*/
+
+.starObligatoryField{
+    color: #098d6c;
+}
 
 .marginLabelandPForm{
     margin-top : 60px;
@@ -113,6 +118,7 @@ body{
 
 textarea{
     border-radius: 3px;
+    padding: 10px 0 0 10px ;
 }
 
 input[type=text]{
@@ -122,8 +128,32 @@ input[type=text]{
     padding-left: 5px;
 }
 
-label, p{
-    margin: 10px 0 10px 0;
+input[type=email]{
+    border-radius: 3px;
+    border: 1px solid grey;
+    height: 50px;
+    padding-left: 5px;
+}
+
+input[type=radio], input[type=checkbox]{
+    margin-right: 6px;
+}
+
+.wordingField{
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+#labelName{
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+input::placeholder{
+    opacity: 0.4;
 }
 
 /* Resultat du formulaire */
@@ -163,6 +193,7 @@ label, p{
 .none{
     display: none;
 }
+
 
 
 
