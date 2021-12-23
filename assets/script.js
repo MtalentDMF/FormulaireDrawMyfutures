@@ -7,6 +7,7 @@ let resultFormProfile = document.getElementById('resultFormProfile');
 let resultFormProfessional = document.getElementById('resultFormProfessional');
 let buttonSubmit = document.getElementById('buttonSubmit');
 let ageRange = document.getElementsByName('ageRange');
+// ageRange avec un querySelector 
 let gender = document.getElementsByName('gender');
 let etude = document.getElementsByName('etude');
 let ProSituation = document.getElementsByName('ProSituation');
@@ -210,34 +211,40 @@ document.addEventListener('DOMContentLoaded', () => {
         //     }
         // }
 
+        //Par Algorithme
+
         let emptyCase = document.getElementById("emptyCase");
-        let boolEmptyCase = 1;
+        let boolEmptyCase = false;
 
         for(i= 0; i<ageRange.length; i++) {
-            if(!ageRange[i].checked && boolEmptyCase == 1){
+            if(ageRange[i].checked){
                 console.log('after if !ageRange[i].checked');
-                emptyCase.textContent = 'Cette question est obligatoire';
-                boolEmptyCase = 0;
-            }
-            else{
-                console.log('je sors de la boucle');
-                return false;
+                boolEmptyCase = true;
             }
         }
+        if(boolEmptyCase==false)
+            {
+                emptyCase.textContent = 'Cette question est obligatoire';
+            }
 
-        // let emptyCaseGender = document.getElementById("emptyCaseGender");
+        // gender
+
+        let emptyCaseGender = document.getElementById("emptyCaseGender");
+        let boolEmptyCaseG = false;
+
+        for(i= 0; i<gender.length; i++) {
+            if(gender[i].checked){
+                console.log('after if !gender[i].checked');
+                boolEmptyCaseG = true;
+            }
+        }
+        if(boolEmptyCaseG==false)
+            {
+                console.log('boolemptycaseG false')
+                emptyCaseGender.textContent = 'Cette question est obligatoire';
+            }
         
-        // for(i= 0; i<gender.length; i++) {
-        //     if(!gender[i].checked){
-        //         console.log('after if gender[i].checked');
-        //         emptyCaseGender.textContent = 'Cette question est obligatoire';
-        //     }
-        //     else{
-        //         console.log('je sors de la boucle');
-        //         return false;
-        //     }
-        // }
-        
+        //LE FAIRE PLUTÔT AVEC UN QUERYSELECTOR
     });
 });
 
