@@ -250,22 +250,18 @@ document.addEventListener('DOMContentLoaded', () => {
         let form = document.querySelector('form');
 
         form.name.addEventListener('change', function() {
-            console.log('bonjour la france')
             nameValidation();
         });
 
         form.firstName.addEventListener('change', function() {
-            console.log('bonjour la france')
             firstNameValidation();
         });
 
         form.email.addEventListener('change', function() {
-            console.log('bonjour la france')
             emailValidation();
         });
 
         form.CP.addEventListener('change', function() {
-            console.log('bonjour la france')
             codePostalValidation();
         });
 });
