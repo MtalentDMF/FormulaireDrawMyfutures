@@ -130,12 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
         for (i = 0; i < study.length; i++) {
             if (study[i].checked)
-                resultFormProfessional.innerHTML += 'Niveau etude : ' + study[i].value + '<br>';
+                resultFormProfessional.innerHTML = 'Niveau etude : ' + study[i].value + '<br>';
         }
     
         // le domaine d'etude est obligatoirement renseigné
     
-        resultFormProfessional.innerHTML += 'Domaine etude : ' + document.getElementById('studyArea').value + '<br>';
+        resultFormProfessional.innerHTML = 'Domaine etude : ' + document.getElementById('studyArea').value + '<br>';
         
         for (i = 0; i < ProSituation.length; i++) {
             if (ProSituation[i].checked)
