@@ -9,7 +9,8 @@ let buttonSubmit = document.getElementById('buttonSubmit');
 let ageRange = document.getElementsByName('ageRange');
 // ageRange avec un querySelector 
 let gender = document.getElementsByName('gender');
-let etude = document.getElementsByName('etude');
+//gender avec un querySelector
+let study = document.getElementsByName('study');
 let ProSituation = document.getElementsByName('ProSituation');
 // let situationProText = document.getElementById('situationProText').value;
 let name = document.getElementById("name");
@@ -18,14 +19,14 @@ let email = document.getElementById("email");
 let CP = document.getElementById("CP");
 
 //VERIFICATION DES CHAMPS OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
-let champOb = 'Champs obligatoire';
+let RequiredField = 'Champs obligatoire';
 let validEmail = document.getElementById("validEmail");
 let validName = document.getElementById("validName");
 let validFirstName = document.getElementById("validFirstName");
 let validCP = document.getElementById("validCP");
 
 
-//FONCTION DE VALIDATION DE L'EMAIL, JAI AUSSI INTEGRE LA VALIDATION QUE LE EMAIL NEST PAS VIDE
+//FONCTION DE VALIDATION DE L'EMAIL ET DE VERIFICATION QUE L'EMAIL NEST PAS VIDE
 
 const emailValidation = () => {
     // let email 	= document.formulaire.EMAIL.value;
@@ -33,10 +34,7 @@ const emailValidation = () => {
     //Rajout du "." et du "_"
 
     let verif = /^[\u00C0-\u00FFa-zA-Z0-9-_._]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
-    if (email.value.length===0){
-        validEmail.textContent = champOb;
-    }
-    else if (verif.exec(email.value) == null) //email.value.length!==0
+    if (verif.exec(email.value) == null) //email.value.length!==0
     {
         validEmail.textContent = "Email non valide";
         return false;
@@ -48,23 +46,18 @@ const emailValidation = () => {
 }
 // 
 // FONCTION DE VALIDATION DE NOM, DE PRENOM, DE CODE POSTAL
+
+let regexCarac = /^[a-zA-Z-_\u00C0-\u00FF\s]+$/;//la regex est la meme dans nom et prenom
+
 const nameValidation = () =>{
-    let regexCarac = /^[a-zA-Z-_\u00C0-\u00FF\s]+$/;
-    if (name.value.length===0) {
-        validName.textContent = champOb;
-    }
-    else if(regexCarac.test(name.value) == false){
+    if(regexCarac.test(name.value) == false){
         console.log('after else if myRegex.text');
         validName.textContent = "le nom doit comporter des lettres et des tirets uniquement";
     }
 }
 
 const firstNameValidation = () =>{
-    let regexCarac = /^[a-zA-Z-_\u00C0-\u00FF\s]+$/;
-    if (firstName.value.length===0) {
-        validFirstName.textContent = champOb;
-    }
-    else if(regexCarac.test(firstName.value) == false){
+    if(regexCarac.test(firstName.value) == false){
         console.log('after else if myRegex.text');
         validFirstName.textContent = "le prénom doit comporter des lettres et des tirets uniquement";
     }
@@ -72,10 +65,7 @@ const firstNameValidation = () =>{
 
 const codePostalValidation = () =>{
         let regexNumber = /^[0-9]+$/;
-        if (CP.value.length===0) {
-            validCP.textContent = champOb;
-        }
-        else if(regexNumber.test(CP.value) == false){
+        if(regexNumber.test(CP.value) == false){
             console.log('after else if myRegex.text');
             validCP.textContent = "le code postal doit comporter des chiffres uniquement";
         }
@@ -93,40 +83,31 @@ document.addEventListener('DOMContentLoaded', () => {
     buttonSubmit.addEventListener('click', e => {
         e.preventDefault();
         //JE FAIS APPARAITRE LES DIV 
-
         document.getElementById('resultFormProfileStyle').classList.remove('none');
         document.getElementById('resultFormProfileStyle').classList.add('block');
         document.getElementById('resultFormProfessionalStyle').classList.remove('none');
         document.getElementById('resultFormProfessionalStyle').classList.add('block');
         
 
-        resultFormProfile.textContent += 'nom: ' + document.getElementById('name').value;
-        resultFormProfile.textContent += ', prenom: ' + document.getElementById('firstName').value;
-        resultFormProfile.textContent += ', email : ' + document.getElementById('email').value;
-        resultFormProfile.textContent += ', CP : ' + document.getElementById('CP').value;
+        resultFormProfile.innerHTML = 'Nom: ' + document.getElementById('name').value + '<br>';
+        resultFormProfile.innerHTML += "Prenom: " + document.getElementById('firstName').value + '<br>';
+        resultFormProfile.innerHTML += 'Email : ' + document.getElementById('email').value + '<br>';
+        resultFormProfile.innerHTML += 'CP : ' + document.getElementById('CP').value + '<br>';
         for(i =0; i<ageRange.length;i++)
         {
             if(ageRange[i].checked)
-            resultFormProfile.textContent += ", tranche d'age : "  + ageRange[i].value;
+                resultFormProfile.innerHTML += "Tranche d'age : "  + ageRange[i].value + '<br>';
         }
         /* ---------------------------------------------------------------------------------- 
-        C'est un bouton radio, je créer une boucle pour récuperer la valeur de mon bouton grâce à la méthode checked. resultFormProfile.textConten += ', ' + document.getElementsByName('ageRange');
+        C'est un bouton radio, je créer une boucle pour récuperer la valeur de mon bouton grâce à la méthode checked.
         -------------------------------------------------------------------------------------
         */
         for(i =0; i<gender.length;i++)
         {
             if(gender[i].checked)
-            resultFormProfile.textContent += ', genre : ' + gender[i].value;
+                resultFormProfile.innerHTML += 'Genre : ' + gender[i].value + '<br>';
         }
-        /* ----------------------------------------------------------------------------------
-        J'ai créer ma boucle sur cet exemple :
-        var ele = document.getElementsByName('gender');
-            for(i = 0; i < ele.length; i++) {
-                 if(ele[i].checked)
-                 document.getElementById("result").innerHTML
-                         = "Gender: "+ele[i].value;
-        -------------------------------------------------------------------------------------
-    
+        /* 
         JAURAI PU LE FAIRE AVEC UN TAG NAME SUR LES INPUT POUR RECUPERER TOUS LES INPUT 
     
         function displayRadioValue() {
@@ -147,18 +128,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
         */
             
-        for (i = 0; i < etude.length; i++) {
-            if (etude[i].checked)
-                resultFormProfessional.textContent += ', niveau etude : ' + etude[i].value;
+        for (i = 0; i < study.length; i++) {
+            if (study[i].checked)
+                resultFormProfessional.innerHTML += 'Niveau etude : ' + study[i].value + '<br>';
         }
     
         // le domaine d'etude est obligatoirement renseigné
     
-        resultFormProfessional.textContent += ', domaine etude : ' + document.getElementById('domEtude').value;
+        resultFormProfessional.innerHTML += 'Domaine etude : ' + document.getElementById('studyArea').value + '<br>';
         
         for (i = 0; i < ProSituation.length; i++) {
             if (ProSituation[i].checked)
-                resultFormProfessional.textContent += ', situation Pro : ' + ProSituation[i].value;
+                resultFormProfessional.innerHTML += 'Situation Pro : ' + ProSituation[i].value + '<br>';
         }
         
         // Pour afficher le contenue du text area uniquement s'il y a une valeur.
@@ -166,31 +147,42 @@ document.addEventListener('DOMContentLoaded', () => {
         if(situationProText.value.length>0){
             console.log('after if situationProText.value = "' + situationProText.value + '"');
             // JAI RAJOUTE DES GUILLEMETS POUR VERIFIER QU'IL Y AVAIT BIEN DU CONTENU
-            resultFormProfessional.textContent += ', situation pro texte :  ' + situationProText.value;
+            resultFormProfessional.innerHTML += 'Situation pro texte :  ' + situationProText.value + '<br>';
         
         }
         else
             console.log('after else situationProText.value = ' + situationProText.value);
         // SYSTEMATIQUEMENT RAJOUTER DU CONSOLE LOG LORSQU'IL Y A UN BUG. 
         
-        resultFormProfessional.textContent += ', Poste avant reconversion : ' + document.getElementById('posteAvantReconv').value;
+        resultFormProfessional.innerHTML += 'Poste avant reconversion : ' + document.getElementById('jobBeforeRetraining').value + '<br>';
     
         /*
         ---------------------------------------------------------------------------------
-        USER STORY 3 verification des champs du formulaire
+        Verification des champs du formulaire
+        Si les champs ne sont pas remplis correctement, les messages d'erreurs suivants s'affichent
         ---------------------------------------------------------------------------------
         */ 
-        
-        // Si le champs est vide et s'il ne respecte pas les caractères attendus.
-        
-        nameValidation();
+       
+        // Verif des champs nom, prenom, mail, codepostal
+        if (name.value.length===0) {
+            validName.textContent = RequiredField;
+        }
+        else if(name.value.length){
+            true;
+        }
 
-        firstNameValidation();
 
-        emailValidation();
+        if (firstName.value.length===0) {
+            validFirstName.textContent = RequiredField;
+        }
+
+        if (email.value.length===0){
+            validEmail.textContent = RequiredField;
+        }
         
-        codePostalValidation();
-
+        if (CP.value.length===0) {
+            validCP.textContent = RequiredField;
+        }
         //
         //Si le bouton radio n'est pas coché
         //
@@ -213,6 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Par Algorithme
 
+        // Age
+
         let emptyCase = document.getElementById("emptyCase");
         let boolEmptyCase = false;
 
@@ -227,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 emptyCase.textContent = 'Cette question est obligatoire';
             }
 
-        // gender
+        // Gender
 
         let emptyCaseGender = document.getElementById("emptyCaseGender");
         let boolEmptyCaseG = false;
@@ -243,9 +237,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('boolemptycaseG false')
                 emptyCaseGender.textContent = 'Cette question est obligatoire';
             }
-        
-        //LE FAIRE PLUTÔT AVEC UN QUERYSELECTOR
+            
     });
+
+        //La verification des champs doit se faire dans le input
+        /*
+        ---------------------------------------------------------
+        Je crée un nouvel envent au changement de l'input cest à dire des quon entre une donnée dans le input
+        ---------------------------------------------------------
+        */
+    
+        let form = document.querySelector('form');
+
+        form.name.addEventListener('change', function() {
+            console.log('bonjour la france')
+            nameValidation();
+        });
+
+        form.firstName.addEventListener('change', function() {
+            console.log('bonjour la france')
+            firstNameValidation();
+        });
+
+        form.email.addEventListener('change', function() {
+            console.log('bonjour la france')
+            emailValidation();
+        });
+
+        form.CP.addEventListener('change', function() {
+            console.log('bonjour la france')
+            codePostalValidation();
+        });
 });
 
 
