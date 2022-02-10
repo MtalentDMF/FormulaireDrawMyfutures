@@ -66,6 +66,8 @@ const codePostalValidation = () =>{
         }
 }
 
+//Le chargement du fichier js se fait à l'ouverture de la page html
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('demarrage du fichier');
     
@@ -97,20 +99,35 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * 
     ---------------------------------------------------------
-    Boucle à inserer dans un event pour vérifier qu'une case du checkbox est bien coché et enlever le message d'erreur potentiel champs obligatoire
+    Effacer le message d'erreur lors de la correction du formulaire 
     ---------------------------------------------------------
-     * 
+     */ 
+
+    let ageRangeRadioButton = document.querySelectorAll('input[name="ageRange"]');
+
+    for(i=0; i<ageRange.length;i++){
+    ageRangeRadioButton[i].addEventListener('change', function(){
     for (i = 0; i < ageRange.length; i++) {
-        if (ageRange[i].checked)
-            emptyCase.textContent = "";
+        if (ageRange[i].checked){
+            emptyCaseAge.textContent = "";
+        }       
+    }
+    });
     }
 
+
+    let genderRadioButton = document.querySelectorAll('input[name="gender"]');
+
+    for(i=0; i<gender.length;i++){
+    genderRadioButton[i].addEventListener('change', function(){
     for (i = 0; i < gender.length; i++) {
-        if (gender[i].checked)
+        if (gender[i].checked){
             emptyCaseGender.textContent = "";
+        }     
     }
-     * 
-     */
+    });
+}
+    
 
     //JE FAIS DISPARAITRE LES DIV DE RECUPERATION DES DONNEES AU BAS DE MON FORMULAIRE
 
@@ -140,14 +157,16 @@ document.addEventListener('DOMContentLoaded', () => {
        
         for(i =0; i<ageRange.length;i++)
        {
-           if(ageRange[i].checked)
+           if(ageRange[i].checked){
                resultFormProfile.innerHTML += "Tranche d'age : "  + ageRange[i].value + '<br>';
+           }    
        }
 
        for(i =0; i<gender.length;i++)
         {
-            if(gender[i].checked)
+            if(gender[i].checked){
                 resultFormProfile.innerHTML += 'Genre : ' + gender[i].value + '<br>';
+            }     
         }
 
         /* 
@@ -171,13 +190,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
         */
         
-        // J'ajoute un champs 'niveau etude' vide pour que ça ne rajoute pas des champs à chaque click du bouton envoyer sur le formulaire
+        // J'ajoute un champs 'niveau etude' vide pour que ça ne rajoute pas des champs dans la div de récupération du formulaire à chaque click du bouton envoyer
         
         resultFormProfessional.innerHTML = 'Niveau etude : <br>';
             
         for (i = 0; i < study.length; i++) {
-            if (study[i].checked)
+            if (study[i].checked){
                 resultFormProfessional.innerHTML = 'Niveau etude : ' + study[i].value + '<br>';
+            }      
         } 
     
         resultFormProfessional.innerHTML += 'Domaine etude : ' + document.getElementById('studyArea').value + '<br>';
@@ -187,8 +207,9 @@ document.addEventListener('DOMContentLoaded', () => {
         resultFormProfessional.innerHTML += 'Situation professionnelle : ';
 
         for (i = 0; i < ProSituation.length; i++) {
-            if (ProSituation[i].checked)
+            if (ProSituation[i].checked){
                 resultFormProfessional.innerHTML += ProSituation[i].value + ' , ';
+            }
         }
 
         resultFormProfessional.innerHTML += '<br>' + 'Situation pro autre :  ' + situationProText.value + '<br>';
@@ -235,52 +256,33 @@ document.addEventListener('DOMContentLoaded', () => {
         
         //Pour la tranche d'age
 
-        // let emptyCase = document.getElementById("emptyCase");
-        // let boolEmptyCase = 1;
-        // for (i = 0; i < ageRange.length; i++) {
-        //     if (boolEmptyCase == 1 && !ageRange[i].checked) {
-        //         console.log('after if !ageRange[i].checked');
-        //         emptyCase.textContent = 'Cette question est obligatoire';
-        //         boolEmptyCase = 0;
-        //     }
-        //     else {
-        //         console.log('je sors de la boucle');
-        //         return false;
-        //     }
-        // }
-
-        //Version simplifiée
-
-        // Age
-
-        let emptyCase = document.getElementById("emptyCase");
+        let emptyCaseAge = document.getElementById("emptyCaseAge");
         let boolEmptyCase = false;
 
         for(i= 0; i<ageRange.length; i++) {
             if(ageRange[i].checked){
                 boolEmptyCase = true;
-                emptyCase.textContent = "";
+                emptyCaseAge.textContent = "";
             }
         }
         if(boolEmptyCase==false)
             {
-                emptyCase.textContent = 'Cette question est obligatoire';
+                emptyCaseAge.textContent = 'Cette question est obligatoire';
             }
 
         // Gender
 
         let emptyCaseGender = document.getElementById("emptyCaseGender");
-        let boolEmptyCaseG = false;
+        let boolEmptyCaseGender = false;
 
         for(i= 0; i<gender.length; i++) {
             if(gender[i].checked){
-                boolEmptyCaseG = true;
+                boolEmptyCaseGender = true;
                 emptyCaseGender.textContent = "";
             }
         }
-        if(boolEmptyCaseG==false)
+        if(boolEmptyCaseGender==false)
             {
-                console.log('boolemptycaseG false')
                 emptyCaseGender.textContent = 'Cette question est obligatoire';
             }
             
