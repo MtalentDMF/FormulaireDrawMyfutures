@@ -17,8 +17,8 @@ let firstName = document.getElementById("firstName");
 let email = document.getElementById("email");
 let CP = document.getElementById("CP");
 
-//VERIFICATION DES CHAMPS OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
-let RequiredField = 'Champs obligatoire';
+//VERIFICATION DES CHAMP OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
+let RequiredField = 'Champ obligatoire';
 let validEmail = document.getElementById("validEmail");
 let validName = document.getElementById("validName");
 let validFirstName = document.getElementById("validFirstName");
