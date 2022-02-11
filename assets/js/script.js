@@ -6,10 +6,10 @@ AFFICHAGE DES DONNES SOUMISES PAR LE FORMULAIRE AU BAS DE LA PAGE
 let resultFormProfile = document.getElementById('resultFormProfile');
 let resultFormProfessional = document.getElementById('resultFormProfessional');
 let buttonSubmit = document.getElementById('buttonSubmit');
-let ageRange = document.getElementsByName('ageRange');
-let gender = document.getElementsByName('gender');
 let study = document.getElementsByName('study');
 let ProSituation = document.getElementsByName('ProSituation');
+let ageRangeRadioButton = document.querySelectorAll('input[name="ageRange"]');
+let genderRadioButton = document.querySelectorAll('input[name="gender"]');
 // let situationProText = document.getElementById('situationProText');
 // let jobBeforeRetraining = document.getElementById('jobBeforeRetraining');
 let name = document.getElementById("name");
@@ -69,8 +69,7 @@ const codePostalValidation = () =>{
 //Le chargement du fichier js se fait à l'ouverture de la page html
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('demarrage du fichier');
-    
+
     //La verification de caracteres des champs se fait dans le input
     /*
     ---------------------------------------------------------
@@ -103,25 +102,23 @@ document.addEventListener('DOMContentLoaded', () => {
     ---------------------------------------------------------
      */ 
 
-    let ageRangeRadioButton = document.querySelectorAll('input[name="ageRange"]');
-
-    for(i=0; i<ageRange.length;i++){
+    for(i=0; i<ageRangeRadioButton.length;i++){
     ageRangeRadioButton[i].addEventListener('change', function(){
-    for (i = 0; i < ageRange.length; i++) {
-        if (ageRange[i].checked){
-            emptyCaseAge.textContent = "";
+    for (i = 0; i < ageRangeRadioButton.length; i++) {
+        if (ageRangeRadioButton[i].checked){
+        emptyCaseAge.textContent = "";
         }       
     }
     });
     }
 
 
-    let genderRadioButton = document.querySelectorAll('input[name="gender"]');
+    
 
-    for(i=0; i<gender.length;i++){
+    for(i=0; i<genderRadioButton.length;i++){
     genderRadioButton[i].addEventListener('change', function(){
-    for (i = 0; i < gender.length; i++) {
-        if (gender[i].checked){
+    for (i = 0; i < genderRadioButton.length; i++) {
+        if (genderRadioButton[i].checked){
             emptyCaseGender.textContent = "";
         }     
     }
@@ -155,17 +152,17 @@ document.addEventListener('DOMContentLoaded', () => {
         -------------------------------------------------------------------------------------
         */
        
-        for(i =0; i<ageRange.length;i++)
+        for(i =0; i<ageRangeRadioButton.length;i++)
        {
-           if(ageRange[i].checked){
-               resultFormProfile.innerHTML += "Tranche d'age : "  + ageRange[i].value + '<br>';
+           if(ageRangeRadioButton[i].checked){
+               resultFormProfile.innerHTML += "Tranche d'age : "  + ageRangeRadioButton[i].value + '<br>';
            }    
        }
 
-       for(i =0; i<gender.length;i++)
+       for(i =0; i<genderRadioButton.length;i++)
         {
-            if(gender[i].checked){
-                resultFormProfile.innerHTML += 'Genre : ' + gender[i].value + '<br>';
+            if(genderRadioButton[i].checked){
+                resultFormProfile.innerHTML += 'Genre : ' + genderRadioButton[i].value + '<br>';
             }     
         }
 
@@ -252,15 +249,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         //
         //Si le bouton radio n'est pas coché
-        //
+        //let emptyCaseAge = document.getElementById("emptyCaseAge");
+
+        // for(i= 0; i<ageRangeRadioButton.length; i++) {
+        //     console.log("for ageRangeRadioButton");
+        //     if(!ageRangeRadioButton[i].checked){
+        //         emptyCaseAge.textContent = 'Cette question est obligatoire';
+        //     }
+        // }
         
         //Pour la tranche d'age
 
         let emptyCaseAge = document.getElementById("emptyCaseAge");
         let boolEmptyCase = false;
 
-        for(i= 0; i<ageRange.length; i++) {
-            if(ageRange[i].checked){
+        for(i= 0; i<ageRangeRadioButton.length; i++) {
+            if(ageRangeRadioButton[i].checked){
                 boolEmptyCase = true;
                 emptyCaseAge.textContent = "";
             }
@@ -274,8 +278,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let emptyCaseGender = document.getElementById("emptyCaseGender");
         let boolEmptyCaseGender = false;
 
-        for(i= 0; i<gender.length; i++) {
-            if(gender[i].checked){
+        for(i= 0; i<genderRadioButton.length; i++) {
+            if(genderRadioButton[i].checked){
                 boolEmptyCaseGender = true;
                 emptyCaseGender.textContent = "";
             }
