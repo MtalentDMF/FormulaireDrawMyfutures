@@ -74,6 +74,15 @@ const codePostalValidation = () => {
         return false;
     }
 }
+    /*
+    Variables qui servent à la validation de mon formulaire voir fonction updateData
+    */
+
+    //------------------------------------------------------------------------------
+        
+
+        
+    //-------------------------------------------------------------------------------
 
 //Le chargement du fichier js se fait à l'ouverture de la page html
 
@@ -86,23 +95,30 @@ document.addEventListener('DOMContentLoaded', () => {
     ---------------------------------------------------------
     */
 
+   
+    //Avec invalidForm, je supprime le message d'erreur "le formulaire est invalide" quand un champ et bien renseigné. Je le fais pour chaque champ obligatoire
+
     let form = document.querySelector('form');
 
     form.name.addEventListener('change', function () {
         nameValidation();
+        invalidForm.textContent = "";
     });
 
     form.firstName.addEventListener('change', function () {
         firstNameValidation();
+        invalidForm.textContent = "";
     });
 
     form.email.addEventListener('change', function () {
         emailValidation();
+        invalidForm.textContent = "";
     });
 
     form.CP.addEventListener('change', function () {
         codePostalValidation();
-    });
+        invalidForm.textContent = "";
+    }); 
 
     /**
      * 
@@ -116,19 +132,19 @@ document.addEventListener('DOMContentLoaded', () => {
             for (i = 0; i < ageRangeRadioButton.length; i++) {
                 if (ageRangeRadioButton[i].checked) {
                     emptyCaseAge.textContent = "";
+                    invalidForm.textContent = "";
+
                 }
             }
         });
     }
-
-
-
 
     for (i = 0; i < genderRadioButton.length; i++) {
         genderRadioButton[i].addEventListener('change', function () {
             for (i = 0; i < genderRadioButton.length; i++) {
                 if (genderRadioButton[i].checked) {
                     emptyCaseGender.textContent = "";
+                    invalidForm.textContent = "";
                 }
             }
         });
@@ -144,17 +160,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     buttonSubmit.addEventListener('click', e => {
         e.preventDefault();
-        const isEmptyName = name.value.length === 0;
-        const isEmptyFirstName = firstName.value.length === 0;
-        const isEmptyEmail = email.value.length === 0;
-        const isEmptyCp = CP.value.length === 0;
-
         /*
         ---------------------------------------------------------------------------------
         Verification des champs du formulaire
         Si les champs ne sont pas remplis correctement, les messages d'erreurs suivants s'affichent
         ---------------------------------------------------------------------------------
         */
+        const isEmptyName = name.value.length === 0;
+        const isEmptyFirstName = firstName.value.length === 0;
+        const isEmptyEmail = email.value.length === 0;
+        const isEmptyCp = CP.value.length === 0;
 
         // Verif des champs nom, prenom, mail, codepostal
         if (isEmptyName) {
@@ -182,12 +197,12 @@ document.addEventListener('DOMContentLoaded', () => {
         //         emptyCaseAge.textContent = 'Cette question est obligatoire';
         //     }
         // }
-
+        
         //Pour la tranche d'age
-
+        
         let emptyCaseAge = document.getElementById("emptyCaseAge");
         let boolEmptyCase = false;
-
+        
         for (i = 0; i < ageRangeRadioButton.length; i++) {
             if (ageRangeRadioButton[i].checked) {
                 boolEmptyCase = true;
@@ -202,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let emptyCaseGender = document.getElementById("emptyCaseGender");
         let boolEmptyCaseGender = false;
+        
 
         for (i = 0; i < genderRadioButton.length; i++) {
             if (genderRadioButton[i].checked) {
@@ -213,26 +229,28 @@ document.addEventListener('DOMContentLoaded', () => {
             emptyCaseGender.textContent = 'Cette question est obligatoire';
         }
 
-
-        
-
         //-----------------------------------------------------------------------------------
         /*
         LA VARIABLE FORMULAIRE VALID PERMET DE VERIFIER SI TOUS LES CHAMPS SONT VALIDES AVANT D'ENVOYER LE FORMULAIRE
         */ 
         //-----------------------------------------------------------------------------------
 
+
         let nameValid = !isEmptyName && nameValidation();
         let firstNameValid = !isEmptyFirstName && firstNameValidation();
         let emailValid = !isEmptyEmail && emailValidation();
         let cpValid = !isEmptyCp && codePostalValidation();
         let formulaireValid = nameValid && firstNameValid && emailValid && cpValid && boolEmptyCase && boolEmptyCaseGender;
+        
+
         if(formulaireValid){
             updateData();
+            invalidForm.textContent = "";
         }
         else{
             invalidForm.textContent = "Le formulaire est invalide";
         }
+
 
         //--------------------------------------------------------------------------------------------
     });
@@ -327,16 +345,5 @@ document.addEventListener('DOMContentLoaded', () => {
         // SYSTEMATIQUEMENT RAJOUTER DU CONSOLE LOG LORSQU'IL Y A UN BUG. 
         resultFormProfessional.innerHTML += 'Poste avant reconversion : ' + jobBeforeRetraining.value + '<br>';
     }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-
 
             
