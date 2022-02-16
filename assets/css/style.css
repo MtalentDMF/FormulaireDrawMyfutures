@@ -193,6 +193,11 @@ input::placeholder{
     display: none;
 }
 
+#invalidForm{
+    text-align:center;
+    margin-top: 10px;
+}
+
 /* Mediaqueries pour mobile */
 
 @media screen and (max-width: 780px) {
