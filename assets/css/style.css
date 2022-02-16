@@ -50,7 +50,6 @@ body{
     border-bottom: 10px solid rgb(53, 184, 143);
     height: auto;
     margin-bottom: 50px;
-    /* position: relative;  */
 }
 
 .formBloc{
@@ -201,9 +200,16 @@ input::placeholder{
 /* Mediaqueries pour mobile */
 
 @media screen and (max-width: 780px) {
+
     #box{
-        width: 85%;
+        width: 100%;
+        margin-bottom: 0px;
     }
+
+    #page{
+        margin: 1px;
+    }
+
     }
 
 
