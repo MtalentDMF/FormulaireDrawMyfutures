@@ -204,7 +204,11 @@ input::placeholder{
         width: 100%;
     }
     #page{
+<<<<<<< HEAD
         margin: 0 20px;
+=======
+        margin: 0 40px;
+>>>>>>> 4d0dbc713e5335e89788b9f6e52c34ca24534cb0
     }
     #logo2{
         max-width: 100%;
