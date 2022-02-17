@@ -198,14 +198,13 @@ input::placeholder{
 
 /* Mediaqueries pour mobile */
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 1024px) {
 
     #box{
         width: 100%;
-        margin-bottom: 0px;
     }
     #page{
-        margin: 1px;
+        margin: 0 40px;
     }
     #logo2{
         max-width: 100%;
