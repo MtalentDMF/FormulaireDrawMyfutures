@@ -10,12 +10,13 @@ let study = document.getElementsByName('study');
 let ProSituation = document.getElementsByName('ProSituation');
 let ageRangeRadioButton = document.querySelectorAll('input[name="ageRange"]');
 let genderRadioButton = document.querySelectorAll('input[name="gender"]');
-// let situationProText = document.getElementById('situationProText');
-// let jobBeforeRetraining = document.getElementById('jobBeforeRetraining');
+let situationProText = document.getElementById('situationProText');
+let jobBeforeRetraining = document.getElementById('jobBeforeRetraining');
 let name = document.getElementById("name");
 let firstName = document.getElementById("firstName");
 let email = document.getElementById("email");
 let CP = document.getElementById("CP");
+let studyArea = document.getElementById('studyArea');
 let invalidForm = document.querySelector('form p#invalidForm');
 
 //VERIFICATION DES CHAMP OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
@@ -74,6 +75,19 @@ const codePostalValidation = () => {
         return false;
     }
 }
+
+// const textFields = (id, field) => {
+//     let regexText = /^[a-zA-Z0-9-'()",?;.!\u00C0-\u00FF\s]+$/;
+//     if(regexText.exec(id.value)) {
+//         field.textContent = "";
+//         return true;
+//     }
+//     else {
+//         field.textContent = "Les caractères spéciaux ne sont pas autorisés";
+//         return false;
+//     }
+// }
+
     /*
     Variables qui servent à la validation de mon formulaire voir fonction updateData
     */
@@ -96,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     */
 
    
-    //Avec invalidForm, je supprime le message d'erreur "le formulaire est invalide" quand un champ et bien renseigné. Je le fais pour chaque champ obligatoire
+    //Avec invalidForm, je supprime le message d'erreur "le formulaire est invalide" quand l'utilisateur retourne sur un des champs concernés. Je le fais pour chaque champ obligatoire
 
     let form = document.querySelector('form');
 
@@ -105,8 +119,16 @@ document.addEventListener('DOMContentLoaded', () => {
         invalidForm.textContent = "";
     });
 
+    form.name.addEventListener('focus', function () {
+        invalidForm.textContent = "";
+    });
+
+
     form.firstName.addEventListener('change', function () {
         firstNameValidation();
+    });
+    
+    form.firstName.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
 
@@ -115,8 +137,15 @@ document.addEventListener('DOMContentLoaded', () => {
         invalidForm.textContent = "";
     });
 
+    form.email.addEventListener('focus', function () {
+        invalidForm.textContent = "";
+    });
+
     form.CP.addEventListener('change', function () {
         codePostalValidation();
+    }); 
+
+    form.CP.addEventListener('focus', function () {
         invalidForm.textContent = "";
     }); 
 
@@ -242,7 +271,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let cpValid = !isEmptyCp && codePostalValidation();
         let formulaireValid = nameValid && firstNameValid && emailValid && cpValid && boolEmptyCase && boolEmptyCaseGender;
         
-
         if(formulaireValid){
             updateData();
             invalidForm.textContent = "";
@@ -256,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
 
 //------------------------------------------------------------------------------
         /*
@@ -321,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     
-        resultFormProfessional.innerHTML += 'Domaine etude : ' + document.getElementById('studyArea').value + '<br>';
+        resultFormProfessional.innerHTML += 'Domaine etude : ' + studyArea.value + '<br>';
     
         //J'ajoute un champ situation professionnelle en dehors du for pour qu'il n'apparaisse qu'une fois et que les situation pro apparaissent à la suite
         resultFormProfessional.innerHTML += 'Situation professionnelle : ';
