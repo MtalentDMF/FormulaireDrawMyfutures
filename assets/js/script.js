@@ -8,8 +8,6 @@ let resultFormProfessional = document.getElementById('resultFormProfessional');
 let buttonSubmit = document.getElementById('buttonSubmit');
 let study = document.getElementsByName('study');
 let ProSituation = document.getElementsByName('ProSituation');
-let ageRangeRadioButton = document.querySelectorAll('input[name="ageRange"]');
-let genderRadioButton = document.querySelectorAll('input[name="gender"]');
 let situationProText = document.getElementById('situationProText');
 let jobBeforeRetraining = document.getElementById('jobBeforeRetraining');
 let name = document.getElementById("name");
@@ -18,6 +16,11 @@ let email = document.getElementById("email");
 let CP = document.getElementById("CP");
 let studyArea = document.getElementById('studyArea');
 let invalidForm = document.querySelector('form p#invalidForm');
+
+//QuerySelector de mes input type radio et checkbox 
+
+let ageRangeRadioButton = document.querySelectorAll('input[name="ageRange"]');
+let genderRadioButton = document.querySelectorAll('input[name="gender"]');
 
 //VERIFICATION DES CHAMP OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
 let RequiredField = 'Champ obligatoire';
@@ -28,6 +31,7 @@ let validCP = document.getElementById("validCP");
 let validStudyArea = document.getElementById("validStudyArea");
 let validSituationProText = document.getElementById("validSituationProText");
 let validJobBeforeRetraining = document.getElementById("validJobBeforeRetraining");
+let validSituationPro = document.getElementById("validSituationPro");
 
 // FONCTION DE VALIDATION DE NOM, DE PRENOM, DE CODE POSTAL ET D'EMAIL
 
@@ -91,15 +95,34 @@ const textFields = (id, field) => {
     }
 }
 
-    /*
-    Variables qui servent à la validation de mon formulaire voir fonction updateData
-    */
+// FONCTION DE VALIDATION DES CHECKBOX ET RADIO BOUTONS
 
-    //------------------------------------------------------------------------------
-        
+const validButton = (id, field) => {
+    for (i = 0; i < id.length; i++) {
+        if (id[i].checked) {
+            field.textContent = "";
+            invalidForm.textContent = "";
 
-        
-    //-------------------------------------------------------------------------------
+        }
+    }
+}
+
+// FONCTION DE VALIDATIO NDES CHECKBOX ET RADIO BOUTONS QUI ENGLOBENT L'EVENT LISTENER
+
+const validButtonTest = (id,field) =>{
+    for (i = 0; i < id.length; i++) {
+        id[i].addEventListener('change', function () {
+            for (i = 0; i < id.length; i++) {
+                if (id[i].checked) {
+                    field.textContent = "";
+                    invalidForm.textContent = "";
+
+                }
+            }
+        });
+    }
+}
+
 
 //Le chargement du fichier js se fait à l'ouverture de la page html
 
@@ -188,27 +211,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (i = 0; i < ageRangeRadioButton.length; i++) {
         ageRangeRadioButton[i].addEventListener('change', function () {
-            for (i = 0; i < ageRangeRadioButton.length; i++) {
-                if (ageRangeRadioButton[i].checked) {
-                    emptyCaseAge.textContent = "";
-                    invalidForm.textContent = "";
-
-                }
-            }
+            validButton(ageRangeRadioButton, emptyCaseAge);
         });
     }
 
     for (i = 0; i < genderRadioButton.length; i++) {
         genderRadioButton[i].addEventListener('change', function () {
-            for (i = 0; i < genderRadioButton.length; i++) {
-                if (genderRadioButton[i].checked) {
-                    emptyCaseGender.textContent = "";
-                    invalidForm.textContent = "";
-                }
-            }
+            validButton(genderRadioButton, emptyCaseGender);
         });
     }
-
 
     //JE FAIS DISPARAITRE LES DIV DE RECUPERATION DES DONNEES AU BAS DE MON FORMULAIRE
 
@@ -405,5 +416,3 @@ document.addEventListener('DOMContentLoaded', () => {
         // SYSTEMATIQUEMENT RAJOUTER DU CONSOLE LOG LORSQU'IL Y A UN BUG. 
         resultFormProfessional.innerHTML += 'Poste avant reconversion : ' + jobBeforeRetraining.value + '<br>';
     }
-
-            
