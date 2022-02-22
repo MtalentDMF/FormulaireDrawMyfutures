@@ -25,16 +25,16 @@
                 <!--TOUS LES ELEMENTS SONT EN ANGLAIS-->
                 <label for="name" id="labelName" class="atLine">Nom <span class="starObligatoryField">*</span></label>
                 <input type="text" name="name" id="name" placeholder="Doe" maxlength="30" class="blockSizeOfForm testFormValid">
-                <p id="validName" class="obligatoryField"></p>
+                <p id="validName" class="errorMessage"></p>
                 <label for="firstName" class="atLine wordingField">Prénom <span class="starObligatoryField">*</span></label>
                 <input type="text" name="firstName" placeholder="John" id="firstName" class="blockSizeOfForm testFormValid">
-                <p id="validFirstName" class="obligatoryField"></p>
+                <p id="validFirstName" class="errorMessage"></p>
                 <label for="email" class="atLine wordingField">Email <span class="starObligatoryField">*</span></label>
                 <input type="email" name="mail" placeholder="John.Doe@gmail.com" id="email" class="blockSizeOfForm testFormValid">
-                <p id="validEmail" class="obligatoryField"></p>
+                <p id="validEmail" class="errorMessage"></p>
                 <label for="CP" class="atLine wordingField">Code postal de résidence <span class="starObligatoryField">*</span></label>
                 <input type="text" name="CP" placeholder="75009" id="CP" class="blockSizeOfForm testFormValid">
-                <p id="validCP" class="obligatoryField"></p>
+                <p id="validCP" class="errorMessage"></p>
 
                 
                 <p class="wordingField">Quelle est votre tranche d'âge ?<span class="starObligatoryField">*</span></p>
@@ -44,12 +44,12 @@
                 <label for="36-45" class="atLine"><input type="radio" name="ageRange" value="36-45" id="36-45">36 - 45 ans</label>
                 <label for="46-55" class="atLine"><input type="radio" name="ageRange" value="46-55" id="46-55">46 - 55 ans</label>
                 <label for="over55" class="atLine"><input type="radio" name="ageRange" value="plus de 55" id="over55">plus de 55 ans</label>
-                <p id="emptyCaseAge" class="obligatoryField"></p>
+                <p id="emptyCaseAge" class="errorMessage"></p>
 
                 <p class="wordingField">Êtes-vous ?<span class="starObligatoryField">*</span></p>
                 <label for="woman" ><input type="radio" name="gender" value="femme" id="woman">Une femme<label>
                 <label for="man" class="atLine"><input type="radio" name="gender" value="homme" id="man">Un homme</label>
-                <p id="emptyCaseGender" class="obligatoryField"></p>
+                <p id="emptyCaseGender" class="errorMessage"></p>
 
                
 
@@ -67,6 +67,7 @@
                 
                 <label for="studyArea" class="atLine wordingField" >Quel est votre domaine d'étude?</label>
                 <textarea name="studyOfArea" id="studyArea" cols="38" rows="1" class="blockSizeOfForm"></textarea>
+                <p id="validStudyArea" class="errorMessage"></p>
 
                 <p class="wordingField">Quelle est votre situation professionnelle actuelle ?</p>
                 <label class="atLine"><input type="checkbox" name="ProSituation" value="Contrat long">En contrat long (CDI, CDD de plusieurs années, …)</label>
@@ -78,13 +79,15 @@
                 
                 <!--champs texte pour autre-->
                 <textarea name="situationProTextArea" id="situationProText" cols="38" rows="1" class="blockSizeOfForm"></textarea>
+                <p id="validSituationProText" class="errorMessage"></p>
 
                 <label for="jobBeforeRetraining" class="atLine wordingField">Quel est l'intitulé de votre poste avant la reconversion ?</label>
                 <textarea name="jobBefore" id="jobBeforeRetraining" cols="38" rows="1" class="blockSizeOfForm"></textarea>
+                <p id="validJobBeforeRetraining" class="errorMessage"></p>
 
                 <!--USER STORY numero 3 validation des champs du formulaire-->
                 <p><span class="starObligatoryField">*</span> Champs obligatoires</p>
-                <p id="invalidForm" class="obligatoryField"></p>
+                <p id="invalidForm" class="errorMessage"></p>
                 <div class="button">
                     <button class="buttonSubmitStyle" id="buttonSubmit" type="submit">Envoyer</button>
                 </div>

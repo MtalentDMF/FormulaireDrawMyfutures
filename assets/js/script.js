@@ -25,6 +25,9 @@ let validEmail = document.getElementById("validEmail");
 let validName = document.getElementById("validName");
 let validFirstName = document.getElementById("validFirstName");
 let validCP = document.getElementById("validCP");
+let validStudyArea = document.getElementById("validStudyArea");
+let validSituationProText = document.getElementById("validSituationProText");
+let validJobBeforeRetraining = document.getElementById("validJobBeforeRetraining");
 
 // FONCTION DE VALIDATION DE NOM, DE PRENOM, DE CODE POSTAL ET D'EMAIL
 
@@ -76,17 +79,17 @@ const codePostalValidation = () => {
     }
 }
 
-// const textFields = (id, field) => {
-//     let regexText = /^[a-zA-Z0-9-'()",?;.!\u00C0-\u00FF\s]+$/;
-//     if(regexText.exec(id.value)) {
-//         field.textContent = "";
-//         return true;
-//     }
-//     else {
-//         field.textContent = "Les caractères spéciaux ne sont pas autorisés";
-//         return false;
-//     }
-// }
+const textFields = (id, field) => {
+    let regexText = /^[a-zA-Z0-9-'()",?;.!\u00C0-\u00FF\s]+$/;
+    if(regexText.exec(id.value) || id.value.length === 0) {
+        field.textContent = "";
+        return true;
+    }
+    else {
+        field.textContent = "Les caractères spéciaux ne sont pas autorisés";
+        return false;
+    }
+}
 
     /*
     Variables qui servent à la validation de mon formulaire voir fonction updateData
@@ -121,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.name.addEventListener('focus', function () {
         invalidForm.textContent = "";
+        validName.textContent = "";
     });
 
 
@@ -130,15 +134,16 @@ document.addEventListener('DOMContentLoaded', () => {
     
     form.firstName.addEventListener('focus', function () {
         invalidForm.textContent = "";
+        validFirstName.textContent = "";
     });
 
     form.email.addEventListener('change', function () {
         emailValidation();
-        invalidForm.textContent = "";
     });
 
     form.email.addEventListener('focus', function () {
         invalidForm.textContent = "";
+        validEmail.textContent = "";
     });
 
     form.CP.addEventListener('change', function () {
@@ -147,7 +152,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.CP.addEventListener('focus', function () {
         invalidForm.textContent = "";
+        validCP.textContent = "";
     }); 
+
+    form.studyArea.addEventListener('change', function () {
+        textFields(studyArea,validStudyArea);
+    });
+
+    form.studyArea.addEventListener('focus', function () {
+        validStudyArea.textContent = "";
+    });
+
+    form.situationProText.addEventListener('change', function () {
+        textFields(situationProText,validSituationProText);
+    });
+
+    form.situationProText.addEventListener('focus', function () {
+        validSituationProText.textContent = "";
+    });
+
+    form.jobBeforeRetraining.addEventListener('change', function () {
+        textFields(jobBeforeRetraining,validJobBeforeRetraining);
+    });
+
+    form.jobBeforeRetraining.addEventListener('focus', function () {
+        validJobBeforeRetraining.textContent = "";
+    });
 
     /**
      * 
@@ -269,7 +299,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let firstNameValid = !isEmptyFirstName && firstNameValidation();
         let emailValid = !isEmptyEmail && emailValidation();
         let cpValid = !isEmptyCp && codePostalValidation();
-        let formulaireValid = nameValid && firstNameValid && emailValid && cpValid && boolEmptyCase && boolEmptyCaseGender;
+        let textFieldsValid = textFields(studyArea,validStudyArea) && textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining);
+        let formulaireValid = nameValid && firstNameValid && emailValid && cpValid && boolEmptyCase && boolEmptyCaseGender && textFieldsValid;
         
         if(formulaireValid){
             updateData();
