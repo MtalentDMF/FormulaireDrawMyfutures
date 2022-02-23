@@ -21,6 +21,7 @@ let invalidForm = document.querySelector('form p#invalidForm');
 
 let ageRangeRadioButton = document.querySelectorAll('input[name="ageRange"]');
 let genderRadioButton = document.querySelectorAll('input[name="gender"]');
+let proSituationCheckbox = document.querySelectorAll('input[name="ProSituation"]');
 
 //VERIFICATION DES CHAMP OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
 let RequiredField = 'Champ obligatoire';
@@ -38,7 +39,7 @@ let validSituationPro = document.getElementById("validSituationPro");
 let regexCarac = /^[a-zA-Z-_\u00C0-\u00FF\s]+$/;//la regex est la meme dans nom et prenom
 
 const nameValidation = () => {
-    if (regexCarac.test(name.value)) {
+    if (regexCarac.test(name.value) || name.value.length === 0) {
         validName.textContent = "";
         return true;
     }
@@ -49,7 +50,7 @@ const nameValidation = () => {
 }
 
 const firstNameValidation = () => {
-    if (regexCarac.test(firstName.value)) {
+    if (regexCarac.test(firstName.value) || firstName.value.length === 0) {
         validFirstName.textContent = "";
         return true;
     }
@@ -61,7 +62,7 @@ const firstNameValidation = () => {
 
 const emailValidation = () => {
     let verif = /^[\u00C0-\u00FFa-zA-Z0-9-_._]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
-    if (verif.exec(email.value)) {
+    if (verif.exec(email.value) || email.value.length === 0) {
         validEmail.textContent = "";
         return true;
     }
@@ -73,7 +74,7 @@ const emailValidation = () => {
 
 const codePostalValidation = () => {
     let regexNumber = /^[0-9]+$/;
-    if (regexNumber.test(CP.value)) {
+    if (regexNumber.test(CP.value) || CP.value.length === 0) {
         validCP.textContent = "";
         return true;
     }
@@ -107,22 +108,33 @@ const validButton = (id, field) => {
     }
 }
 
-// FONCTION DE VALIDATIO NDES CHECKBOX ET RADIO BOUTONS QUI ENGLOBENT L'EVENT LISTENER
+// FONCTION DE VALIDATION DES CHECKBOX ET RADIO BOUTONS QUI ENGLOBENT L'EVENT LISTENER
 
-const validButtonTest = (id,field) =>{
-    for (i = 0; i < id.length; i++) {
-        id[i].addEventListener('change', function () {
-            for (i = 0; i < id.length; i++) {
-                if (id[i].checked) {
-                    field.textContent = "";
-                    invalidForm.textContent = "";
+// const validButtonTest = (id,field) =>{
+//     for (i = 0; i < id.length; i++) {
+//         id[i].addEventListener('change', function () {
+//             for (i = 0; i < id.length; i++) {
+//                 if (id[i].checked) {
+//                     field.textContent = "";
+//                     invalidForm.textContent = "";
 
-                }
-            }
-        });
+//                 }
+//             }
+//         });
+//     }
+// }
+
+//FONCTION DE VALIDATION DES CHAMPS OBLIGATOIRES
+
+const emptyField = (id, field) =>{
+    if(id.value.length === 0){
+        field.textContent = RequiredField;
+        return false;
     }
-}
-
+    else{
+        return true;
+    }
+} 
 
 //Le chargement du fichier js se fait à l'ouverture de la page html
 
@@ -140,72 +152,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let form = document.querySelector('form');
 
-    form.name.addEventListener('change', function () {
+    form.name.addEventListener('focusout', function () {
         nameValidation();
-        invalidForm.textContent = "";
+    });
+    
+    form.firstName.addEventListener('focusout', function () {
+        firstNameValidation();
     });
 
+    form.email.addEventListener('focusout', function () {
+        emailValidation();
+    });
+
+    
+    form.CP.addEventListener('focusout', function () {
+        codePostalValidation();
+    }); 
+    
+    form.studyArea.addEventListener('focusout', function () {
+        textFields(studyArea,validStudyArea);
+    });
+    
+    form.situationProText.addEventListener('focusout', function () {
+        textFields(situationProText,validSituationProText);
+    });
+    
+    form.jobBeforeRetraining.addEventListener('focusout', function () {
+        textFields(jobBeforeRetraining,validJobBeforeRetraining);
+    });
+    
     form.name.addEventListener('focus', function () {
         invalidForm.textContent = "";
-        validName.textContent = "";
-    });
-
-
-    form.firstName.addEventListener('change', function () {
-        firstNameValidation();
     });
     
     form.firstName.addEventListener('focus', function () {
         invalidForm.textContent = "";
-        validFirstName.textContent = "";
     });
-
-    form.email.addEventListener('change', function () {
-        emailValidation();
-    });
+    
 
     form.email.addEventListener('focus', function () {
         invalidForm.textContent = "";
-        validEmail.textContent = "";
     });
 
-    form.CP.addEventListener('change', function () {
-        codePostalValidation();
-    }); 
 
     form.CP.addEventListener('focus', function () {
         invalidForm.textContent = "";
-        validCP.textContent = "";
     }); 
 
-    form.studyArea.addEventListener('change', function () {
-        textFields(studyArea,validStudyArea);
-    });
 
     form.studyArea.addEventListener('focus', function () {
-        validStudyArea.textContent = "";
+        invalidForm.textContent = "";
     });
 
-    form.situationProText.addEventListener('change', function () {
-        textFields(situationProText,validSituationProText);
-    });
-
-    form.situationProText.addEventListener('focus', function () {
-        validSituationProText.textContent = "";
-    });
-
-    form.jobBeforeRetraining.addEventListener('change', function () {
-        textFields(jobBeforeRetraining,validJobBeforeRetraining);
-    });
 
     form.jobBeforeRetraining.addEventListener('focus', function () {
-        validJobBeforeRetraining.textContent = "";
+        invalidForm.textContent = "";
     });
 
     /**
      * 
     ---------------------------------------------------------
-    Effacer le message d'erreur lors de la correction du formulaire 
+    Effacer le message d'erreur lors de la correction des boutons et checkbox du formulaire 
     ---------------------------------------------------------
      */
 
@@ -218,6 +225,12 @@ document.addEventListener('DOMContentLoaded', () => {
     for (i = 0; i < genderRadioButton.length; i++) {
         genderRadioButton[i].addEventListener('change', function () {
             validButton(genderRadioButton, emptyCaseGender);
+        });
+    }
+
+    for (i = 0; i < proSituationCheckbox.length; i++) {
+        proSituationCheckbox[i].addEventListener('change', function () {
+            validButton(proSituationCheckbox, validSituationPro);
         });
     }
 
@@ -236,27 +249,26 @@ document.addEventListener('DOMContentLoaded', () => {
         Si les champs ne sont pas remplis correctement, les messages d'erreurs suivants s'affichent
         ---------------------------------------------------------------------------------
         */
-        const isEmptyName = name.value.length === 0;
-        const isEmptyFirstName = firstName.value.length === 0;
-        const isEmptyEmail = email.value.length === 0;
-        const isEmptyCp = CP.value.length === 0;
+        // const isEmptyName = name.value.length === 0;
 
         // Verif des champs nom, prenom, mail, codepostal
-        if (isEmptyName) {
-            validName.textContent = RequiredField;
-        }
 
-        if (isEmptyFirstName) {
-            validFirstName.textContent = RequiredField;
-        }
+        // if (isEmptyName) {
+        //     validName.textContent = RequiredField;
+        // }
 
-        if (isEmptyEmail) {
-            validEmail.textContent = RequiredField;
-        }
+        // Remplacé par la fonction emptyField
 
-        if (isEmptyCp) {
-            validCP.textContent = RequiredField;
-        }
+        emptyField(name,validName);
+
+        emptyField(firstName,validFirstName);
+
+        emptyField(email,validEmail);
+
+        emptyField(CP,validCP);     
+
+        emptyField(studyArea,validStudyArea);
+        
         //
         //Si le bouton radio n'est pas coché
         //let emptyCaseAge = document.getElementById("emptyCaseAge");
@@ -299,19 +311,35 @@ document.addEventListener('DOMContentLoaded', () => {
             emptyCaseGender.textContent = 'Cette question est obligatoire';
         }
 
+        //ProSituation 
+
+        let boolEmptyCaseProSituation = false;
+        
+
+        for (i = 0; i < proSituationCheckbox.length; i++) {
+            if (proSituationCheckbox[i].checked) {
+                boolEmptyCaseProSituation = true;
+                validSituationPro.textContent = "";
+            }
+        }
+        if (boolEmptyCaseProSituation == false) {
+            validSituationPro.innerHTML = 'Cette question est obligatoire';
+
+        }
+
+
         //-----------------------------------------------------------------------------------
         /*
         LA VARIABLE FORMULAIRE VALID PERMET DE VERIFIER SI TOUS LES CHAMPS SONT VALIDES AVANT D'ENVOYER LE FORMULAIRE
         */ 
         //-----------------------------------------------------------------------------------
 
-
-        let nameValid = !isEmptyName && nameValidation();
-        let firstNameValid = !isEmptyFirstName && firstNameValidation();
-        let emailValid = !isEmptyEmail && emailValidation();
-        let cpValid = !isEmptyCp && codePostalValidation();
-        let textFieldsValid = textFields(studyArea,validStudyArea) && textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining);
-        let formulaireValid = nameValid && firstNameValid && emailValid && cpValid && boolEmptyCase && boolEmptyCaseGender && textFieldsValid;
+        let nameValid = emptyField(name,validName) && nameValidation();
+        let firstNameValid = emptyField(firstName,validFirstName) && firstNameValidation();
+        let emailValid = emptyField(email,validEmail) && emailValidation();
+        let cpValid =  emptyField(CP,validCP) && codePostalValidation();
+        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation;
+        let formulaireValid = nameValid && firstNameValid && emailValid && cpValid && boolTrue  && textFieldsValid;
         
         if(formulaireValid){
             updateData();

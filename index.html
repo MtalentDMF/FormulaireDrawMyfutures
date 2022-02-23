@@ -65,11 +65,12 @@
                 <label class="atLine"><input type="radio" name="study" value="BAC +5">Bac +5</label>
                 <label class="atLine"><input type="radio" name="study" value=">BAC+5"> > Bac + 5</label>
                 
-                <label for="studyArea" class="atLine wordingField" >Quel est votre domaine d'étude?</label>
+                <label for="studyArea" class="atLine wordingField" >Quel est votre domaine d'étude avant votre reconversion?</label>
                 <textarea name="studyOfArea" id="studyArea" cols="38" rows="1" class="blockSizeOfForm"></textarea>
                 <p id="validStudyArea" class="errorMessage"></p>
 
                 <p class="wordingField">Quelle est votre situation professionnelle actuelle ?</p>
+                <p id="validSituationPro" class="errorMessage"></p>
                 <label class="atLine"><input type="checkbox" name="ProSituation" value="Contrat long">En contrat long (CDI, CDD de plusieurs années, …)</label>
                 <label class="atLine"><input type="checkbox" name="ProSituation" value="Contrat court">En contrat court (CDD, intérim,…)</label>
                 <label class="atLine"><input type="checkbox" name="ProSituation" value="Chomage Partiel">En chômage partiel</label>
@@ -77,13 +78,14 @@
                 <label class="atLine"><input type="checkbox" name="ProSituation" value="Chomage Partiel">En chômage partiel</label>
                 <label class="atLine"><input type="checkbox" name="ProSituation" value="Étudiant">Étudiant</label>
                 <label class="atLine"><input type="checkbox" name="ProSituation" value="Demandeur d'emploi">Demandeur d'emploi</label>
+                
                 <label class="atLine"><input type="checkbox" name="ProSituation" value="Autre">Autre. (Renseigner votre situation ci-dessous)</label>
                 
                 
                 <!--champs texte pour autre-->
                 <textarea name="situationProTextArea" id="situationProText" cols="38" rows="1" class="blockSizeOfForm"></textarea>
                 <p id="validSituationProText" class="errorMessage"></p>
-                <p id="validSituationPro" class="errorMessage"></p>
+                
 
                 <label for="jobBeforeRetraining" class="atLine wordingField">Quel est l'intitulé de votre poste avant la reconversion ?</label>
                 <textarea name="jobBefore" id="jobBeforeRetraining" cols="38" rows="1" class="blockSizeOfForm"></textarea>
