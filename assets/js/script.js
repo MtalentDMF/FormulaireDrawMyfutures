@@ -2,6 +2,7 @@
 AFFICHAGE DES DONNES SOUMISES PAR LE FORMULAIRE AU BAS DE LA PAGE
 */
 
+//Variables qui prend les id des inpu et des text Area
 
 let resultFormProfile = document.getElementById('resultFormProfile');
 let resultFormProfessional = document.getElementById('resultFormProfessional');
@@ -15,9 +16,13 @@ let firstName = document.getElementById("firstName");
 let email = document.getElementById("email");
 let CP = document.getElementById("CP");
 let studyArea = document.getElementById('studyArea');
-let invalidForm = document.querySelector('form p#invalidForm');
-
 let professionalRetraining = document.getElementsByName('professionalRetraining');
+let professionalRetrainingText = document.getElementById('professionalRetrainingText');
+
+
+
+
+
 
 //QuerySelector de mes input type radio et checkbox 
 
@@ -26,7 +31,8 @@ let genderRadioButton = document.querySelectorAll('input[name="gender"]');
 let proSituationCheckbox = document.querySelectorAll('input[name="ProSituation"]');
 let professionalRetrainingCheckbox = document.querySelectorAll('input[name="professionalRetraining"]');
 
-//VERIFICATION DES CHAMP OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
+//VARIABLES D'EMPLACEMENT DE MESSAGES D'ERREURS DES VERIFICATIONS DES CHAMPS OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
+
 let RequiredField = 'Champ obligatoire';
 let validEmail = document.getElementById("validEmail");
 let validName = document.getElementById("validName");
@@ -37,6 +43,11 @@ let validSituationProText = document.getElementById("validSituationProText");
 let validJobBeforeRetraining = document.getElementById("validJobBeforeRetraining");
 let validSituationPro = document.getElementById("validSituationPro");
 let validProfessionalRetraining = document.getElementById("validProfessionalRetraining");
+let validProfessionalRetrainingText = document.getElementById("validProfessionalRetrainingText");
+
+//Message d'erreur si l'envoi du formulaire n'est pas valide 
+
+let invalidForm = document.querySelector('form p#invalidForm');
 
 // FONCTION DE VALIDATION DE NOM, DE PRENOM, DE CODE POSTAL ET D'EMAIL
 
@@ -184,6 +195,10 @@ document.addEventListener('DOMContentLoaded', () => {
     form.jobBeforeRetraining.addEventListener('focusout', function () {
         textFields(jobBeforeRetraining,validJobBeforeRetraining);
     });
+
+    form.professionalRetrainingText.addEventListener('focusout', function () {
+        textFields(professionalRetrainingText,validProfessionalRetrainingText);
+    });
     
     form.name.addEventListener('focus', function () {
         invalidForm.textContent = "";
@@ -203,13 +218,19 @@ document.addEventListener('DOMContentLoaded', () => {
         invalidForm.textContent = "";
     }); 
 
-
     form.studyArea.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
 
+    form.situationProText.addEventListener('focus', function () {
+        invalidForm.textContent = "";
+    });
 
     form.jobBeforeRetraining.addEventListener('focus', function () {
+        invalidForm.textContent = "";
+    });
+
+    form.professionalRetrainingText.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
 
@@ -363,8 +384,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let emailValidSending = emptyField(email,validEmail) && emailValidation();
         let cpValidSending =  emptyField(CP,validCP) && codePostalValidation();
         let studyAreaValidSending = emptyField(studyArea,validStudyArea) && textFields(studyArea,validStudyArea);
+        let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText);
         let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining;
-        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && studyAreaValidSending && boolTrue;
+        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && studyAreaValidSending && areaNotRequired && boolTrue;
         
         if(formulaireValid){
             updateData();
@@ -477,5 +499,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 resultFormProfessional.innerHTML += professionalRetraining[i].value + ' , ';
             }
         }
+
+        resultFormProfessional.innerHTML += '<br>' + 'Rapport à la reconversion autre :  ' + professionalRetrainingText.value + '<br>';
+
+        
 
     }
