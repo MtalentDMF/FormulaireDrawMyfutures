@@ -17,11 +17,14 @@ let CP = document.getElementById("CP");
 let studyArea = document.getElementById('studyArea');
 let invalidForm = document.querySelector('form p#invalidForm');
 
+let professionalRetraining = document.getElementsByName('professionalRetraining');
+
 //QuerySelector de mes input type radio et checkbox 
 
 let ageRangeRadioButton = document.querySelectorAll('input[name="ageRange"]');
 let genderRadioButton = document.querySelectorAll('input[name="gender"]');
 let proSituationCheckbox = document.querySelectorAll('input[name="ProSituation"]');
+let professionalRetrainingCheckbox = document.querySelectorAll('input[name="professionalRetraining"]');
 
 //VERIFICATION DES CHAMP OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
 let RequiredField = 'Champ obligatoire';
@@ -33,6 +36,7 @@ let validStudyArea = document.getElementById("validStudyArea");
 let validSituationProText = document.getElementById("validSituationProText");
 let validJobBeforeRetraining = document.getElementById("validJobBeforeRetraining");
 let validSituationPro = document.getElementById("validSituationPro");
+let validProfessionalRetraining = document.getElementById("validProfessionalRetraining");
 
 // FONCTION DE VALIDATION DE NOM, DE PRENOM, DE CODE POSTAL ET D'EMAIL
 
@@ -234,6 +238,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    for (i = 0; i < professionalRetrainingCheckbox.length; i++) {
+        professionalRetrainingCheckbox[i].addEventListener('change', function () {
+            validButton(professionalRetrainingCheckbox, validProfessionalRetraining);
+        });
+    }
+
     //JE FAIS DISPARAITRE LES DIV DE RECUPERATION DES DONNEES AU BAS DE MON FORMULAIRE
 
     document.getElementById('resultFormProfileStyle').classList.remove('block');
@@ -314,7 +324,6 @@ document.addEventListener('DOMContentLoaded', () => {
         //ProSituation 
 
         let boolEmptyCaseProSituation = false;
-        
 
         for (i = 0; i < proSituationCheckbox.length; i++) {
             if (proSituationCheckbox[i].checked) {
@@ -324,6 +333,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (boolEmptyCaseProSituation == false) {
             validSituationPro.innerHTML = 'Cette question est obligatoire';
+
+        }
+
+        //ProfessionalRetraining
+        
+        let boolEmptyCaseProfessionalRetraining = false;
+
+        for (i = 0; i < professionalRetrainingCheckbox.length; i++) {
+            if (professionalRetrainingCheckbox[i].checked) {
+                boolEmptyCaseProfessionalRetraining = true;
+                validProfessionalRetraining.textContent = "";
+            }
+        }
+        if (boolEmptyCaseProfessionalRetraining == false) {
+            validProfessionalRetraining.innerHTML = 'Cette question est obligatoire';
 
         }
 
@@ -339,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let emailValidSending = emptyField(email,validEmail) && emailValidation();
         let cpValidSending =  emptyField(CP,validCP) && codePostalValidation();
         let studyAreaValidSending = emptyField(studyArea,validStudyArea) && textFields(studyArea,validStudyArea);
-        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation;
+        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining;
         let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && studyAreaValidSending && boolTrue;
         
         if(formulaireValid){
@@ -443,5 +467,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // else
         //     console.log('after else situationProText.value = ' + situationProText.value);
         // SYSTEMATIQUEMENT RAJOUTER DU CONSOLE LOG LORSQU'IL Y A UN BUG. 
+
         resultFormProfessional.innerHTML += 'Poste avant reconversion : ' + jobBeforeRetraining.value + '<br>';
+        
+        resultFormProfessional.innerHTML += 'Rapport à la reconversion : ';
+    
+        for (i = 0; i < professionalRetraining.length; i++) {
+            if (professionalRetraining[i].checked) {
+                resultFormProfessional.innerHTML += professionalRetraining[i].value + ' , ';
+            }
+        }
+
     }
