@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         emptyField(CP,validCP);     
 
-        emptyField(studyArea,validStudyArea);
+        // emptyField(studyArea,validStudyArea);
         
         //
         //Si le bouton radio n'est pas coché
@@ -338,8 +338,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let firstNameValid = emptyField(firstName,validFirstName) && firstNameValidation();
         let emailValid = emptyField(email,validEmail) && emailValidation();
         let cpValid =  emptyField(CP,validCP) && codePostalValidation();
+
         let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation;
-        let formulaireValid = nameValid && firstNameValid && emailValid && cpValid && boolTrue  && textFieldsValid;
+        let formulaireValid = nameValid && firstNameValid && emailValid && cpValid && boolTrue;
         
         if(formulaireValid){
             updateData();
