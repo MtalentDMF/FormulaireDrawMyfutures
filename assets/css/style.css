@@ -153,6 +153,10 @@ input::placeholder{
     opacity: 0.4;
 }
 
+#requiredField{
+    margin-top: 30px;
+}
+
 /* Resultat du formulaire */
 
 #resultFormProfileStyle{

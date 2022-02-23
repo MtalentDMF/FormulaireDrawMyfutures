@@ -24,7 +24,7 @@
 
                 <!--TOUS LES ELEMENTS SONT EN ANGLAIS-->
                 <label for="name" id="labelName" class="atLine">Nom <span class="starObligatoryField">*</span></label>
-                <input type="text" name="name" id="name" placeholder="Doe" maxlength="30" class="blockSizeOfForm testFormValid">
+                <input type="text" name="name" id="name" placeholder="Doe" class="blockSizeOfForm testFormValid">
                 <p id="validName" class="errorMessage"></p>
                 <label for="firstName" class="atLine wordingField">Prénom <span class="starObligatoryField">*</span></label>
                 <input type="text" name="firstName" placeholder="John" id="firstName" class="blockSizeOfForm testFormValid">
@@ -112,12 +112,12 @@
 
                 <label for="retrainingJobArea" class="atLine wordingField" >Quel est le nouveau métier que vous visez (ou le métier où vous vous êtes reconvertis) ?  <span class="starObligatoryField">*</span></label>
                 <textarea name="retrainingJobOfArea" id="retrainingJobArea" cols="38" rows="1" class="blockSizeOfForm"></textarea>
-                <p id="validretrainingJob" class="errorMessage"></p>
+                <p id="validRetrainingJobArea" class="errorMessage"></p>
                 
                 
 
                 <!--USER STORY numero 3 validation des champs du formulaire-->
-                <p><span class="starObligatoryField">*</span> Champs obligatoires</p>
+                <p id="requiredField"><span class="starObligatoryField">*</span> Champs obligatoires</p>
                 <p id="invalidForm" class="errorMessage"></p>
                 <div class="button">
                     <button class="buttonSubmitStyle" id="buttonSubmit" type="submit">Envoyer</button>

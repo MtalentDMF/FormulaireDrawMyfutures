@@ -18,9 +18,7 @@ let CP = document.getElementById("CP");
 let studyArea = document.getElementById('studyArea');
 let professionalRetraining = document.getElementsByName('professionalRetraining');
 let professionalRetrainingText = document.getElementById('professionalRetrainingText');
-
-
-
+let retrainingJobArea = document.getElementById('retrainingJobArea');
 
 
 
@@ -44,6 +42,8 @@ let validJobBeforeRetraining = document.getElementById("validJobBeforeRetraining
 let validSituationPro = document.getElementById("validSituationPro");
 let validProfessionalRetraining = document.getElementById("validProfessionalRetraining");
 let validProfessionalRetrainingText = document.getElementById("validProfessionalRetrainingText");
+let validRetrainingJobArea = document.getElementById("validRetrainingJobArea");
+
 
 //Message d'erreur si l'envoi du formulaire n'est pas valide 
 
@@ -199,7 +199,11 @@ document.addEventListener('DOMContentLoaded', () => {
     form.professionalRetrainingText.addEventListener('focusout', function () {
         textFields(professionalRetrainingText,validProfessionalRetrainingText);
     });
-    
+
+    form.retrainingJobArea.addEventListener('focusout', function () {
+        textFields(retrainingJobArea,validRetrainingJobArea);
+    });
+
     form.name.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
@@ -231,6 +235,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     form.professionalRetrainingText.addEventListener('focus', function () {
+        invalidForm.textContent = "";
+    });
+
+    form.retrainingJobArea.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
 
@@ -280,15 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
         Si les champs ne sont pas remplis correctement, les messages d'erreurs suivants s'affichent
         ---------------------------------------------------------------------------------
         */
-        // const isEmptyName = name.value.length === 0;
-
-        // Verif des champs nom, prenom, mail, codepostal
-
-        // if (isEmptyName) {
-        //     validName.textContent = RequiredField;
-        // }
-
-        // Remplacé par la fonction emptyField
 
         emptyField(name,validName);
 
@@ -299,18 +298,13 @@ document.addEventListener('DOMContentLoaded', () => {
         emptyField(CP,validCP);     
 
         emptyField(studyArea,validStudyArea);
+
+        emptyField(retrainingJobArea,validRetrainingJobArea);
         
         //
-        //Si le bouton radio n'est pas coché
-        //let emptyCaseAge = document.getElementById("emptyCaseAge");
+        //Si le bouton radio ou checkbox n'est pas coché
+        //
 
-        // for(i= 0; i<ageRangeRadioButton.length; i++) {
-        //     console.log("for ageRangeRadioButton");
-        //     if(!ageRangeRadioButton[i].checked){
-        //         emptyCaseAge.textContent = 'Cette question est obligatoire';
-        //     }
-        // }
-        
         //Pour la tranche d'age
         
         let emptyCaseAge = document.getElementById("emptyCaseAge");
@@ -384,9 +378,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let emailValidSending = emptyField(email,validEmail) && emailValidation();
         let cpValidSending =  emptyField(CP,validCP) && codePostalValidation();
         let studyAreaValidSending = emptyField(studyArea,validStudyArea) && textFields(studyArea,validStudyArea);
+        let retrainingJobAreaSending = textFields(retrainingJobArea,validRetrainingJobArea) && emptyField(retrainingJobArea,validRetrainingJobArea);
+
         let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText);
+        
         let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining;
-        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && studyAreaValidSending && areaNotRequired && boolTrue;
+
+        //Variable qui contient toutes les variables de vérification des champs du formulaire
+
+        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && studyAreaValidSending && retrainingJobAreaSending && areaNotRequired && boolTrue;
         
         if(formulaireValid){
             updateData();
@@ -502,6 +502,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         resultFormProfessional.innerHTML += '<br>' + 'Rapport à la reconversion autre :  ' + professionalRetrainingText.value + '<br>';
 
-        
+        resultFormProfessional.innerHTML += 'Métier visé : ' + retrainingJobArea.value + '<br>';
 
     }
