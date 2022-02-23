@@ -65,11 +65,11 @@
                 <label class="atLine"><input type="radio" name="study" value="BAC +5">Bac +5</label>
                 <label class="atLine"><input type="radio" name="study" value=">BAC+5"> > Bac + 5</label>
                 
-                <label for="studyArea" class="atLine wordingField" >Quel est votre domaine d'étude avant votre reconversion?</label>
+                <label for="studyArea" class="atLine wordingField" >Quel est votre domaine d'étude avant votre reconversion? <span class="starObligatoryField">*</span></label>
                 <textarea name="studyOfArea" id="studyArea" cols="38" rows="1" class="blockSizeOfForm"></textarea>
                 <p id="validStudyArea" class="errorMessage"></p>
 
-                <p class="wordingField">Quelle est votre situation professionnelle actuelle ?</p>
+                <p class="wordingField">Quelle est votre situation professionnelle actuelle ? <span class="starObligatoryField">*</span></p>
                 <p id="validSituationPro" class="errorMessage"></p>
                 <label class="atLine"><input type="checkbox" name="ProSituation" value="Contrat long">En contrat long (CDI, CDD de plusieurs années, …)</label>
                 <label class="atLine"><input type="checkbox" name="ProSituation" value="Contrat court">En contrat court (CDD, intérim,…)</label>
@@ -87,9 +87,34 @@
                 <p id="validSituationProText" class="errorMessage"></p>
                 
 
-                <label for="jobBeforeRetraining" class="atLine wordingField">Quel est l'intitulé de votre poste avant la reconversion ?</label>
+                <label for="jobBeforeRetraining" class="atLine wordingField">Quel est l'intitulé de votre poste avant la reconversion ? <span class="starObligatoryField">*</span></label>
                 <textarea name="jobBefore" id="jobBeforeRetraining" cols="38" rows="1" class="blockSizeOfForm"></textarea>
                 <p id="validJobBeforeRetraining" class="errorMessage"></p>
+                
+                <!-- Nouveaux champs -->
+
+                <p class="wordingField">Quelle est votre rapport à la reconversion ? <span class="starObligatoryField">*</span></p>
+                <p id="validProfessionalRetraining" class="errorMessage"></p>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="Déjà fait">Déjà fait</label>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="En cours de reconversion">Je suis en cours de reconversion</label>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="Dès que possible">Dès que possible</label>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="D’ici moins d’un an">D’ici moins d’un an</label>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="D’ici un à trois ans">D’ici un à trois ans</label>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="Un jour, je ne sais pas trop quand">Un jour, je ne sais pas trop quand</label>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="Jamais de la vie">Jamais de la vie</label>
+
+                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="Autre">Autre. (Renseigner votre situation ci-dessous)</label>
+                
+                
+                <!--champs texte pour autre-->
+                <textarea name="professionalRetrainingTextArea" id="professionalRetrainingText" cols="38" rows="1" class="blockSizeOfForm"></textarea>
+                <p id="validProfessionalRetrainingArea" class="errorMessage"></p>
+
+                <label for="retrainingJobArea" class="atLine wordingField" >Quel est le nouveau métier que vous visez (ou le métier où vous vous êtes reconvertis) ?  <span class="starObligatoryField">*</span></label>
+                <textarea name="retrainingJobOfArea" id="retrainingJobArea" cols="38" rows="1" class="blockSizeOfForm"></textarea>
+                <p id="validretrainingJob" class="errorMessage"></p>
+                
+                
 
                 <!--USER STORY numero 3 validation des champs du formulaire-->
                 <p><span class="starObligatoryField">*</span> Champs obligatoires</p>
