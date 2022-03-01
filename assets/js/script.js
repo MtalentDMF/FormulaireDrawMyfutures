@@ -2,7 +2,7 @@
 AFFICHAGE DES DONNES SOUMISES PAR LE FORMULAIRE AU BAS DE LA PAGE
 */
 
-//Variables qui prend les id des inpu et des text Area
+//Variables qui prend les id des champs input et des champs text Area
 
 let resultFormProfile = document.getElementById('resultFormProfile');
 let resultFormProfessional = document.getElementById('resultFormProfessional');
@@ -19,6 +19,11 @@ let studyArea = document.getElementById('studyArea');
 let professionalRetrainingText = document.getElementById('professionalRetrainingText');
 let retrainingJobArea = document.getElementById('retrainingJobArea');
 let formationText = document.getElementById('formationText');
+let websitesRetrainingArea = document.getElementById('websitesRetrainingArea');
+let websitesFormationArea = document.getElementById('websitesFormationArea');
+
+
+
 
 
 
@@ -46,6 +51,10 @@ let validProfessionalRetrainingText = document.getElementById("validProfessional
 let validRetrainingJobArea = document.getElementById("validRetrainingJobArea");
 let validFormation = document.getElementById("validFormation");
 let validFormationText = document.getElementById("validFormationText");
+let validWebitesRetrainingArea = document.getElementById("validWebitesRetrainingArea");
+let validWebsitesFormationArea = document.getElementById("validWebsitesFormationArea");
+
+
 
 
 
@@ -223,6 +232,14 @@ document.addEventListener('DOMContentLoaded', () => {
         textFields(formationText,validFormationText);
     });
 
+    form.websitesRetrainingArea.addEventListener('focusout', function () {
+        textFields(websitesRetrainingArea,validWebitesRetrainingArea);
+    });
+
+    form.websitesFormationArea.addEventListener('focusout', function () {
+        textFields(websitesFormationArea,validWebsitesFormationArea);
+    });
+
     form.name.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
@@ -262,6 +279,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     form.formationText.addEventListener('focus', function () {
+        invalidForm.textContent = "";
+    });
+    
+    form.websitesRetrainingArea.addEventListener('focus', function () {
+        invalidForm.textContent = "";
+    });
+
+    form.websitesFormationArea.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
 
@@ -329,6 +354,10 @@ document.addEventListener('DOMContentLoaded', () => {
         emptyField(studyArea,validStudyArea);
 
         emptyField(retrainingJobArea,validRetrainingJobArea);
+
+        emptyField(websitesRetrainingArea,validWebitesRetrainingArea);
+
+        emptyField(websitesFormationArea,validWebsitesFormationArea);
         
         //
         //Si le bouton radio ou checkbox n'est pas coché
@@ -425,6 +454,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let cpValidSending =  emptyField(CP,validCP) && codePostalValidation();
         let studyAreaValidSending = emptyField(studyArea,validStudyArea) && textFields(studyArea,validStudyArea);
         let retrainingJobAreaSending = textFields(retrainingJobArea,validRetrainingJobArea) && emptyField(retrainingJobArea,validRetrainingJobArea);
+        let websitesRetrainingAreaSending = textFields(websitesRetrainingArea,validWebitesRetrainingArea) && emptyField(websitesRetrainingArea,validWebitesRetrainingArea);
+        let websitesFormationAreaSending = textFields(websitesFormationArea,validWebsitesFormationArea) && emptyField(websitesFormationArea,validWebsitesFormationArea);
 
         //Champs non obligatoires
         
@@ -436,7 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Variable qui contient toutes les variables de vérification des champs du formulaire
 
-        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && studyAreaValidSending && retrainingJobAreaSending && areaNotRequired && boolTrue;
+        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && studyAreaValidSending && retrainingJobAreaSending && websitesRetrainingAreaSending && websitesFormationAreaSending && areaNotRequired && boolTrue;
         
         if(formulaireValid){
             updateData();
@@ -600,5 +631,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         resultFormProfessional.innerHTML += '<br>' + 'Formation Texte:  ' + formationText.value + '<br>';
+
+        resultFormProfessional.innerHTML += 'Sites web reconversion : ' + websitesRetrainingArea.value + '<br>';
+
+        resultFormProfessional.innerHTML += 'Sites web formation : ' + websitesFormationArea.value + '<br>';
 
     }
