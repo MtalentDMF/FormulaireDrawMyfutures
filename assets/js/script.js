@@ -22,6 +22,8 @@ let formationText = document.getElementById('formationText');
 let websitesRetrainingArea = document.getElementById('websitesRetrainingArea');
 let websitesFormationArea = document.getElementById('websitesFormationArea');
 let websitesOrPlacesArea = document.getElementById('websitesOrPlacesArea');
+let socialMediaText = document.getElementById('socialMediaText');
+let interestingAccountsArea = document.getElementById('interestingAccountsArea');
 
 
 //QuerySelector de mes input type radio et checkbox 
@@ -31,6 +33,7 @@ let genderRadioButton = document.querySelectorAll('input[name="gender"]');
 let proSituationCheckbox = document.querySelectorAll('input[name="ProSituation"]');
 let professionalRetrainingCheckbox = document.querySelectorAll('input[name="professionalRetraining"]');
 let formationCheckbox = document.querySelectorAll('input[name="formation"]');
+let socialMediaCheckbox = document.querySelectorAll('input[name="socialMedia"]');
 
 //VARIABLES D'EMPLACEMENT DE MESSAGES D'ERREURS DES VERIFICATIONS DES CHAMPS OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
 
@@ -51,6 +54,9 @@ let validFormationText = document.getElementById("validFormationText");
 let validWebitesRetrainingArea = document.getElementById("validWebitesRetrainingArea");
 let validWebsitesFormationArea = document.getElementById("validWebsitesFormationArea");
 let validWebsitesOrPlacesArea = document.getElementById("validWebsitesOrPlacesArea");
+let validSocialMedia = document.getElementById("validSocialMedia");
+let validSocialMediaText = document.getElementById("validSocialMediaText");
+let validInterestingAccountsArea = document.getElementById("validInterestingAccountsArea");
 
 //Message d'erreur si l'envoi du formulaire n'est pas valide 
 
@@ -237,6 +243,14 @@ document.addEventListener('DOMContentLoaded', () => {
         textFields(websitesOrPlacesArea,validWebsitesOrPlacesArea);
     });
 
+    form.socialMediaText.addEventListener('focusout', function () {
+        textFields(socialMediaText,validSocialMediaText);
+    });
+
+    form.interestingAccountsArea.addEventListener('focusout', function () {
+        textFields(interestingAccountsArea,validInterestingAccountsArea);
+    });
+
     form.name.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
@@ -291,6 +305,14 @@ document.addEventListener('DOMContentLoaded', () => {
         invalidForm.textContent = "";
     });
 
+    form.socialMediaText.addEventListener('focus', function () {
+        invalidForm.textContent = "";
+    });
+    
+    form.interestingAccountsArea.addEventListener('focus', function () {
+        invalidForm.textContent = "";
+    });
+
     /**
      * 
     ---------------------------------------------------------
@@ -325,6 +347,12 @@ document.addEventListener('DOMContentLoaded', () => {
     for (i = 0; i < formationCheckbox.length; i++) {
         formationCheckbox[i].addEventListener('change', function () {
             validButton(formationCheckbox, validFormation);
+        });
+    }
+
+    for (i = 0; i < socialMediaCheckbox.length; i++) {
+        socialMediaCheckbox[i].addEventListener('change', function () {
+            validButton(socialMediaCheckbox, validSocialMedia);
         });
     }
 
@@ -441,6 +469,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
 
+        //SocialMedia   
+
+        let boolEmptyCaseSocialMedia = false;
+
+        for (i = 0; i < socialMediaCheckbox.length; i++) {
+            if (socialMediaCheckbox[i].checked) {
+                boolEmptyCaseSocialMedia = true;
+                validSocialMedia.textContent = "";
+            }
+        }
+        if (boolEmptyCaseSocialMedia == false) {
+            validSocialMedia.innerHTML = 'Cette question est obligatoire';
+        }
+
+        //
+
         //-----------------------------------------------------------------------------------
         /*
         LA VARIABLE FORMULAIRE VALID PERMET DE VERIFIER SI TOUS LES CHAMPS SONT VALIDES AVANT D'ENVOYER LE FORMULAIRE
@@ -460,11 +504,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Champs non obligatoires
         
-        let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText) && textFields(formationText,validFormationText) && textFields(websitesOrPlacesArea,validWebsitesOrPlacesArea);
+        let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText) && textFields(formationText,validFormationText) && textFields(websitesOrPlacesArea,validWebsitesOrPlacesArea) && textFields(socialMediaText,validSocialMediaText) && textFields(interestingAccountsArea,validInterestingAccountsArea);
         
         //boutons et checkbox
         
-        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining && boolEmptyCaseFormation;
+        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining && boolEmptyCaseFormation && boolEmptyCaseSocialMedia;
 
         //Variable qui contient toutes les variables de vérification des champs du formulaire
 
@@ -639,4 +683,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         resultFormProfessional.innerHTML += 'Autres sites web ou lieux : ' + websitesOrPlacesArea.value + '<br>';
 
+        resultFormProfessional.innerHTML += 'Réseaux Sociaux : ';
+    
+        for (i = 0; i < socialMediaCheckbox.length; i++) {
+            if (socialMediaCheckbox[i].checked) {
+                resultFormProfessional.innerHTML += socialMediaCheckbox[i].value + ' , ';
+            }
+        }
+
+        resultFormProfessional.innerHTML += '<br>' + 'Réseaux sociaux texte:  ' + socialMediaText.value + '<br>';
+
+        resultFormProfessional.innerHTML += 'Comptes intéressants : ' + interestingAccountsArea.value + '<br>';
     }
