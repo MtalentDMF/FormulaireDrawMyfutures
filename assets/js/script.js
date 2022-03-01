@@ -16,9 +16,9 @@ let firstName = document.getElementById("firstName");
 let email = document.getElementById("email");
 let CP = document.getElementById("CP");
 let studyArea = document.getElementById('studyArea');
-let professionalRetraining = document.getElementsByName('professionalRetraining');
 let professionalRetrainingText = document.getElementById('professionalRetrainingText');
 let retrainingJobArea = document.getElementById('retrainingJobArea');
+// let formationText = document.getElementById('formationText');
 
 
 
@@ -28,6 +28,7 @@ let ageRangeRadioButton = document.querySelectorAll('input[name="ageRange"]');
 let genderRadioButton = document.querySelectorAll('input[name="gender"]');
 let proSituationCheckbox = document.querySelectorAll('input[name="ProSituation"]');
 let professionalRetrainingCheckbox = document.querySelectorAll('input[name="professionalRetraining"]');
+let formationCheckbox = document.querySelectorAll('input[name="formation"]');
 
 //VARIABLES D'EMPLACEMENT DE MESSAGES D'ERREURS DES VERIFICATIONS DES CHAMPS OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
 
@@ -43,6 +44,10 @@ let validSituationPro = document.getElementById("validSituationPro");
 let validProfessionalRetraining = document.getElementById("validProfessionalRetraining");
 let validProfessionalRetrainingText = document.getElementById("validProfessionalRetrainingText");
 let validRetrainingJobArea = document.getElementById("validRetrainingJobArea");
+let validFormation = document.getElementById("validFormation");
+// let validFormationText = document.getElementById("validFormationText");
+
+
 
 
 //Message d'erreur si l'envoi du formulaire n'est pas valide 
@@ -154,6 +159,16 @@ const emptyField = (id, field) =>{
 //Le chargement du fichier js se fait à l'ouverture de la page html
 
 document.addEventListener('DOMContentLoaded', () => {
+
+// CONNEXION A LA BASE DE DONNEE AIRTABLE
+    
+
+    // const getRecords = async () => {
+    //     const records = await profil.select({ maxRecords: 10, view: 'Grid view' }).firstPage();
+    //     console.log(records);
+    // }
+
+    // getRecords();
 
     //La verification de caracteres des champs se fait dans le input
     /*
@@ -273,6 +288,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    for (i = 0; i < formationCheckbox.length; i++) {
+        formationCheckbox[i].addEventListener('change', function () {
+            validButton(formationCheckbox, validFormation);
+        });
+    }
+
     //JE FAIS DISPARAITRE LES DIV DE RECUPERATION DES DONNEES AU BAS DE MON FORMULAIRE
 
     document.getElementById('resultFormProfileStyle').classList.remove('block');
@@ -367,11 +388,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
+        //Formation 
+
+        let boolEmptyCaseFormation = false;
+
+        for (i = 0; i < formationCheckbox.length; i++) {
+            if (formationCheckbox[i].checked) {
+                boolEmptyCaseFormation = true;
+                validFormation.textContent = "";
+            }
+        }
+        if (boolEmptyCaseFormation == false) {
+            validFormation.innerHTML = 'Cette question est obligatoire';
+
+        }
+
         //-----------------------------------------------------------------------------------
         /*
         LA VARIABLE FORMULAIRE VALID PERMET DE VERIFIER SI TOUS LES CHAMPS SONT VALIDES AVANT D'ENVOYER LE FORMULAIRE
         */ 
         //-----------------------------------------------------------------------------------
+
+        //Champs obligatoires
 
         let nameValidSending = emptyField(name,validName) && nameValidation();
         let firstNameValidSending = emptyField(firstName,validFirstName) && firstNameValidation();
@@ -380,9 +418,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let studyAreaValidSending = emptyField(studyArea,validStudyArea) && textFields(studyArea,validStudyArea);
         let retrainingJobAreaSending = textFields(retrainingJobArea,validRetrainingJobArea) && emptyField(retrainingJobArea,validRetrainingJobArea);
 
+        //Champs non obligatoires
+        
         let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText);
         
-        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining;
+        //boutons et checkbox
+        
+        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining && boolEmptyCaseFormation;
 
         //Variable qui contient toutes les variables de vérification des champs du formulaire
 
@@ -391,6 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(formulaireValid){
             updateData();
             invalidForm.textContent = "";
+            alert('Merci de votre participation');
         }
         else{
             invalidForm.textContent = "Le formulaire est invalide";
@@ -410,12 +453,45 @@ document.addEventListener('DOMContentLoaded', () => {
        //-------------------------------------------------------------------------------
        function updateData() {
 
+
+        var Airtable = require('airtable');
+
+        var base = new Airtable({ apiKey: 'keyJZoCXEOlsyQu2N' }).base('apprgKZR6URooGqFe');
+
+        const profil = base('Profil');
+        const age = base('Age');
+        const genre = base('Genre');
+        const niveauEtude = base('Niveau étude');
+
+        // profil.create([
+        //     {
+        //         "fields": {
+        //             "Nom":document.getElementById('name').value,
+        //             "Prénom": document.getElementById('firstName').value,
+        //             "Email": document.getElementById('email').value,
+        //             "Code postal": document.getElementById('CP').value,
+        //             "Domaine étude": studyArea.value,
+        //             "Poste avant reconversion" : jobBeforeRetraining.value,
+        //             "Nouveau métier visé": retrainingJobArea.value,
+        //         }
+        //       }
+        //     ], function(err, records) {
+        //       if (err) {
+        //         console.error(err);
+        //         return;
+        //       }
+        //       records.forEach(function (record) {
+        //         console.log(record.getId());
+        //       });
+        //     });
+
+        
+
         document.getElementById('resultFormProfileStyle').classList.remove('none');
         document.getElementById('resultFormProfileStyle').classList.add('block');
         document.getElementById('resultFormProfessionalStyle').classList.remove('none');
         document.getElementById('resultFormProfessionalStyle').classList.add('block');
-    
-    
+
         resultFormProfile.innerHTML = 'Nom: ' + document.getElementById('name').value + '<br>';
         resultFormProfile.innerHTML += "Prenom: " + document.getElementById('firstName').value + '<br>';
         resultFormProfile.innerHTML += 'Email : ' + document.getElementById('email').value + '<br>';
@@ -480,6 +556,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
         resultFormProfessional.innerHTML += '<br>' + 'Situation pro autre :  ' + situationProText.value + '<br>';
     
+        //RAJOUTER LE IF LORS DE LA CONNEXION SUR AIRTABLE
+
+        
         // Pour afficher le contenue du text area uniquement s'il y a une valeur.
         // if(situationProText.value.length>0){
         //     console.log('after if situationProText.value = "' + situationProText.value + '"');
@@ -494,14 +573,22 @@ document.addEventListener('DOMContentLoaded', () => {
         
         resultFormProfessional.innerHTML += 'Rapport à la reconversion : ';
     
-        for (i = 0; i < professionalRetraining.length; i++) {
-            if (professionalRetraining[i].checked) {
-                resultFormProfessional.innerHTML += professionalRetraining[i].value + ' , ';
+        for (i = 0; i < professionalRetrainingCheckbox.length; i++) {
+            if (professionalRetrainingCheckbox[i].checked) {
+                resultFormProfessional.innerHTML += professionalRetrainingCheckbox[i].value + ' , ';
             }
         }
 
         resultFormProfessional.innerHTML += '<br>' + 'Rapport à la reconversion autre :  ' + professionalRetrainingText.value + '<br>';
 
         resultFormProfessional.innerHTML += 'Métier visé : ' + retrainingJobArea.value + '<br>';
+
+        resultFormProfessional.innerHTML += 'Trouvé formation : ';
+    
+        for (i = 0; i < formationCheckbox.length; i++) {
+            if (formationCheckbox[i].checked) {
+                resultFormProfessional.innerHTML += formationCheckbox[i].value + ' , ';
+            }
+        }
 
     }
