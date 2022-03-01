@@ -21,10 +21,7 @@ let retrainingJobArea = document.getElementById('retrainingJobArea');
 let formationText = document.getElementById('formationText');
 let websitesRetrainingArea = document.getElementById('websitesRetrainingArea');
 let websitesFormationArea = document.getElementById('websitesFormationArea');
-
-
-
-
+let websitesOrPlacesArea = document.getElementById('websitesOrPlacesArea');
 
 
 //QuerySelector de mes input type radio et checkbox 
@@ -53,11 +50,7 @@ let validFormation = document.getElementById("validFormation");
 let validFormationText = document.getElementById("validFormationText");
 let validWebitesRetrainingArea = document.getElementById("validWebitesRetrainingArea");
 let validWebsitesFormationArea = document.getElementById("validWebsitesFormationArea");
-
-
-
-
-
+let validWebsitesOrPlacesArea = document.getElementById("validWebsitesOrPlacesArea");
 
 //Message d'erreur si l'envoi du formulaire n'est pas valide 
 
@@ -240,6 +233,10 @@ document.addEventListener('DOMContentLoaded', () => {
         textFields(websitesFormationArea,validWebsitesFormationArea);
     });
 
+    form.websitesOrPlacesArea.addEventListener('focusout', function () {
+        textFields(websitesOrPlacesArea,validWebsitesOrPlacesArea);
+    });
+
     form.name.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
@@ -287,6 +284,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     form.websitesFormationArea.addEventListener('focus', function () {
+        invalidForm.textContent = "";
+    });
+
+    form.websitesOrPlacesArea.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
 
@@ -459,7 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Champs non obligatoires
         
-        let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText) && textFields(formationText,validFormationText);
+        let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText) && textFields(formationText,validFormationText) && textFields(websitesOrPlacesArea,validWebsitesOrPlacesArea);
         
         //boutons et checkbox
         
@@ -635,5 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resultFormProfessional.innerHTML += 'Sites web reconversion : ' + websitesRetrainingArea.value + '<br>';
 
         resultFormProfessional.innerHTML += 'Sites web formation : ' + websitesFormationArea.value + '<br>';
+
+        resultFormProfessional.innerHTML += 'Autres sites web ou lieux : ' + websitesOrPlacesArea.value + '<br>';
 
     }
