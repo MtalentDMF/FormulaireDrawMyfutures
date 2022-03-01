@@ -18,7 +18,7 @@ let CP = document.getElementById("CP");
 let studyArea = document.getElementById('studyArea');
 let professionalRetrainingText = document.getElementById('professionalRetrainingText');
 let retrainingJobArea = document.getElementById('retrainingJobArea');
-// let formationText = document.getElementById('formationText');
+let formationText = document.getElementById('formationText');
 
 
 
@@ -45,7 +45,7 @@ let validProfessionalRetraining = document.getElementById("validProfessionalRetr
 let validProfessionalRetrainingText = document.getElementById("validProfessionalRetrainingText");
 let validRetrainingJobArea = document.getElementById("validRetrainingJobArea");
 let validFormation = document.getElementById("validFormation");
-// let validFormationText = document.getElementById("validFormationText");
+let validFormationText = document.getElementById("validFormationText");
 
 
 
@@ -219,6 +219,10 @@ document.addEventListener('DOMContentLoaded', () => {
         textFields(retrainingJobArea,validRetrainingJobArea);
     });
 
+    form.formationText.addEventListener('focusout', function () {
+        textFields(formationText,validFormationText);
+    });
+
     form.name.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
@@ -254,6 +258,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     form.retrainingJobArea.addEventListener('focus', function () {
+        invalidForm.textContent = "";
+    });
+
+    form.formationText.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
 
@@ -420,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Champs non obligatoires
         
-        let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText);
+        let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText) && textFields(formationText,validFormationText);
         
         //boutons et checkbox
         
@@ -583,12 +591,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         resultFormProfessional.innerHTML += 'Métier visé : ' + retrainingJobArea.value + '<br>';
 
-        resultFormProfessional.innerHTML += 'Trouvé formation : ';
+        resultFormProfessional.innerHTML += 'Formation : ';
     
         for (i = 0; i < formationCheckbox.length; i++) {
             if (formationCheckbox[i].checked) {
                 resultFormProfessional.innerHTML += formationCheckbox[i].value + ' , ';
             }
         }
+
+        resultFormProfessional.innerHTML += '<br>' + 'Formation Texte:  ' + formationText.value + '<br>';
 
     }
