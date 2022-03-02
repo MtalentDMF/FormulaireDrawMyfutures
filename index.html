@@ -9,7 +9,8 @@
     <link rel="icon" type="image/png" href="assets/img/logo_dmf_white1.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
     <title>Formulaire</title>
 </head>
 
@@ -22,40 +23,124 @@
         <form id="box">
             <div id="inscription" class="formBloc">
 
-                <!--TOUS LES ELEMENTS SONT EN ANGLAIS-->
-                <label for="name" id="labelName" class="atLine">Nom <span class="starObligatoryField">*</span></label>
-                <input type="text" name="name" id="name" placeholder="Doe" class="blockSizeOfForm testFormValid">
-                <p id="validName" class="errorMessage"></p>
-                <label for="firstName" class="atLine wordingField">Prénom <span class="starObligatoryField">*</span></label>
-                <input type="text" name="firstName" placeholder="John" id="firstName" class="blockSizeOfForm testFormValid">
-                <p id="validFirstName" class="errorMessage"></p>
-                <label for="email" class="atLine wordingField">Email <span class="starObligatoryField">*</span></label>
-                <input type="email" name="mail" placeholder="John.Doe@gmail.com" id="email" class="blockSizeOfForm testFormValid">
-                <p id="validEmail" class="errorMessage"></p>
-                <label for="CP" class="atLine wordingField">Code postal de résidence <span class="starObligatoryField">*</span></label>
-                <input type="text" name="CP" placeholder="75009" id="CP" class="blockSizeOfForm testFormValid">
-                <p id="validCP" class="errorMessage"></p>
+                <p class="wordingField">1 - Quel est votre rapport à la reconversion ? <span
+                        class="starObligatoryField">*</span></p>
+                <p id="validProfessionalRetraining" class="errorMessage"></p>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="Déjà fait">Déjà
+                    fait</label>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining"
+                        value="En cours de reconversion">Je suis en cours de reconversion</label>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="Dès que possible">Dès
+                    que possible</label>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining"
+                        value="D’ici moins d’un an">D’ici moins d’un an</label>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining"
+                        value="D’ici un à trois ans">D’ici un à trois ans</label>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining"
+                        value="Un jour, je ne sais pas trop quand">Un jour, je ne sais pas trop quand</label>
+                <label class="atLine"><input type="checkbox" name="professionalRetraining"
+                        value="Jamais de la vie">Jamais de la vie</label>
 
+                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="Autre">Autre.
+                    (Renseigner votre situation ci-dessous)</label>
+
+
+                <!--champs texte pour autre-->
+                <textarea name="professionalRetrainingText" id="professionalRetrainingText" cols="38" rows="1"
+                    class="blockSizeOfForm"></textarea>
+                <p id="validProfessionalRetrainingText" class="errorMessage"></p>
+
+                <label for="studyArea" class="atLine wordingField">2 - Quel est votre domaine d'étude avant votre
+                    reconversion? <span class="starObligatoryField">*</span></label>
+                <textarea name="studyOfArea" id="studyArea" cols="38" rows="1" class="blockSizeOfForm"></textarea>
+                <p id="validStudyArea" class="errorMessage"></p>
+
+                <label for="jobBeforeRetraining" class="atLine wordingField">3 - Quel est l'intitulé de votre poste
+                    avant la reconversion ?</label>
+                <textarea name="jobBefore" id="jobBeforeRetraining" cols="38" rows="1"
+                    class="blockSizeOfForm"></textarea>
+                <p id="validJobBeforeRetraining" class="errorMessage"></p>
+
+                <label for="retrainingJobArea" class="atLine wordingField">4 - Quel est le nouveau métier que vous visez
+                    (ou le métier où vous vous êtes reconvertis) ? <span class="starObligatoryField">*</span></label>
+                <textarea name="retrainingJobOfArea" id="retrainingJobArea" cols="38" rows="1"
+                    class="blockSizeOfForm"></textarea>
+                <p id="validRetrainingJobArea" class="errorMessage"></p>
+
+                <label for="websitesRetrainingArea" class="atLine wordingField">5 - Quels sont les sites internet sur
+                    lesquels vous avez trouvé des informations particulièrement utiles pendant que vous étiez à la
+                    recherche du métier pour votre reconversion ? <span class="starObligatoryField">*</span></label>
+                <textarea name="websitesRetrainingArea" id="websitesRetrainingArea" cols="38"
+                    class="blockSizeOfForm"></textarea>
+                <p id="validWebitesRetrainingArea" class="errorMessage"></p>
+
+                <label for="websitesOrPlacesArea" class="atLine wordingField">6 - En dehors des sites précédemment
+                    listés, y a-t-il d'autres sites ou lieux qui vous ont été utiles durant votre projet de reconversion
+                    ? Si oui précisez pourquoi ces autres sites étaient utiles. </label>
+                <textarea name="websitesOrPlacesArea" id="websitesOrPlacesArea" cols="38"
+                    class="blockSizeOfForm"></textarea>
+                <p id="validWebsitesOrPlacesArea" class="errorMessage"></p>
+
+                <p class="wordingField">7 - Sur les réseaux sociaux, connaissez-vous un ou plusieurs comptes sur
+                    lequel.s vous vous êtes rendu pour avoir des insocialMedias sur le milieu du numérique, pour en
+                    savoir plus sur votre nouveau métier ou pour vous aider durant votre reconvention ? <span
+                        class="starObligatoryField">*</span></p>
+                <p id="validSocialMedia" class="errorMessage"></p>
+                <label class="atLine"><input type="checkbox" name="socialMedia" value="Non">Non, je n'en connais
+                    pas</label>
+                <label class="atLine"><input type="checkbox" name="socialMedia" value="Youtube">Oui, sur Youtube</label>
+                <label class="atLine"><input type="checkbox" name="socialMedia" value="Linkedin">Oui, sur
+                    Linkedin</label>
+                <label class="atLine"><input type="checkbox" name="socialMedia" value="Instagram">Oui, sur
+                    Instagram</label>
+                <label class="atLine"><input type="checkbox" name="socialMedia" value="Twitter">Oui, sur Twitter</label>
+                <label class="atLine"><input type="checkbox" name="socialMedia" value="Facebook">Oui, sur
+                    Facebook</label>
+
+                <label class="atLine"><input type="checkbox" name="validSocialMedia" value="Autre">Autre. (Renseigner
+                    votre situation ci-dessous)</label>
+
+                <!--champs texte pour autre-->
+                <textarea name="socialMediaText" id="socialMediaText" cols="38" rows="1"
+                    class="blockSizeOfForm"></textarea>
+                <p id="validSocialMediaText" class="errorMessage"></p>
+
+                <label for="interestingAccountsArea" class="atLine wordingField">8 - Si oui, indiquez 1 à 3 comptes que
+                    vous trouvez particulièrement intéressants : </label>
+                <textarea name="interestingAccountsArea" id="interestingAccountsArea" cols="38"
+                    class="blockSizeOfForm"></textarea>
+                <p id="validInterestingAccountsArea" class="errorMessage"></p>
+
+                <p class="wordingField">9 - Comment avez-vous connu la formation que vous suivez ? <span
+                        class="starObligatoryField">*</span></p>
+                <p id="validFormation" class="errorMessage"></p>
+                <label class="atLine"><input type="checkbox" name="formation" value="Linkedin">Linkedin</label>
+                <label class="atLine"><input type="checkbox" name="formation" value="Facebook">Facebook</label>
+                <label class="atLine"><input type="checkbox" name="formation" value="Instagram">Instagram</label>
+                <label class="atLine"><input type="checkbox" name="formation" value="Youtube">Youtube</label>
+                <label class="atLine"><input type="checkbox" name="formation" value="Trouvé sur internet">Trouvé sur
+                    internet après avoir fait quelques recherches</label>
+                <label class="atLine"><input type="checkbox" name="formation" value="Pole Emploi">Pole Emploi</label>
+                <label class="atLine"><input type="checkbox" name="formation" value="APEC">APEC</label>
+                <label class="atLine"><input type="checkbox" name="formation" value="Salon sur l'emploi">Salon sur
+                    l'emploi</label>
+                <label class="atLine"><input type="checkbox" name="formation" value="Entourage">Une personne de votre
+                    entourage vous en a parlé</label>
+
+                <label class="atLine"><input type="checkbox" name="formation" value="Autre">Autre. (Renseigner votre
+                    situation ci-dessous)</label>
+
+                <!--champs texte pour autre-->
+                <textarea name="formationText" id="formationText" cols="38" rows="1" class="blockSizeOfForm"></textarea>
+                <p id="validFormationText" class="errorMessage"></p>
                 
-                <p class="wordingField">Quelle est votre tranche d'âge ?<span class="starObligatoryField">*</span></p>
-                <label for="under18" class="atLine"><input type="radio" name="ageRange" value="moins de 18" id="under18">Moins de 18 ans</label>
-                <label for="18-25" class="atLine"><input type="radio" name="ageRange" value="18-25" id="18-25">18 - 25 ans</label>
-                <label for="26-35" class="atLine"><input type="radio" name="ageRange" value="26-35" id="26-35">26 - 35 ans</label>
-                <label for="36-45" class="atLine"><input type="radio" name="ageRange" value="36-45" id="36-45">36 - 45 ans</label>
-                <label for="46-55" class="atLine"><input type="radio" name="ageRange" value="46-55" id="46-55">46 - 55 ans</label>
-                <label for="over55" class="atLine"><input type="radio" name="ageRange" value="plus de 55" id="over55">plus de 55 ans</label>
-                <p id="emptyCaseAge" class="errorMessage"></p>
-
-                <p class="wordingField">Êtes-vous ?<span class="starObligatoryField">*</span></p>
-                <label for="woman" ><input type="radio" name="gender" value="femme" id="woman">Une femme<label>
-                <label for="man" class="atLine"><input type="radio" name="gender" value="homme" id="man">Un homme</label>
-                <p id="emptyCaseGender" class="errorMessage"></p>
-
-               
-
-                <!-- USER STORY numero 2 renseigner les champs professionnelles du profil-->
+                <label for="websitesFormationArea" class="atLine wordingField">10 - Quels sont les sites internet sur
+                    lesquels vous avez trouvé des informations particulièrement utiles pendant que vous étiez à la
+                    recherche d'une formation ? <span class="starObligatoryField">*</span></label>
+                <textarea name="websitesFormationArea" id="websitesFormationArea" cols="38" class="blockSizeOfForm"></textarea>
+                <p id="validWebsitesFormationArea" class="errorMessage"></p>
                 
-                <p class="wordingField">Quel est votre niveau d'étude ?</p>
+                <p class="wordingField">11 - Quel est votre niveau d'étude ?</p>
                 <label class="atLine"><input type="radio" name="study" value="PAS BAC">sans le Bac</label>
                 <label class="atLine"><input type="radio" name="study" value="BAC">Bac</label>
                 <label class="atLine"><input type="radio" name="study" value="BAC +1">Bac +1</label>
@@ -65,123 +150,92 @@
                 <label class="atLine"><input type="radio" name="study" value="BAC +5">Bac +5</label>
                 <label class="atLine"><input type="radio" name="study" value=">BAC+5"> > Bac + 5</label>
                 
-                <label for="studyArea" class="atLine wordingField" >Quel est votre domaine d'étude avant votre reconversion? <span class="starObligatoryField">*</span></label>
-                <textarea name="studyOfArea" id="studyArea" cols="38" rows="1" class="blockSizeOfForm"></textarea>
-                <p id="validStudyArea" class="errorMessage"></p>
-
-                <p class="wordingField">Quelle est votre situation professionnelle actuelle ? <span class="starObligatoryField">*</span></p>
+                <p class="wordingField">12 - Quelle est votre situation professionnelle actuelle ? <span
+                        class="starObligatoryField">*</span></p>
                 <p id="validSituationPro" class="errorMessage"></p>
-                <label class="atLine"><input type="checkbox" name="ProSituation" value="Contrat long">En contrat long (CDI, CDD de plusieurs années, …)</label>
-                <label class="atLine"><input type="checkbox" name="ProSituation" value="Contrat court">En contrat court (CDD, intérim,…)</label>
-                <label class="atLine"><input type="checkbox" name="ProSituation" value="Chomage Partiel">En chômage partiel</label>
-                <label class="atLine"><input type="checkbox" name="ProSituation" value="Contrat d'alternance ou de professionnalisation">En contrat d'alternance ou de professionnalisation</label>
-                <label class="atLine"><input type="checkbox" name="ProSituation" value="Chomage Partiel">En chômage partiel</label>
+                <label class="atLine"><input type="checkbox" name="ProSituation" value="Contrat long">En contrat long
+                    (CDI, CDD de plusieurs années, …)</label>
+                <label class="atLine"><input type="checkbox" name="ProSituation" value="Contrat court">En contrat court
+                    (CDD, intérim,…)</label>
+                <label class="atLine"><input type="checkbox" name="ProSituation" value="Chomage Partiel">En chômage
+                    partiel</label>
+                <label class="atLine"><input type="checkbox" name="ProSituation"
+                        value="Contrat d'alternance ou de professionnalisation">En contrat d'alternance ou de
+                    professionnalisation</label>
+                <label class="atLine"><input type="checkbox" name="ProSituation" value="Chomage Partiel">En chômage
+                    partiel</label>
                 <label class="atLine"><input type="checkbox" name="ProSituation" value="Étudiant">Étudiant</label>
-                <label class="atLine"><input type="checkbox" name="ProSituation" value="Demandeur d'emploi">Demandeur d'emploi</label>
+                <label class="atLine"><input type="checkbox" name="ProSituation" value="Demandeur d'emploi">Demandeur
+                    d'emploi</label>
                 
-                <label class="atLine"><input type="checkbox" name="ProSituation" value="Autre">Autre. (Renseigner votre situation ci-dessous)</label>
-                
+                <label class="atLine"><input type="checkbox" name="ProSituation" value="Autre">Autre. (Renseigner votre
+                    situation ci-dessous)</label>
                 
                 <!--champs texte pour autre-->
                 <textarea name="situationProTextArea" id="situationProText" cols="38" rows="1" class="blockSizeOfForm"></textarea>
                 <p id="validSituationProText" class="errorMessage"></p>
                 
+                <p class="wordingField">13 - Êtes-vous ?<span class="starObligatoryField">*</span></p>
+                <label for="woman"><input type="radio" name="gender" value="femme" id="woman">Une femme<label>
+                <label for="man" class="atLine"><input type="radio" name="gender" value="homme" id="man">Un
+                    homme</label>
+                <p id="emptyCaseGender" class="errorMessage"></p>
+        
+                <p class="wordingField">14 - Quelle est votre tranche d'âge ?<span class="starObligatoryField">*</span></p>
+                <label for="under18" class="atLine"><input type="radio" name="ageRange" value="moins de 18" id="under18">Moins
+                    de 18 ans</label>
+                <label for="18-25" class="atLine"><input type="radio" name="ageRange" value="18-25" id="18-25">18 - 25
+                    ans</label>
+                <label for="26-35" class="atLine"><input type="radio" name="ageRange" value="26-35" id="26-35">26 - 35
+                    ans</label>
+                <label for="36-45" class="atLine"><input type="radio" name="ageRange" value="36-45" id="36-45">36 - 45
+                    ans</label>
+                <label for="46-55" class="atLine"><input type="radio" name="ageRange" value="46-55" id="46-55">46 - 55
+                    ans</label>
+                <label for="over55" class="atLine"><input type="radio" name="ageRange" value="plus de 55" id="over55">plus de 55
+                    ans</label>
+                <p id="emptyCaseAge" class="errorMessage"></p>
+        
+                <label for="CP" class="atLine wordingField">15 - Code postal de résidence <span
+                        class="starObligatoryField">*</span></label>
+                <input type="text" name="CP" placeholder="75009" id="CP" class="blockSizeOfForm testFormValid">
+                <p id="validCP" class="errorMessage"></p>
+        
+                <label for="firstName" class="atLine wordingField">16 - Prénom</label>
+                <input type="text" name="firstName" placeholder="John" id="firstName" class="blockSizeOfForm testFormValid">
+                <p id="validFirstName" class="errorMessage"></p>
+        
+        
+                <label for="name" id="labelName" class="atLine wordingField">17 - Nom</label>
+                <input type="text" name="name" id="name" placeholder="Doe" class="blockSizeOfForm testFormValid">
+                <p id="validName" class="errorMessage"></p>
+        
+                <label for="email" class="atLine wordingField">18 - Email</label>
+                <input type="email" name="mail" placeholder="John.Doe@gmail.com" id="email"
+                    class="blockSizeOfForm testFormValid">
+                <p id="validEmail" class="errorMessage"></p>
 
-                <label for="jobBeforeRetraining" class="atLine wordingField">Quel est l'intitulé de votre poste avant la reconversion ?</label>
-                <textarea name="jobBefore" id="jobBeforeRetraining" cols="38" rows="1" class="blockSizeOfForm"></textarea>
-                <p id="validJobBeforeRetraining" class="errorMessage"></p>
-                
-                <!-- Nouveaux champs -->
-
-                <p class="wordingField">Quel est votre rapport à la reconversion ? <span class="starObligatoryField">*</span></p>
-                <p id="validProfessionalRetraining" class="errorMessage"></p>
-                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="Déjà fait">Déjà fait</label>
-                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="En cours de reconversion">Je suis en cours de reconversion</label>
-                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="Dès que possible">Dès que possible</label>
-                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="D’ici moins d’un an">D’ici moins d’un an</label>
-                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="D’ici un à trois ans">D’ici un à trois ans</label>
-                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="Un jour, je ne sais pas trop quand">Un jour, je ne sais pas trop quand</label>
-                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="Jamais de la vie">Jamais de la vie</label>
-
-                <label class="atLine"><input type="checkbox" name="professionalRetraining" value="Autre">Autre. (Renseigner votre situation ci-dessous)</label>
-                
-                
-                <!--champs texte pour autre-->
-                <textarea name="professionalRetrainingText" id="professionalRetrainingText" cols="38" rows="1" class="blockSizeOfForm"></textarea>
-                <p id="validProfessionalRetrainingText" class="errorMessage"></p>
-
-                <label for="retrainingJobArea" class="atLine wordingField" >Quel est le nouveau métier que vous visez (ou le métier où vous vous êtes reconvertis) ?  <span class="starObligatoryField">*</span></label>
-                <textarea name="retrainingJobOfArea" id="retrainingJobArea" cols="38" rows="1" class="blockSizeOfForm"></textarea>
-                <p id="validRetrainingJobArea" class="errorMessage"></p>
-
-                <p class="wordingField">Comment avez-vous connu la formation que vous suivez ? <span class="starObligatoryField">*</span></p>
-                <p id="validFormation" class="errorMessage"></p>
-                <label class="atLine"><input type="checkbox" name="formation" value="Linkedin">Linkedin</label>
-                <label class="atLine"><input type="checkbox" name="formation" value="Facebook">Facebook</label>
-                <label class="atLine"><input type="checkbox" name="formation" value="Instagram">Instagram</label>
-                <label class="atLine"><input type="checkbox" name="formation" value="Youtube">Youtube</label>
-                <label class="atLine"><input type="checkbox" name="formation" value="Trouvé sur internet">Trouvé sur internet après avoir fait quelques recherches</label>
-                <label class="atLine"><input type="checkbox" name="formation" value="Pole Emploi">Pole Emploi</label>
-                <label class="atLine"><input type="checkbox" name="formation" value="APEC">APEC</label>
-                <label class="atLine"><input type="checkbox" name="formation" value="Salon sur l'emploi">Salon sur l'emploi</label>
-                <label class="atLine"><input type="checkbox" name="formation" value="Entourage">Une personne de votre entourage vous en a parlé</label>
-
-                <label class="atLine"><input type="checkbox" name="formation" value="Autre">Autre. (Renseigner votre situation ci-dessous)</label>
-                
-                <!--champs texte pour autre-->
-                <textarea name="formationText" id="formationText" cols="38" rows="1" class="blockSizeOfForm"></textarea>
-                <p id="validFormationText" class="errorMessage"></p>
-
-
-                <label for="websitesRetrainingArea" class="atLine wordingField" >Quels sont les sites internet sur lesquels vous avez trouvé des informations particulièrement utiles pendant que vous étiez à la recherche du métier pour votre reconversion ? <span class="starObligatoryField">*</span></label>
-                <textarea name="websitesRetrainingArea" id="websitesRetrainingArea" cols="38" class="blockSizeOfForm"></textarea>
-                <p id="validWebitesRetrainingArea" class="errorMessage"></p>
-
-                <label for="websitesFormationArea" class="atLine wordingField" >Quels sont les sites internet sur lesquels vous avez trouvé des informations particulièrement utiles pendant que vous étiez à la recherche d'une formation ? <span class="starObligatoryField">*</span></label>
-                <textarea name="websitesFormationArea" id="websitesFormationArea" cols="38" class="blockSizeOfForm"></textarea>
-                <p id="validWebsitesFormationArea" class="errorMessage"></p>
-
-                <label for="websitesOrPlacesArea" class="atLine wordingField" >En dehors des sites précédemment listés, y a-t-il d'autres sites ou lieux qui vous ont été utiles durant votre projet de reconversion ? Si oui précisez pourquoi ces autres sites étaient utiles. </label>
-                <textarea name="websitesOrPlacesArea" id="websitesOrPlacesArea" cols="38" class="blockSizeOfForm"></textarea>
-                <p id="validWebsitesOrPlacesArea" class="errorMessage"></p>
-
-
-                <p class="wordingField">Sur les réseaux sociaux, connaissez-vous un ou plusieurs comptes sur lequel.s vous vous êtes rendu pour avoir des insocialMedias sur le milieu du numérique, pour en savoir plus sur votre nouveau métier ou pour vous aider durant votre reconvention ? <span class="starObligatoryField">*</span></p>
-                <p id="validSocialMedia" class="errorMessage"></p>
-                <label class="atLine"><input type="checkbox" name="socialMedia" value="Non">Non, je n'en connais pas</label>
-                <label class="atLine"><input type="checkbox" name="socialMedia" value="Youtube">Oui, sur Youtube</label>
-                <label class="atLine"><input type="checkbox" name="socialMedia" value="Linkedin">Oui, sur Linkedin</label>
-                <label class="atLine"><input type="checkbox" name="socialMedia" value="Instagram">Oui, sur Instagram</label>
-                <label class="atLine"><input type="checkbox" name="socialMedia" value="Twitter">Oui, sur Twitter</label>
-                <label class="atLine"><input type="checkbox" name="socialMedia" value="Facebook">Oui, sur Facebook</label>
-                
-                <label class="atLine"><input type="checkbox" name="validSocialMedia" value="Autre">Autre. (Renseigner votre situation ci-dessous)</label>
-            
-                <!--champs texte pour autre-->
-                <textarea name="socialMediaText" id="socialMediaText" cols="38" rows="1" class="blockSizeOfForm"></textarea>
-                <p id="validSocialMediaText" class="errorMessage"></p>
-
-                <label for="interestingAccountsArea" class="atLine wordingField" >Si oui, indiquez 1 à 3 comptes que vous trouvez particulièrement intéressants : </label>
-                <textarea name="interestingAccountsArea" id="interestingAccountsArea" cols="38" class="blockSizeOfForm"></textarea>
-                <p id="validInterestingAccountsArea" class="errorMessage"></p>
-                
-                <!--USER STORY numero 3 validation des champs du formulaire-->
+                <p class="wordingField">19 - Souhaitez-vous recevoir des informations sur la reconversion et le secteur du numérique ? <span class="starObligatoryField">*</span></p>
+                <label for="yes"><input type="radio" name="newsletter" value="oui" id="yes">oui, je souhaite recevoir la newsletter Draw My Futures dédiée à la reconversion vers le numérique<label>
+                <label for="no" class="atLine"><input type="radio" name="newsletter" value="non" id="no">non merci, je ne souhaite surtout pas recevoir d'informations sur le numérique</label>
+                <p id="emptyCaseNewsletter" class="errorMessage"></p>
+        
                 <p id="requiredField"><span class="starObligatoryField">*</span> Champs obligatoires</p>
                 <p id="invalidForm" class="errorMessage"></p>
                 <div class="button">
                     <button class="buttonSubmitStyle" id="buttonSubmit" type="submit">Envoyer</button>
                 </div>
-
-            </div>
+        
+                </div>
         </form>
-    <div id="resultFormProfileStyle" class="block" class="none">
-        <h2>infos profil</h2>
-        <p id="resultFormProfile"></p>
-    </div>
-    <div id="resultFormProfessionalStyle" class="block" class="none">
-        <h2>infos professionnelles</h2>
-        <p id="resultFormProfessional"></p>
-    </div>
+        <div id="resultFormProfileStyle" class="block" class="none">
+            <h2>infos profil</h2>
+            <p id="resultFormProfile"></p>
+        </div>
+        <div id="resultFormProfessionalStyle" class="block" class="none">
+            <h2>infos professionnelles</h2>
+            <p id="resultFormProfessional"></p>
+        </div>
     </div>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/airtable.browser.js"></script>

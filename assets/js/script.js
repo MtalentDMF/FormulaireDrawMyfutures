@@ -34,6 +34,8 @@ let proSituationCheckbox = document.querySelectorAll('input[name="ProSituation"]
 let professionalRetrainingCheckbox = document.querySelectorAll('input[name="professionalRetraining"]');
 let formationCheckbox = document.querySelectorAll('input[name="formation"]');
 let socialMediaCheckbox = document.querySelectorAll('input[name="socialMedia"]');
+let newsletterRadioButton = document.querySelectorAll('input[name="newsletter"]');
+
 
 //VARIABLES D'EMPLACEMENT DE MESSAGES D'ERREURS DES VERIFICATIONS DES CHAMPS OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
 
@@ -68,7 +70,7 @@ let regexCarac = /^[a-zA-Z-_\u00C0-\u00FF\s]+$/;//la regex est la meme dans nom 
 
 const nameValidation = () => {
     if (regexCarac.test(name.value) || name.value.length === 0) {
-        validName.textContent = "";
+        
         return true;
     }
     else {
@@ -91,7 +93,6 @@ const firstNameValidation = () => {
 const emailValidation = () => {
     let verif = /^[\u00C0-\u00FFa-zA-Z0-9-_._]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
     if (verif.exec(email.value) || email.value.length === 0) {
-        validEmail.textContent = "";
         return true;
     }
     else {
@@ -262,6 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.email.addEventListener('focus', function () {
         invalidForm.textContent = "";
+        validEmail.textContent = "";
     });
 
 
@@ -332,6 +334,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    for (i = 0; i < newsletterRadioButton.length; i++) {
+        newsletterRadioButton[i].addEventListener('change', function () {
+            validButton(newsletterRadioButton, emptyCaseNewsletter);
+        });
+    }
+
     for (i = 0; i < proSituationCheckbox.length; i++) {
         proSituationCheckbox[i].addEventListener('change', function () {
             validButton(proSituationCheckbox, validSituationPro);
@@ -372,11 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ---------------------------------------------------------------------------------
         */
 
-        emptyField(name,validName);
-
-        emptyField(firstName,validFirstName);
-
-        emptyField(email,validEmail);
+        // emptyField(email,validEmail);
 
         emptyField(CP,validCP);     
 
@@ -422,6 +426,36 @@ document.addEventListener('DOMContentLoaded', () => {
         if (boolEmptyCaseGender == false) {
             emptyCaseGender.textContent = 'Cette question est obligatoire';
         }
+
+        // Newsletter
+
+        let emptyCaseNewsletter = document.getElementById("emptyCaseNewsletter");
+        let boolEmptyCaseNewsletter = false;
+        
+
+        for (i = 0; i < newsletterRadioButton.length; i++) {
+            if (newsletterRadioButton[i].checked) {
+                boolEmptyCaseNewsletter = true;
+                emptyCaseNewsletter.textContent = "";
+            }
+        }
+        if (boolEmptyCaseNewsletter == false) {
+            emptyCaseNewsletter.textContent = 'Cette question est obligatoire';
+        }
+
+        // VERIFICATION QUE LEMAIL EST BIEN RENSEIGNE QUAND ON A DEMANDE LA NEWSLETTER
+
+        let boolEmailRenseigne = true;
+
+        for (i = 0; i < newsletterRadioButton.length; i++) {
+            if (newsletterRadioButton[0].checked && email.value.length === 0) {
+                validEmail.textContent = "Veuillez renseigner votre email";
+                boolEmailRenseigne = false;
+            }
+            else{
+                boolEmailRenseigne;
+                }
+            }
 
         //ProSituation 
 
@@ -493,9 +527,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Champs obligatoires
 
-        let nameValidSending = emptyField(name,validName) && nameValidation();
-        let firstNameValidSending = emptyField(firstName,validFirstName) && firstNameValidation();
-        let emailValidSending = emptyField(email,validEmail) && emailValidation();
+        let nameValidSending = nameValidation();
+        let firstNameValidSending = firstNameValidation();
+        let emailValidSending = emailValidation();
         let cpValidSending =  emptyField(CP,validCP) && codePostalValidation();
         let studyAreaValidSending = emptyField(studyArea,validStudyArea) && textFields(studyArea,validStudyArea);
         let retrainingJobAreaSending = textFields(retrainingJobArea,validRetrainingJobArea) && emptyField(retrainingJobArea,validRetrainingJobArea);
@@ -508,7 +542,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         //boutons et checkbox
         
-        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining && boolEmptyCaseFormation && boolEmptyCaseSocialMedia;
+        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining && boolEmptyCaseFormation && boolEmptyCaseSocialMedia && boolEmptyCaseNewsletter && boolEmailRenseigne;
 
         //Variable qui contient toutes les variables de vérification des champs du formulaire
 
@@ -535,39 +569,60 @@ document.addEventListener('DOMContentLoaded', () => {
         FONCTION UPDATE DATA QUI PERMET D'ENVOYER LES DONNEES DU FORMULAIRE
         */
        //-------------------------------------------------------------------------------
-       function updateData() {
+function updateData() {
 
 
-        var Airtable = require('airtable');
+    var Airtable = require('airtable');
 
-        var base = new Airtable({ apiKey: 'keyJZoCXEOlsyQu2N' }).base('apprgKZR6URooGqFe');
+    var base = new Airtable({ apiKey: 'keyJZoCXEOlsyQu2N' }).base('apprgKZR6URooGqFe');
 
-        const profil = base('Profil');
-        const age = base('Age');
-        const genre = base('Genre');
-        const niveauEtude = base('Niveau étude');
+    const profil = base('Profil');
+    const age = base('Age');
+    // const genre = base('Genre');
+    // const niveauEtude = base('Niveau étude');
 
-        // profil.create([
-        //     {
-        //         "fields": {
-        //             "Nom":document.getElementById('name').value,
-        //             "Prénom": document.getElementById('firstName').value,
-        //             "Email": document.getElementById('email').value,
-        //             "Code postal": document.getElementById('CP').value,
-        //             "Domaine étude": studyArea.value,
-        //             "Poste avant reconversion" : jobBeforeRetraining.value,
-        //             "Nouveau métier visé": retrainingJobArea.value,
-        //         }
-        //       }
-        //     ], function(err, records) {
-        //       if (err) {
-        //         console.error(err);
-        //         return;
-        //       }
-        //       records.forEach(function (record) {
-        //         console.log(record.getId());
-        //       });
-        //     });
+    profil.create([
+        {
+            "fields": {
+                "Domaine étude": studyArea.value,
+                "Poste avant reconversion": jobBeforeRetraining.value,
+                "Nouveau métier visé": retrainingJobArea.value,
+                "Sites internet consultés pour reconversion": websitesRetrainingArea.value,
+                "Autres sites ou lieux": websitesOrPlacesArea.value,
+                "Comptes intéressants": interestingAccountsArea.value,
+                "Sites internet consultés pour formation": websitesFormationArea.value,
+                "Code postal": CP.value,
+                "Prénom": firstName.value,
+                "Nom": name.value,
+                "Email": email.value
+            }
+        }
+    ], function (err, records) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        records.forEach(function (record) {
+            console.log(record.getId());
+        });
+    });
+
+    // age.create([
+    //     {
+    //         "fields": {
+    //             "Status": "Moins de 18 ans"
+    //         }
+    //     },
+    // ], function (err, records) {
+    //     if (err) {
+    //         console.error(err);
+    //         return;
+    //     }
+    //     records.forEach(function (record) {
+    //         console.log(record.getId());
+    //     });
+    // });
+        
 
         
 
@@ -694,4 +749,11 @@ document.addEventListener('DOMContentLoaded', () => {
         resultFormProfessional.innerHTML += '<br>' + 'Réseaux sociaux texte:  ' + socialMediaText.value + '<br>';
 
         resultFormProfessional.innerHTML += 'Comptes intéressants : ' + interestingAccountsArea.value + '<br>';
+
+        for (i = 0; i < newsletterRadioButton.length; i++) {
+            if (newsletterRadioButton[i].checked) {
+                resultFormProfessional.innerHTML += 'Newsletter : ' + newsletterRadioButton[i].value + '<br>';
+            }
+        }
+    
     }
