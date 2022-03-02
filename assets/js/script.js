@@ -577,9 +577,14 @@ function updateData() {
     var base = new Airtable({ apiKey: 'keyJZoCXEOlsyQu2N' }).base('apprgKZR6URooGqFe');
 
     const profil = base('Profil');
+    const reconversion = base('Reconversion');
+    const reseauxSociaux = base('Réseaux sociaux');
     const age = base('Age');
-    // const genre = base('Genre');
-    // const niveauEtude = base('Niveau étude');
+    const genre = base('Genre');
+    const niveauEtude = base('Niveau étude');
+    const newletter = base('Newsletter');
+
+    //TABLE PROFIL QUI CONTIENT UNIQUEMENT DES STRINGS
 
     profil.create([
         {
@@ -606,25 +611,138 @@ function updateData() {
             console.log(record.getId());
         });
     });
+    
+    // TABLES QUI CONTIENNENT DES RADIO BOUTONS
 
-    // age.create([
-    //     {
-    //         "fields": {
-    //             "Status": "Moins de 18 ans"
-    //         }
-    //     },
-    // ], function (err, records) {
-    //     if (err) {
-    //         console.error(err);
-    //         return;
+    for (i = 0; i < ageRangeRadioButton.length; i++) {
+        if (ageRangeRadioButton[i].checked) {
+            age.create([
+                {
+                    "fields": {
+                        "Age": ageRangeRadioButton[i].value
+                    }
+                },
+            ], function (err, records) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                records.forEach(function (record) {
+                    console.log(record.getId());
+                });
+            });
+        }
+    }
+
+    for (i = 0; i < genderRadioButton.length; i++) {
+        if (genderRadioButton[i].checked) {
+            genre.create([
+                { 
+                    "fields": {
+                        "Genre": genderRadioButton[i].value
+                    }
+                },
+            ], function (err, records) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                records.forEach(function (record) {
+                    console.log(record.getId());
+                });
+            });
+        }
+    }
+
+    for (i = 0; i < study.length; i++) {
+        if (study[i].checked) {
+            niveauEtude.create([
+                { 
+                    "fields": {
+                        "Niveau d'étude": study[i].value
+                    }
+                },
+            ], function (err, records) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                records.forEach(function (record) {
+                    console.log(record.getId());
+                });
+            });
+        }
+    }
+
+    for (i = 0; i < newsletterRadioButton.length; i++) {
+        if (newsletterRadioButton[i].checked) {
+            newletter.create([
+                { 
+                    "fields": {
+                        "Newsletter": newsletterRadioButton[i].value
+                    }
+                },
+            ], function (err, records) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                records.forEach(function (record) {
+                    console.log(record.getId());
+                });
+            });
+        }
+    }
+
+    // TABLES QUI CONTIENNENT DES CHECKBOX
+
+    //Changer le for qui ne va pas
+ 
+    // for (i = 0; i < professionalRetrainingCheckbox.length; i++) {
+    //     if (professionalRetrainingCheckbox[i].checked) {
+    //         reconversion.create([
+    //             {
+    //                 "fields": {
+    //                     "Tags": [professionalRetrainingCheckbox[i].value],
+    //                 }
+    //             }
+    //         ], function (err, records) {
+    //             if (err) {
+    //                 console.error(err);
+    //                 return;
+    //             }
+    //             records.forEach(function (record) {
+    //                 console.log(record.getId());
+    //             });
+    //         });
+             
     //     }
-    //     records.forEach(function (record) {
-    //         console.log(record.getId());
-    //     });
-    // });
-        
+    // }
 
-        
+    // for (i = 0; i < socialMediaCheckbox.length; i++) {
+    //     if (socialMediaCheckbox[i].checked) {
+    //         reseauxSociaux.create([
+    //             {
+    //                 "fields": {
+    //                     "Réseaux sociaux": [socialMediaCheckbox[i].value],
+    //                 }
+    //             }
+    //         ], function (err, records) {
+    //             if (err) {
+    //                 console.error(err);
+    //                 return;
+    //             }
+    //             records.forEach(function (record) {
+    //                 console.log(record.getId());
+    //             });
+    //         });
+             
+    //     }
+    // }
+
+
+
+
 
         document.getElementById('resultFormProfileStyle').classList.remove('none');
         document.getElementById('resultFormProfileStyle').classList.add('block');
