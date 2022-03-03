@@ -456,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (i = 0; i < newsletterRadioButton.length; i++) {
             if (newsletterRadioButton[0].checked && email.value.length === 0) {
-                validEmail.textContent = "Veuillez renseigner votre email";
+                validEmail.textContent = "Pour recevoir la newsletter, veuillez renseigner votre email";
                 boolEmailRenseigne = false;
             }
             else{
