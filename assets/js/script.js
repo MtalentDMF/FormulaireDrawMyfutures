@@ -51,7 +51,6 @@ let validSituationPro = document.getElementById("validSituationPro");
 let validProfessionalRetraining = document.getElementById("validProfessionalRetraining");
 let validProfessionalRetrainingText = document.getElementById("validProfessionalRetrainingText");
 let validRetrainingJobArea = document.getElementById("validRetrainingJobArea");
-let validFormation = document.getElementById("validFormation");
 let validFormationText = document.getElementById("validFormationText");
 let validWebitesRetrainingArea = document.getElementById("validWebitesRetrainingArea");
 let validWebsitesFormationArea = document.getElementById("validWebsitesFormationArea");
@@ -366,12 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    for (i = 0; i < formationCheckbox.length; i++) {
-        formationCheckbox[i].addEventListener('change', function () {
-            validButton(formationCheckbox, validFormation);
-        });
-    }
-
     for (i = 0; i < socialMediaCheckbox.length; i++) {
         socialMediaCheckbox[i].addEventListener('change', function () {
             validButton(socialMediaCheckbox, validSocialMedia);
@@ -501,22 +494,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
 
-
-        //Formation 
-
-        let boolEmptyCaseFormation = false;
-
-        for (i = 0; i < formationCheckbox.length; i++) {
-            if (formationCheckbox[i].checked) {
-                boolEmptyCaseFormation = true;
-                validFormation.textContent = "";
-            }
-        }
-        if (boolEmptyCaseFormation == false) {
-            validFormation.innerHTML = 'Cette question est obligatoire';
-
-        }
-
         //SocialMedia   
 
         let boolEmptyCaseSocialMedia = false;
@@ -556,7 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         //boutons et checkbox
         
-        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining && boolEmptyCaseFormation && boolEmptyCaseSocialMedia && boolEmptyCaseNewsletter && boolEmailRenseigne;
+        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining && boolEmptyCaseSocialMedia && boolEmptyCaseNewsletter && boolEmailRenseigne;
 
         //Variable qui contient toutes les variables de vérification des champs du formulaire
 
