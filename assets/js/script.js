@@ -169,6 +169,20 @@ const emptyField = (id, field) =>{
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    //Animation du titre
+    
+    const textAnime = document.querySelector('#titre h1')
+
+    new Typewriter(textAnime)
+    .changeDelay(80)
+    .typeString('Participez à l\'enquête sur la reconversion professionnelle.')
+    .pauseFor(300)
+    .deleteChars(1)
+    .typeString(' vers les métiers du numérique')
+    .start()
+
+
+
 // CONNEXION A LA BASE DE DONNEE AIRTABLE
     
 
@@ -579,10 +593,12 @@ function updateData() {
     const profil = base('Profil');
     const reconversion = base('Reconversion');
     const reseauxSociaux = base('Réseaux sociaux');
+    const formation = base('Formation');
+    const situationProfessionnelle = base('Situation professionnelle');
     const age = base('Age');
     const genre = base('Genre');
     const niveauEtude = base('Niveau étude');
-    const newletter = base('Newsletter');
+    const newsletter = base('Newsletter');
 
     //TABLE PROFIL QUI CONTIENT UNIQUEMENT DES STRINGS
 
@@ -676,7 +692,7 @@ function updateData() {
 
     for (i = 0; i < newsletterRadioButton.length; i++) {
         if (newsletterRadioButton[i].checked) {
-            newletter.create([
+            newsletter.create([
                 { 
                     "fields": {
                         "Newsletter": newsletterRadioButton[i].value
@@ -694,30 +710,93 @@ function updateData() {
         }
     }
 
+    //CHAMPS "AUTRE" DES CHECKBOX
+
+    reconversion.create([
+        {
+            "fields": {
+                "Autre": professionalRetrainingText.value,
+            }
+        }
+    ], function (err, records) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        records.forEach(function (record) {
+            console.log(record.getId());
+        });
+    });
+
+    reseauxSociaux.create([
+        {
+            "fields": {
+                "Autre": socialMediaText.value,
+            }
+        }
+    ], function (err, records) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        records.forEach(function (record) {
+            console.log(record.getId());
+        });
+    });
+
+    formation.create([
+        {
+            "fields": {
+                "Autre": formationText.value,
+            }
+        }
+    ], function (err, records) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        records.forEach(function (record) {
+            console.log(record.getId());
+        });
+    });
+
+    situationProfessionnelle.create([
+        {
+            "fields": {
+                "Autre": situationProText.value,
+            }
+        }
+    ], function (err, records) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        records.forEach(function (record) {
+            console.log(record.getId());
+        });
+    });
+
     // TABLES QUI CONTIENNENT DES CHECKBOX
 
     //Changer le for qui ne va pas
  
-    // for (i = 0; i < professionalRetrainingCheckbox.length; i++) {
-    //     if (professionalRetrainingCheckbox[i].checked) {
-    //         reconversion.create([
-    //             {
-    //                 "fields": {
-    //                     "Tags": [professionalRetrainingCheckbox[i].value],
-    //                 }
-    //             }
-    //         ], function (err, records) {
-    //             if (err) {
-    //                 console.error(err);
-    //                 return;
-    //             }
-    //             records.forEach(function (record) {
-    //                 console.log(record.getId());
-    //             });
-    //         });
-             
-    //     }
-    // }
+    for (i = 0; i < professionalRetrainingCheckbox.length; i++) {
+            reconversion.create([
+                {
+                    "fields": {
+                        "Tags": [professionalRetrainingCheckbox[i].value],
+                    }
+                }
+            ], function (err, records) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                records.forEach(function (record) {
+                    console.log(record.getId());
+                });
+            });
+    }
 
     // for (i = 0; i < socialMediaCheckbox.length; i++) {
     //     if (socialMediaCheckbox[i].checked) {
@@ -739,10 +818,6 @@ function updateData() {
              
     //     }
     // }
-
-
-
-
 
         document.getElementById('resultFormProfileStyle').classList.remove('none');
         document.getElementById('resultFormProfileStyle').classList.add('block');
