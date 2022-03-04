@@ -24,7 +24,7 @@ let websitesFormationArea = document.getElementById('websitesFormationArea');
 let websitesOrPlacesArea = document.getElementById('websitesOrPlacesArea');
 let socialMediaText = document.getElementById('socialMediaText');
 let interestingAccountsArea = document.getElementById('interestingAccountsArea');
-
+const debugmode = true;//TODO retirer ce hack lors de la livraison finale
 
 //QuerySelector de mes input type radio et checkbox 
 
@@ -539,7 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && studyAreaValidSending && retrainingJobAreaSending && websitesRetrainingAreaSending && websitesFormationAreaSending && areaNotRequired && boolTrue;
         
-        if(formulaireValid){
+        if(formulaireValid || debugmode){
             updateData();
             invalidForm.textContent = "";
             alert('Merci de votre participation');
@@ -568,233 +568,66 @@ function updateData() {
     var base = new Airtable({ apiKey: 'keyJZoCXEOlsyQu2N' }).base('apprgKZR6URooGqFe');
 
     const profil = base('Profil');
-    const reconversion = base('Reconversion');
-    const reseauxSociaux = base('Réseaux sociaux');
-    const formation = base('Formation');
-    const situationProfessionnelle = base('Situation professionnelle');
-    const age = base('Age');
-    const genre = base('Genre');
-    const niveauEtude = base('Niveau étude');
-    const newsletter = base('Newsletter');
 
-    //TABLE PROFIL QUI CONTIENT UNIQUEMENT DES STRINGS
+//Création d'un objet fieldsJson pour créer les données
 
-    profil.create([
-        {
-            "fields": {
-                "Domaine étude": studyArea.value,
-                "Poste avant reconversion": jobBeforeRetraining.value,
-                "Nouveau métier visé": retrainingJobArea.value,
-                "Sites internet consultés pour reconversion": websitesRetrainingArea.value,
-                "Autres sites ou lieux": websitesOrPlacesArea.value,
-                "Comptes intéressants": interestingAccountsArea.value,
-                "Sites internet consultés pour formation": websitesFormationArea.value,
-                "Code postal": CP.value,
-                "Prénom": firstName.value,
-                "Nom": name.value,
-                "Email": email.value
-            }
+//Initialisation de l'objet avec tous les champs de type texte
+
+    const fieldsJsonObject = {
+        "fields": {
+            "Domaine étude": studyArea.value,
+            "Poste avant reconversion": jobBeforeRetraining.value,
+            "Nouveau métier visé": retrainingJobArea.value,
+            "Sites internet consultés pour reconversion": websitesRetrainingArea.value,
+            "Autres sites ou lieux": websitesOrPlacesArea.value,
+            "Comptes intéressants": interestingAccountsArea.value,
+            "Sites internet consultés pour formation": websitesFormationArea.value,
+            "Code postal": CP.value,
+            "Prénom": firstName.value,
+            "Nom": name.value,
+            "Email": email.value
         }
-    ], function (err, records) {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        records.forEach(function (record) {
-            console.log(record.getId());
-        });
-    });
+    };
     
-    // TABLES QUI CONTIENNENT DES RADIO BOUTONS
+    //Ajout des radio bouton à l'objet 
 
-    for (i = 0; i < ageRangeRadioButton.length; i++) {
-        if (ageRangeRadioButton[i].checked) {
-            age.create([
-                {
-                    "fields": {
-                        "Age": ageRangeRadioButton[i].value
-                    }
-                },
-            ], function (err, records) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                records.forEach(function (record) {
-                    console.log(record.getId());
-                });
-            });
+    for (i = 0; i < study.length; i++) {
+        if (study[i].checked) {
+            fieldsJsonObject["fields"]["Niveau étude"] = [study[i].value];
         }
     }
 
     for (i = 0; i < genderRadioButton.length; i++) {
-        if (genderRadioButton[i].checked) {
-            genre.create([
-                { 
-                    "fields": {
-                        "Genre": genderRadioButton[i].value
-                    }
-                },
-            ], function (err, records) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                records.forEach(function (record) {
-                    console.log(record.getId());
-                });
-            });
-        }
+        fieldsJsonObject["fields"]["Genre"] = [genderRadioButton[i].value];
     }
 
-    for (i = 0; i < study.length; i++) {
-        if (study[i].checked) {
-            niveauEtude.create([
-                { 
-                    "fields": {
-                        "Niveau d'étude": study[i].value
-                    }
-                },
-            ], function (err, records) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                records.forEach(function (record) {
-                    console.log(record.getId());
-                });
-            });
-        }
+    for (i = 0; i < ageRangeRadioButton.length; i++) {
+        fieldsJsonObject["fields"]["Age"] = [ageRangeRadioButton[i].value];
     }
 
     for (i = 0; i < newsletterRadioButton.length; i++) {
-        if (newsletterRadioButton[i].checked) {
-            newsletter.create([
-                { 
-                    "fields": {
-                        "Newsletter": newsletterRadioButton[i].value
-                    }
-                },
-            ], function (err, records) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                records.forEach(function (record) {
-                    console.log(record.getId());
-                });
-            });
-        }
+        fieldsJsonObject["fields"]["Newsletter"] = [newsletterRadioButton[i].value];
     }
 
-    //CHAMPS "AUTRE" DES CHECKBOX
+    // essai de recuperation d'un checkbox
 
-    reconversion.create([
-        {
-            "fields": {
-                "Autre": professionalRetrainingText.value,
-            }
-        }
-    ], function (err, records) {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        records.forEach(function (record) {
-            console.log(record.getId());
-        });
-    });
-
-    reseauxSociaux.create([
-        {
-            "fields": {
-                "Autre": socialMediaText.value,
-            }
-        }
-    ], function (err, records) {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        records.forEach(function (record) {
-            console.log(record.getId());
-        });
-    });
-
-    formation.create([
-        {
-            "fields": {
-                "Autre": formationText.value,
-            }
-        }
-    ], function (err, records) {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        records.forEach(function (record) {
-            console.log(record.getId());
-        });
-    });
-
-    situationProfessionnelle.create([
-        {
-            "fields": {
-                "Autre": situationProText.value,
-            }
-        }
-    ], function (err, records) {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        records.forEach(function (record) {
-            console.log(record.getId());
-        });
-    });
-
-    // TABLES QUI CONTIENNENT DES CHECKBOX
-
-    //Changer le for qui ne va pas
- 
     for (i = 0; i < professionalRetrainingCheckbox.length; i++) {
-            reconversion.create([
-                {
-                    "fields": {
-                        "Tags": [professionalRetrainingCheckbox[i].value],
-                    }
-                }
-            ], function (err, records) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                records.forEach(function (record) {
-                    console.log(record.getId());
-                });
-            });
+        fieldsJsonObject["fields"]["Reconversion"] = [professionalRetrainingCheckbox[i].value];
     }
 
-    // for (i = 0; i < socialMediaCheckbox.length; i++) {
-    //     if (socialMediaCheckbox[i].checked) {
-    //         reseauxSociaux.create([
-    //             {
-    //                 "fields": {
-    //                     "Réseaux sociaux": [socialMediaCheckbox[i].value],
-    //                 }
-    //             }
-    //         ], function (err, records) {
-    //             if (err) {
-    //                 console.error(err);
-    //                 return;
-    //             }
-    //             records.forEach(function (record) {
-    //                 console.log(record.getId());
-    //             });
-    //         });
-             
-    //     }
-    // }
+    //Création du profil
+
+    profil.create([
+        fieldsJsonObject
+    ], function (err, records) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        records.forEach(function (record) {
+            console.log(record.getId());
+        });
+    });
 
         document.getElementById('resultFormProfileStyle').classList.remove('none');
         document.getElementById('resultFormProfileStyle').classList.add('block');
