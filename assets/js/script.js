@@ -24,7 +24,7 @@ let websitesFormationArea = document.getElementById('websitesFormationArea');
 let websitesOrPlacesArea = document.getElementById('websitesOrPlacesArea');
 let socialMediaText = document.getElementById('socialMediaText');
 let interestingAccountsArea = document.getElementById('interestingAccountsArea');
-const debugmode = true;//TODO retirer ce hack lors de la livraison finale
+// const debugmode = true;//TODO retirer ce hack lors de la livraison finale
 
 //QuerySelector de mes input type radio et checkbox 
 
@@ -69,7 +69,6 @@ let regexCarac = /^[a-zA-Z-_\u00C0-\u00FF\s]+$/;//la regex est la meme dans nom 
 
 const nameValidation = () => {
     if (regexCarac.test(name.value) || name.value.length === 0) {
-        
         return true;
     }
     else {
@@ -80,7 +79,6 @@ const nameValidation = () => {
 
 const firstNameValidation = () => {
     if (regexCarac.test(firstName.value) || firstName.value.length === 0) {
-        validFirstName.textContent = "";
         return true;
     }
     else {
@@ -267,10 +265,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.name.addEventListener('focus', function () {
         invalidForm.textContent = "";
+        validName.textContent = "";
+
     });
     
     form.firstName.addEventListener('focus', function () {
         invalidForm.textContent = "";
+        validFirstName.textContent = "";
     });
     
 
@@ -539,10 +540,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && studyAreaValidSending && retrainingJobAreaSending && websitesRetrainingAreaSending && websitesFormationAreaSending && areaNotRequired && boolTrue;
         
-        if(formulaireValid || debugmode){
+        if(formulaireValid){
             updateData();
             invalidForm.textContent = "";
-            alert('Merci de votre participation');
+            // alert('Merci de votre participation');
         }
         else{
             invalidForm.textContent = "Le formulaire est invalide";
@@ -573,7 +574,7 @@ function updateData() {
 
 //Initialisation de l'objet avec tous les champs de type texte
 
-    const fieldsJsonObject = {
+    let fieldsJsonObject = {
         "fields": {
             "Domaine étude": studyArea.value,
             "Poste avant reconversion": jobBeforeRetraining.value,
@@ -585,7 +586,11 @@ function updateData() {
             "Code postal": CP.value,
             "Prénom": firstName.value,
             "Nom": name.value,
-            "Email": email.value
+            "Email": email.value,
+            "Rapport à la reconversion Autre" : professionalRetrainingText.value,
+            "Réseaux sociaux Autre":socialMediaText.value,
+            "Formation Autre":formationText.value,
+            "Situation professionnelle Autre":situationProText.value,
         }
     };
     
@@ -598,22 +603,60 @@ function updateData() {
     }
 
     for (i = 0; i < genderRadioButton.length; i++) {
+        if (genderRadioButton[i].checked) {
         fieldsJsonObject["fields"]["Genre"] = [genderRadioButton[i].value];
+        }
     }
 
     for (i = 0; i < ageRangeRadioButton.length; i++) {
+        if (ageRangeRadioButton[i].checked) {
         fieldsJsonObject["fields"]["Age"] = [ageRangeRadioButton[i].value];
+        }
     }
 
     for (i = 0; i < newsletterRadioButton.length; i++) {
+        if (newsletterRadioButton[i].checked) {
         fieldsJsonObject["fields"]["Newsletter"] = [newsletterRadioButton[i].value];
+        }
     }
 
-    // essai de recuperation d'un checkbox
-
+    
+    // RECUPERATION DES CHECKBOX
+    
+    fieldsJsonObject["fields"]["Rapport à la reconversion"] = [];
     for (i = 0; i < professionalRetrainingCheckbox.length; i++) {
-        fieldsJsonObject["fields"]["Reconversion"] = [professionalRetrainingCheckbox[i].value];
-    }
+        if (professionalRetrainingCheckbox[i].checked){
+            fieldsJsonObject["fields"]["Rapport à la reconversion"].push(professionalRetrainingCheckbox[i].value);
+        }
+    }   
+
+    fieldsJsonObject["fields"]["Réseaux sociaux"] = [];
+    for (i = 0; i < socialMediaCheckbox.length; i++) {
+        if (socialMediaCheckbox[i].checked){
+            fieldsJsonObject["fields"]["Réseaux sociaux"].push(socialMediaCheckbox[i].value);
+        }
+    }   
+
+    fieldsJsonObject["fields"]["Formation"] = [];
+    for (i = 0; i < formationCheckbox.length; i++) {
+        if (formationCheckbox[i].checked){
+            fieldsJsonObject["fields"]["Formation"].push(formationCheckbox[i].value);
+        }
+    }   
+
+    fieldsJsonObject["fields"]["Situation professionnelle"] = [];
+    for (i = 0; i < ProSituation.length; i++) {
+        if (ProSituation[i].checked){
+            fieldsJsonObject["fields"]["Situation professionnelle"].push(ProSituation[i].value);
+        }
+    }   
+
+    // RECUPERATION DES CHAMPS AUTRE
+
+
+
+    console.log(fieldsJsonObject);
+
 
     //Création du profil
 

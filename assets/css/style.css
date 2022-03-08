@@ -50,16 +50,15 @@ div#titre{
 /*Formulaire*/
 
 #box{
-    margin-top: 30px; 
-    border-radius: 10px;   
+    margin-top: 30px;   
     width: 50%;
     margin-left: auto; 
     margin-right: auto; 
     background-color: rgba(11,39,53,0.7);
-    border-left: 4px solid rgb(53, 184, 143);
-    border-right: 4px solid rgb(53, 184, 143);
-    border-top: 10px solid rgb(53, 184, 143);
-    border-bottom: 10px solid rgb(53, 184, 143);
+    /* border-left: 1px solid rgb(53, 184, 143);
+    border-right: 1px solid rgb(53, 184, 143);
+    border-top: 1px solid rgb(53, 184, 143);
+    border-bottom: 1px solid rgb(53, 184, 143); */
     height: auto;
     margin-bottom: 50px;
 }
@@ -135,6 +134,7 @@ textarea{
 
 input{
     background-color: rgba(10, 85, 122, 0.5);
+    color: white;
 }
 
 input[type=text]{
