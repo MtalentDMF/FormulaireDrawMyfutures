@@ -538,7 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && studyAreaValidSending && retrainingJobAreaSending && websitesRetrainingAreaSending && websitesFormationAreaSending && areaNotRequired && boolTrue;
         
-        if(formulaireValid || debugmode){
+        if(formulaireValid){
             updateData();
             invalidForm.textContent = "";
             // alert('Merci de votre participation');
