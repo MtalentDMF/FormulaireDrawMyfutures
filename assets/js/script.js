@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     new Typewriter(textAnime)
     .changeDelay(80)
-    .typeString('Reconversion vers les métiers du numérique.')
+    .typeString('Reconversion vers les métiers du numérique')
     // .pauseFor(300)
     // .deleteChars(1)
     // .typeString(' vers les métiers du numérique')
