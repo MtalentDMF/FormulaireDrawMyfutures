@@ -9,8 +9,9 @@
 
 body{
     font: 1rem sans-serif;
-    background: url('../pexels-josh-sorenson-1714205.jpg') no-repeat center center;
+    background: url('../pexels-2399840.jpg') no-repeat center center;
     background-size: cover; 
+    background-position: center;
     -webkit-background-size: cover; 
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -24,17 +25,21 @@ body{
 /* HEADER */
 
 #image{
-    margin-top: 20px;
     text-align: center;
+    background-color: white;
+    width: 100%;
+    /* border: 7px solid #35b88f;; */
 }
 
 #logo1{
+    margin: 20px 0 20px 0;    
     width: 45px;
     vertical-align: middle;
     height: auto;
 }
 
 #logo2{
+    margin: 20px 0 20px 0;  
     height: auto;
     vertical-align: middle;
 }

@@ -24,7 +24,7 @@ let websitesFormationArea = document.getElementById('websitesFormationArea');
 let websitesOrPlacesArea = document.getElementById('websitesOrPlacesArea');
 let socialMediaText = document.getElementById('socialMediaText');
 let interestingAccountsArea = document.getElementById('interestingAccountsArea');
-// const debugmode = true;//TODO retirer ce hack lors de la livraison finale
+const debugmode = true;//TODO retirer ce hack lors de la livraison finale
 
 //QuerySelector de mes input type radio et checkbox 
 
@@ -540,7 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && studyAreaValidSending && retrainingJobAreaSending && websitesRetrainingAreaSending && websitesFormationAreaSending && areaNotRequired && boolTrue;
         
-        if(formulaireValid){
+        if(formulaireValid || debugmode){
             updateData();
             invalidForm.textContent = "";
             // alert('Merci de votre participation');
