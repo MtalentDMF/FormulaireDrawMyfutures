@@ -228,8 +228,7 @@ input::placeholder{
 @media screen and (max-width: 1024px) {
 
     body{
-        background: url('../pexels-sharad-kachhi-3937174_small.jpg') no-repeat center center;
-        background-size: cover; 
+        background: url('../pexels-sharad-kachhi-3937174_small.jpg');
     }
     #box{
         width: 100%;
@@ -237,7 +236,7 @@ input::placeholder{
     }
     div#titre{
         width: 100%;
-        height: 95px;
+        height: 100%;
         margin-top: 0px;
     }
 
