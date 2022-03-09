@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="icon" type="image/png" href="assets/img/logo_dmf_white1.png">
+    <link rel="icon" type="image/png" href="assets/img/logo_dmf.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap"
@@ -59,8 +59,9 @@
                 <textarea name="studyOfArea" id="studyArea" cols="38" rows="1" class="blockSizeOfForm"></textarea>
                 <p id="validStudyArea" class="errorMessage"></p>
 
-                <label for="jobBeforeRetraining" class="atLine wordingField">3 - Quel est l'intitulé de votre poste
-                    avant la reconversion ?</label>
+                <p class="wordingField">3 - Quel est le domaine du métier que vous exerciez avant votre reconversion ?</p>
+
+                <label for="jobBeforeRetraining" class="atLine wordingField">3 - Quel est l'intitulé exact de votre métier avant votre reconversion ?</label>
                 <textarea name="jobBefore" id="jobBeforeRetraining" cols="38" rows="1"
                     class="blockSizeOfForm"></textarea>
                 <p id="validJobBeforeRetraining" class="errorMessage"></p>
@@ -196,7 +197,7 @@
                 <input type="text" name="CP" placeholder="75009" id="CP" class="blockSizeOfForm testFormValid">
                 <p id="validCP" class="errorMessage"></p>
         
-                <label for="firstName" class="atLine wordingField">16 - Prénom</label>
+                <label for="firstName" class="atLine wordingField">16 - Prénom<span class="starObligatoryField">*</span></label>
                 <input type="text" name="firstName" placeholder="John" id="firstName" class="blockSizeOfForm testFormValid">
                 <p id="validFirstName" class="errorMessage"></p>
         
@@ -214,6 +215,10 @@
                 <label for="yes"><input type="radio" name="newsletter" value="recbXaaKHdYpFhMhT" id="yes">oui, je souhaite recevoir la newsletter Draw My Futures dédiée à la reconversion vers le numérique<label>
                 <label for="no" class="atLine"><input type="radio" name="newsletter" value="recKpVItPBCcrgfgY" id="no">non merci, je ne souhaite surtout pas recevoir d'informations sur le numérique</label>
                 <p id="emptyCaseNewsletter" class="errorMessage"></p>
+
+                <label for="additionalQuestionsArea" class="atLine wordingField">20 - Avez-vous des choses à ajouter ? Des questions ? Des remarques ? Des encouragements ? :-) ?<span class="starObligatoryField">*</span></label>
+                <textarea name="additionalQuestionsArea" id="additionalQuestionsArea" cols="38" rows="4" class="blockSizeOfForm"></textarea>
+                <p id="validAdditionalQuestionsArea" class="errorMessage"></p>
         
                 <p id="requiredField"><span class="starObligatoryField">*</span> Champs obligatoires</p>
                 <p id="invalidForm" class="errorMessage"></p>
