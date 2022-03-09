@@ -9,12 +9,12 @@
 
 body{
     font: 1rem sans-serif;
-    background: url('../pexels-2399840.jpg') no-repeat center center;
+    background: url('../pexels-sharad-kachhi-3937174.jpg') no-repeat center center;
     background-size: cover; 
-    background-position: center;
-    -webkit-background-size: cover; 
+    /* background-position: center; */
+    /* -webkit-background-size: cover; 
     -moz-background-size: cover;
-    -o-background-size: cover;
+    -o-background-size: cover; */
     color: white;
 }
 
@@ -27,7 +27,6 @@ body{
 #image{
     text-align: center;
     background-color: white;
-    width: 100%;
     /* border: 7px solid #35b88f;; */
 }
 
@@ -39,15 +38,14 @@ body{
 }
 
 #logo2{
-    margin: 20px 0 20px 0;  
     height: auto;
     vertical-align: middle;
 }
 
 div#titre{
-    margin-top: 30px;
     width: 50%;
     text-align: center;
+    margin-top: 30px;
     margin-left: auto; 
     margin-right: auto; 
 }
@@ -59,7 +57,7 @@ div#titre{
     width: 50%;
     margin-left: auto; 
     margin-right: auto; 
-    background-color: rgba(11,39,53,0.7);
+    background-color: rgba(11,39,53,0.95);
     /* border-left: 1px solid rgb(53, 184, 143);
     border-right: 1px solid rgb(53, 184, 143);
     border-top: 1px solid rgb(53, 184, 143);
@@ -165,7 +163,7 @@ input[type=radio], input[type=checkbox]{
     margin-top: 25px;
     margin-bottom: 10px;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 
 #labelName{

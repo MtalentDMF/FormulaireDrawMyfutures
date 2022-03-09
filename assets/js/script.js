@@ -172,13 +172,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     new Typewriter(textAnime)
     .changeDelay(80)
-    .typeString('Participez à l\'enquête sur la reconversion professionnelle.')
-    .pauseFor(300)
-    .deleteChars(1)
-    .typeString(' vers les métiers du numérique')
+    .typeString('Reconversion vers les métiers du numérique.')
+    // .pauseFor(300)
+    // .deleteChars(1)
+    // .typeString(' vers les métiers du numérique')
     .start()
-
-
 
 // CONNEXION A LA BASE DE DONNEE AIRTABLE
     
