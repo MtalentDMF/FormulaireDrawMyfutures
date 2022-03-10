@@ -39,6 +39,7 @@ let newsletterRadioButton = document.querySelectorAll('input[name="newsletter"]'
 //Recuperation des listes
 
 let list = document.getElementById('list');
+let listOfRetraining = document.getElementById('listOfRetraining');
 
 //VARIABLES D'EMPLACEMENT DE MESSAGES D'ERREURS DES VERIFICATIONS DES CHAMPS OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
 
@@ -63,7 +64,7 @@ let validSocialMediaText = document.getElementById("validSocialMediaText");
 let validInterestingAccountsArea = document.getElementById("validInterestingAccountsArea");
 let validAdditionalQuestionsArea = document.getElementById("validAdditionalQuestionsArea");
 let validFieldOfStudy = document.getElementById("validFieldOfStudy");
-
+let validListdOfRetraining = document.getElementById("validListdOfRetraining");
 
 //Message d'erreur si l'envoi du formulaire n'est pas valide 
 
@@ -158,7 +159,7 @@ const emptyField = (id, field) =>{
 // let nul = document.getElementById('null');
 
 const click = (listItem,field) =>{
-    if(listItem.options[listItem.selectedIndex].text === "-----choisissez un domaine dans la liste-----"){
+    if(listItem.options[listItem.selectedIndex].value === "empty"){
         field.textContent = RequiredField;
         return false;
     }
@@ -339,6 +340,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     );
 
+    form.listOfRetraining.addEventListener('click', function () {
+        invalidForm.textContent = "";
+        validListdOfRetraining.textContent = "";
+    }
+    );
+    
     /**
      * 
     ---------------------------------------------------------
@@ -409,6 +416,8 @@ document.addEventListener('DOMContentLoaded', () => {
         emptyField(websitesFormationArea,validWebsitesFormationArea);
 
         click(list,validFieldOfStudy);
+
+        click(listOfRetraining,validListdOfRetraining);
         
         //
         //Si le bouton radio ou checkbox n'est pas coché
@@ -535,6 +544,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let websitesRetrainingAreaSending = textFields(websitesRetrainingArea,validWebitesRetrainingArea) && emptyField(websitesRetrainingArea,validWebitesRetrainingArea);
         let websitesFormationAreaSending = textFields(websitesFormationArea,validWebsitesFormationArea) && emptyField(websitesFormationArea,validWebsitesFormationArea);
         let fieldOfStudySending = click(list,validFieldOfStudy);
+        let listOfRetrainingSending = click(listOfRetraining,validListdOfRetraining);
+    
         //Champs non obligatoires
         
         let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText) && textFields(formationText,validFormationText) && textFields(websitesOrPlacesArea,validWebsitesOrPlacesArea) && textFields(socialMediaText,validSocialMediaText) && textFields(interestingAccountsArea,validInterestingAccountsArea);
@@ -545,7 +556,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Variable qui contient toutes les variables de vérification des champs du formulaire
 
-        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && retrainingJobAreaSending && websitesRetrainingAreaSending && websitesFormationAreaSending && fieldOfStudySending && areaNotRequired && boolTrue;
+        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && retrainingJobAreaSending && websitesRetrainingAreaSending && websitesFormationAreaSending && fieldOfStudySending && listOfRetrainingSending && areaNotRequired && boolTrue;
         
         if(formulaireValid || debugmode){
             updateData();
@@ -599,7 +610,8 @@ function updateData() {
             "Formation Autre":formationText.value,
             "Situation professionnelle Autre":situationProText.value,
             "Questions supplémentaires": additionalQuestionsArea.value,
-            "Domaine Etude": [list.options[list.selectedIndex].value]
+            "Domaine étude": [list.options[list.selectedIndex].value],
+            "Domaine métier": [listOfRetraining.options[listOfRetraining.selectedIndex].value]
         }
     };
     
