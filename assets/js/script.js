@@ -384,10 +384,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //JE FAIS DISPARAITRE LES DIV DE RECUPERATION DES DONNEES AU BAS DE MON FORMULAIRE
 
-    document.getElementById('resultFormProfileStyle').classList.remove('block');
-    document.getElementById('resultFormProfileStyle').classList.add('none');
-    document.getElementById('resultFormProfessionalStyle').classList.remove('block');
-    document.getElementById('resultFormProfessionalStyle').classList.add('none');
+    document.getElementById('resultOk').classList.remove('block');
+    document.getElementById('resultOk').classList.add('none');
 
     buttonSubmit.addEventListener('click', e => {
         e.preventDefault();
@@ -552,9 +550,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if(formulaireValid){
             updateData();
-            alert('Merci, vos réponses ont bien été envoyées !');
             invalidForm.textContent = "";
-            // alert('Merci de votre participation');
+            document.getElementById('resultOk').classList.remove('none');
+            document.getElementById('resultOk').classList.add('block');
         }
         else{
             invalidForm.textContent = "Le formulaire est invalide";
@@ -684,8 +682,7 @@ function updateData() {
         });
     });
 }
-// document.getElementById('resultFormProfileStyle').classList.remove('none');
-// document.getElementById('resultFormProfileStyle').classList.add('block');
+
 // document.getElementById('resultFormProfessionalStyle').classList.remove('none');
 // document.getElementById('resultFormProfessionalStyle').classList.add('block');
 

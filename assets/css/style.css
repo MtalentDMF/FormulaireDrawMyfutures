@@ -182,28 +182,14 @@ input::placeholder{
 
 /* Resultat du formulaire */
 
-#resultFormProfileStyle{
+#resultOk{
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 100px;
     background: rgb(53, 184, 143);
     border-radius: 10px;
-    border: 4px solid rgb(184, 230, 216);
-    text-align: center;
-    color: #fff;
-    height: auto;
-    width: 30%;
-}
-
-#resultFormProfessionalStyle{
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 100px;
-    background: rgb(53, 184, 143);
-    border-radius: 10px;
-    border: 4px solid rgb(184, 230, 216);
+    border: 2px solid rgb(184, 230, 216);
     text-align: center;
     color: #fff;
     height: auto;
