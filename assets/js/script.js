@@ -4,8 +4,6 @@ AFFICHAGE DES DONNES SOUMISES PAR LE FORMULAIRE AU BAS DE LA PAGE
 
 //Variables qui prend les id des champs input et des champs text Area
 
-// let resultFormProfile = document.getElementById('resultFormProfile');
-// let resultFormProfessional = document.getElementById('resultFormProfessional');
 let buttonSubmit = document.getElementById('buttonSubmit');
 let study = document.getElementsByName('study');
 let ProSituation = document.getElementsByName('ProSituation');
@@ -15,7 +13,7 @@ let name = document.getElementById("name");
 let firstName = document.getElementById("firstName");
 let email = document.getElementById("email");
 let CP = document.getElementById("CP");
-let studyArea = document.getElementById('studyArea');
+
 let professionalRetrainingText = document.getElementById('professionalRetrainingText');
 let retrainingJobArea = document.getElementById('retrainingJobArea');
 let formationText = document.getElementById('formationText');
@@ -38,6 +36,9 @@ let formationCheckbox = document.querySelectorAll('input[name="formation"]');
 let socialMediaCheckbox = document.querySelectorAll('input[name="socialMedia"]');
 let newsletterRadioButton = document.querySelectorAll('input[name="newsletter"]');
 
+//Recuperation des listes
+
+let list = document.getElementById('list');
 
 //VARIABLES D'EMPLACEMENT DE MESSAGES D'ERREURS DES VERIFICATIONS DES CHAMPS OBLIGATOIRE ET DES EXPRESSIONS OBLIGATOIRES (REGEX)
 
@@ -46,7 +47,7 @@ let validEmail = document.getElementById("validEmail");
 let validName = document.getElementById("validName");
 let validFirstName = document.getElementById("validFirstName");
 let validCP = document.getElementById("validCP");
-let validStudyArea = document.getElementById("validStudyArea");
+
 let validSituationProText = document.getElementById("validSituationProText");
 let validJobBeforeRetraining = document.getElementById("validJobBeforeRetraining");
 let validSituationPro = document.getElementById("validSituationPro");
@@ -61,6 +62,7 @@ let validSocialMedia = document.getElementById("validSocialMedia");
 let validSocialMediaText = document.getElementById("validSocialMediaText");
 let validInterestingAccountsArea = document.getElementById("validInterestingAccountsArea");
 let validAdditionalQuestionsArea = document.getElementById("validAdditionalQuestionsArea");
+let validFieldOfStudy = document.getElementById("validFieldOfStudy");
 
 
 //Message d'erreur si l'envoi du formulaire n'est pas valide 
@@ -137,23 +139,9 @@ const validButton = (id, field) => {
     }
 }
 
-// FONCTION DE VALIDATION DES CHECKBOX ET RADIO BOUTONS QUI ENGLOBENT L'EVENT LISTENER
-
-// const validButtonTest = (id,field) =>{
-//     for (i = 0; i < id.length; i++) {
-//         id[i].addEventListener('change', function () {
-//             for (i = 0; i < id.length; i++) {
-//                 if (id[i].checked) {
-//                     field.textContent = "";
-//                     invalidForm.textContent = "";
-
-//                 }
-//             }
-//         });
-//     }
-// }
-
 //FONCTION DE VALIDATION DES CHAMPS OBLIGATOIRES
+
+//Validation pour les input textes
 
 const emptyField = (id, field) =>{
     if(id.value.length === 0){
@@ -164,6 +152,20 @@ const emptyField = (id, field) =>{
         return true;
     }
 } 
+
+// Validation pour les select 
+
+// let nul = document.getElementById('null');
+
+const click = (listItem,field) =>{
+    if(listItem.options[listItem.selectedIndex].text === "-----choisissez un domaine dans la liste-----"){
+        field.textContent = RequiredField;
+        return false;
+    }
+    else{
+        return true;
+    }
+}
 
 //Le chargement du fichier js se fait à l'ouverture de la page html
 
@@ -220,9 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
         codePostalValidation();
     }); 
     
-    form.studyArea.addEventListener('focusout', function () {
-        textFields(studyArea,validStudyArea);
-    });
     
     form.situationProText.addEventListener('focusout', function () {
         textFields(situationProText,validSituationProText);
@@ -273,13 +272,12 @@ document.addEventListener('DOMContentLoaded', () => {
         validName.textContent = "";
 
     });
-    
+
     form.firstName.addEventListener('focus', function () {
         invalidForm.textContent = "";
         validFirstName.textContent = "";
     });
     
-
     form.email.addEventListener('focus', function () {
         invalidForm.textContent = "";
         validEmail.textContent = "";
@@ -290,10 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
         invalidForm.textContent = "";
         validCP.textContent = "";
     }); 
-
-    form.studyArea.addEventListener('focus', function () {
-        invalidForm.textContent = "";
-    });
 
     form.situationProText.addEventListener('focus', function () {
         invalidForm.textContent = "";
@@ -338,6 +332,12 @@ document.addEventListener('DOMContentLoaded', () => {
     form.additionalQuestionsArea.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
+
+    form.list.addEventListener('click', function () {
+        invalidForm.textContent = "";
+        validFieldOfStudy.textContent = "";
+    }
+    );
 
     /**
      * 
@@ -396,17 +396,19 @@ document.addEventListener('DOMContentLoaded', () => {
         ---------------------------------------------------------------------------------
         */
 
+        console.log(list.options[list.selectedIndex].value);
+
         emptyField(firstName,validFirstName);
 
         emptyField(CP,validCP);     
-
-        emptyField(studyArea,validStudyArea);
 
         emptyField(retrainingJobArea,validRetrainingJobArea);
 
         emptyField(websitesRetrainingArea,validWebitesRetrainingArea);
 
         emptyField(websitesFormationArea,validWebsitesFormationArea);
+
+        click(list,validFieldOfStudy);
         
         //
         //Si le bouton radio ou checkbox n'est pas coché
@@ -515,10 +517,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (boolEmptyCaseSocialMedia == false) {
             validSocialMedia.innerHTML = 'Cette question est obligatoire';
+
         }
-
-        //
-
         //-----------------------------------------------------------------------------------
         /*
         LA VARIABLE FORMULAIRE VALID PERMET DE VERIFIER SI TOUS LES CHAMPS SONT VALIDES AVANT D'ENVOYER LE FORMULAIRE
@@ -531,11 +531,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let firstNameValidSending = emptyField(firstName,validFirstName) && firstNameValidation();
         let emailValidSending = emailValidation();
         let cpValidSending =  emptyField(CP,validCP) && codePostalValidation();
-        let studyAreaValidSending = emptyField(studyArea,validStudyArea) && textFields(studyArea,validStudyArea);
         let retrainingJobAreaSending = textFields(retrainingJobArea,validRetrainingJobArea) && emptyField(retrainingJobArea,validRetrainingJobArea);
         let websitesRetrainingAreaSending = textFields(websitesRetrainingArea,validWebitesRetrainingArea) && emptyField(websitesRetrainingArea,validWebitesRetrainingArea);
         let websitesFormationAreaSending = textFields(websitesFormationArea,validWebsitesFormationArea) && emptyField(websitesFormationArea,validWebsitesFormationArea);
-
+        let fieldOfStudySending = click(list,validFieldOfStudy);
         //Champs non obligatoires
         
         let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText) && textFields(formationText,validFormationText) && textFields(websitesOrPlacesArea,validWebsitesOrPlacesArea) && textFields(socialMediaText,validSocialMediaText) && textFields(interestingAccountsArea,validInterestingAccountsArea);
@@ -546,9 +545,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Variable qui contient toutes les variables de vérification des champs du formulaire
 
-        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && studyAreaValidSending && retrainingJobAreaSending && websitesRetrainingAreaSending && websitesFormationAreaSending && areaNotRequired && boolTrue;
+        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && retrainingJobAreaSending && websitesRetrainingAreaSending && websitesFormationAreaSending && fieldOfStudySending && areaNotRequired && boolTrue;
         
-        if(formulaireValid){
+        if(formulaireValid || debugmode){
             updateData();
             invalidForm.textContent = "";
             document.getElementById('resultOk').classList.remove('none');
@@ -585,7 +584,6 @@ function updateData() {
 
     let fieldsJsonObject = {
         "fields": {
-            "Domaine étude": studyArea.value,
             "Poste avant reconversion": jobBeforeRetraining.value,
             "Nouveau métier visé": retrainingJobArea.value,
             "Sites internet consultés pour reconversion": websitesRetrainingArea.value,
@@ -601,6 +599,7 @@ function updateData() {
             "Formation Autre":formationText.value,
             "Situation professionnelle Autre":situationProText.value,
             "Questions supplémentaires": additionalQuestionsArea.value,
+            "Domaine Etude": [list.options[list.selectedIndex].value]
         }
     };
     
@@ -630,7 +629,6 @@ function updateData() {
         }
     }
 
-    
     // RECUPERATION DES CHECKBOX
     
     fieldsJsonObject["fields"]["Rapport à la reconversion"] = [];
@@ -682,131 +680,3 @@ function updateData() {
         });
     });
 }
-
-// document.getElementById('resultFormProfessionalStyle').classList.remove('none');
-// document.getElementById('resultFormProfessionalStyle').classList.add('block');
-
-// resultFormProfile.innerHTML = 'Nom: ' + document.getElementById('name').value + '<br>';
-// resultFormProfile.innerHTML += "Prenom: " + document.getElementById('firstName').value + '<br>';
-// resultFormProfile.innerHTML += 'Email : ' + document.getElementById('email').value + '<br>';
-// resultFormProfile.innerHTML += 'CP : ' + document.getElementById('CP').value + '<br>';
-
-// /* ----------------------------------------------------------------------------------
-// C'est un bouton radio, je créer une boucle pour récuperer la/les valeur(s) de mon bouton grâce à la méthode checked.
-// -------------------------------------------------------------------------------------
-// */
-// for (i = 0; i < ageRangeRadioButton.length; i++) {
-//     if (ageRangeRadioButton[i].checked) {
-//         resultFormProfile.innerHTML += "Tranche d'age : " + ageRangeRadioButton[i].value + '<br>';
-
-//     }
-// }
-
-// for (i = 0; i < genderRadioButton.length; i++) {
-//     if (genderRadioButton[i].checked) {
-//         resultFormProfile.innerHTML += 'Genre : ' + genderRadioButton[i].value + '<br>';
-//     }
-// }
-
-// /*
-// JAURAI PU LE FAIRE AVEC UN TAG NAME SUR LES INPUT POUR RECUPERER TOUS LES INPUT
-
-// function displayRadioValue() {
-//     document.getElementById("result").innerHTML = "";
-//     var ele = document.getElementsByTagName('input');
-    
-//     for(i = 0; i < ele.length; i++) {
-        
-//         if(ele[i].type="radio") {
-            
-//             if(ele[i].checked)
-//             document.getElementById("result").innerHTML
-//             += ele[i].name + " Value: "
-//             + ele[i].value + "<br>";
-//         }
-//     }
-// }
-
-// */
-// // J'ajoute un champs 'niveau etude' vide pour que ça ne rajoute pas des champs dans la div de récupération du formulaire à chaque click du bouton envoyer
-// resultFormProfessional.innerHTML = 'Niveau etude : <br>';
-
-// for (i = 0; i < study.length; i++) {
-//     if (study[i].checked) {
-//         resultFormProfessional.innerHTML = 'Niveau etude : ' + study[i].value + '<br>';
-//     }
-// }
-
-// resultFormProfessional.innerHTML += 'Domaine etude : ' + studyArea.value + '<br>';
-
-// //J'ajoute un champ situation professionnelle en dehors du for pour qu'il n'apparaisse qu'une fois et que les situation pro apparaissent à la suite
-// resultFormProfessional.innerHTML += 'Situation professionnelle : ';
-
-// for (i = 0; i < ProSituation.length; i++) {
-//     if (ProSituation[i].checked) {
-//         resultFormProfessional.innerHTML += ProSituation[i].value + ' , ';
-//     }
-// }
-
-// resultFormProfessional.innerHTML += '<br>' + 'Situation pro autre :  ' + situationProText.value + '<br>';
-
-// //RAJOUTER LE IF LORS DE LA CONNEXION SUR AIRTABLE
-
-
-// // Pour afficher le contenue du text area uniquement s'il y a une valeur.
-// // if(situationProText.value.length>0){
-// //     console.log('after if situationProText.value = "' + situationProText.value + '"');
-// //     // JAI RAJOUTE DES GUILLEMETS POUR VERIFIER QU'IL Y AVAIT BIEN DU CONTENU
-// //     resultFormProfessional.innerHTML += '<br>' + 'Situation pro texte :  ' + situationProText.value + '<br>';
-// // }
-// // else
-// //     console.log('after else situationProText.value = ' + situationProText.value);
-// // SYSTEMATIQUEMENT RAJOUTER DU CONSOLE LOG LORSQU'IL Y A UN BUG. 
-
-// resultFormProfessional.innerHTML += 'Poste avant reconversion : ' + jobBeforeRetraining.value + '<br>';
-
-// resultFormProfessional.innerHTML += 'Rapport à la reconversion : ';
-
-// for (i = 0; i < professionalRetrainingCheckbox.length; i++) {
-//     if (professionalRetrainingCheckbox[i].checked) {
-//         resultFormProfessional.innerHTML += professionalRetrainingCheckbox[i].value + ' , ';
-//     }
-// }
-
-// resultFormProfessional.innerHTML += '<br>' + 'Rapport à la reconversion autre :  ' + professionalRetrainingText.value + '<br>';
-
-// resultFormProfessional.innerHTML += 'Métier visé : ' + retrainingJobArea.value + '<br>';
-
-// resultFormProfessional.innerHTML += 'Formation : ';
-
-// for (i = 0; i < formationCheckbox.length; i++) {
-//     if (formationCheckbox[i].checked) {
-//         resultFormProfessional.innerHTML += formationCheckbox[i].value + ' , ';
-//     }
-// }
-
-// resultFormProfessional.innerHTML += '<br>' + 'Formation Texte:  ' + formationText.value + '<br>';
-
-// resultFormProfessional.innerHTML += 'Sites web reconversion : ' + websitesRetrainingArea.value + '<br>';
-
-// resultFormProfessional.innerHTML += 'Sites web formation : ' + websitesFormationArea.value + '<br>';
-
-// resultFormProfessional.innerHTML += 'Autres sites web ou lieux : ' + websitesOrPlacesArea.value + '<br>';
-
-// resultFormProfessional.innerHTML += 'Réseaux Sociaux : ';
-
-// for (i = 0; i < socialMediaCheckbox.length; i++) {
-//     if (socialMediaCheckbox[i].checked) {
-//         resultFormProfessional.innerHTML += socialMediaCheckbox[i].value + ' , ';
-//     }
-// }
-
-// resultFormProfessional.innerHTML += '<br>' + 'Réseaux sociaux texte:  ' + socialMediaText.value + '<br>';
-
-// resultFormProfessional.innerHTML += 'Comptes intéressants : ' + interestingAccountsArea.value + '<br>';
-
-// for (i = 0; i < newsletterRadioButton.length; i++) {
-//     if (newsletterRadioButton[i].checked) {
-//         resultFormProfessional.innerHTML += 'Newsletter : ' + newsletterRadioButton[i].value + '<br>';
-//     }
-// }
