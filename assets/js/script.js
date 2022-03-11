@@ -13,13 +13,13 @@ let name = document.getElementById("name");
 let firstName = document.getElementById("firstName");
 let email = document.getElementById("email");
 let CP = document.getElementById("CP");
+let schoolFormation = document.getElementById('schoolFormation');
 
 let professionalRetrainingText = document.getElementById('professionalRetrainingText');
 let retrainingJobArea = document.getElementById('retrainingJobArea');
 let formationText = document.getElementById('formationText');
 let websitesRetrainingArea = document.getElementById('websitesRetrainingArea');
 let websitesFormationArea = document.getElementById('websitesFormationArea');
-let websitesOrPlacesArea = document.getElementById('websitesOrPlacesArea');
 let socialMediaText = document.getElementById('socialMediaText');
 let interestingAccountsArea = document.getElementById('interestingAccountsArea');
 let additionalQuestionsArea = document.getElementById('additionalQuestionsArea');
@@ -58,13 +58,13 @@ let validRetrainingJobArea = document.getElementById("validRetrainingJobArea");
 let validFormationText = document.getElementById("validFormationText");
 let validWebitesRetrainingArea = document.getElementById("validWebitesRetrainingArea");
 let validWebsitesFormationArea = document.getElementById("validWebsitesFormationArea");
-let validWebsitesOrPlacesArea = document.getElementById("validWebsitesOrPlacesArea");
 let validSocialMedia = document.getElementById("validSocialMedia");
 let validSocialMediaText = document.getElementById("validSocialMediaText");
 let validInterestingAccountsArea = document.getElementById("validInterestingAccountsArea");
 let validAdditionalQuestionsArea = document.getElementById("validAdditionalQuestionsArea");
 let validFieldOfStudy = document.getElementById("validFieldOfStudy");
 let validListdOfRetraining = document.getElementById("validListdOfRetraining");
+let validschoolFormation = document.getElementById('validschoolFormation');
 
 //Message d'erreur si l'envoi du formulaire n'est pas valide 
 
@@ -256,16 +256,16 @@ document.addEventListener('DOMContentLoaded', () => {
         textFields(websitesFormationArea,validWebsitesFormationArea);
     });
 
-    form.websitesOrPlacesArea.addEventListener('focusout', function () {
-        textFields(websitesOrPlacesArea,validWebsitesOrPlacesArea);
-    });
-
     form.socialMediaText.addEventListener('focusout', function () {
         textFields(socialMediaText,validSocialMediaText);
     });
 
     form.interestingAccountsArea.addEventListener('focusout', function () {
         textFields(interestingAccountsArea,validInterestingAccountsArea);
+    });
+
+    form.schoolFormation.addEventListener('focusout', function () {
+        textFields(schoolFormation,validschoolFormation);
     });
 
     form.name.addEventListener('focus', function () {
@@ -318,10 +318,6 @@ document.addEventListener('DOMContentLoaded', () => {
         invalidForm.textContent = "";
     });
 
-    form.websitesOrPlacesArea.addEventListener('focus', function () {
-        invalidForm.textContent = "";
-    });
-
     form.socialMediaText.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
@@ -331,6 +327,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     form.additionalQuestionsArea.addEventListener('focus', function () {
+        invalidForm.textContent = "";
+    });
+
+    form.schoolFormation.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
 
@@ -548,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         //Champs non obligatoires
         
-        let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText) && textFields(formationText,validFormationText) && textFields(websitesOrPlacesArea,validWebsitesOrPlacesArea) && textFields(socialMediaText,validSocialMediaText) && textFields(interestingAccountsArea,validInterestingAccountsArea);
+        let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText) && textFields(formationText,validFormationText) && textFields(socialMediaText,validSocialMediaText) && textFields(interestingAccountsArea,validInterestingAccountsArea) && textFields(schoolFormation,validschoolFormation);
         
         //boutons et checkbox
         
@@ -598,8 +598,8 @@ function updateData() {
             "Poste avant reconversion": jobBeforeRetraining.value,
             "Nouveau métier visé": retrainingJobArea.value,
             "Sites internet consultés pour reconversion": websitesRetrainingArea.value,
-            "Autres sites ou lieux": websitesOrPlacesArea.value,
             "Comptes intéressants": interestingAccountsArea.value,
+            "Ecole de formation": schoolFormation.value,
             "Sites internet consultés pour formation": websitesFormationArea.value,
             "Code postal": CP.value,
             "Prénom": firstName.value,
