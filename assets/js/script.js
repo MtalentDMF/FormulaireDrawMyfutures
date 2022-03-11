@@ -558,7 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && retrainingJobAreaSending && websitesRetrainingAreaSending && websitesFormationAreaSending && fieldOfStudySending && listOfRetrainingSending && areaNotRequired && boolTrue;
         
-        if(formulaireValid || debugmode){
+        if(formulaireValid){
             updateData();
             invalidForm.textContent = "";
             document.getElementById('resultOk').classList.remove('none');
