@@ -11,8 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
-    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
-    
     <title>Formulaire</title>
 </head>
 
@@ -53,7 +51,7 @@
 
                 <p class="wordingField">2 - Quel est votre domaine d'étude initial ?<span class="starObligatoryField">*</span></p>
                 <p id="validFieldOfStudy" class="errorMessage"></p>
-                <SELECT id="list" name="fieldOfStudy">
+                <select id="list" name="fieldOfStudy">
                    <option value="empty">-----choisissez un domaine dans la liste-----</option>
                    <option value="recLNeqaD59YosMRU">Agroalimentaire</option>
                    <option value="recplDxErR8vHj1bg">Banque / Assurance</option>
@@ -78,11 +76,11 @@
                    <option value="recXsphzS0EZZUnlp">Administratif</option>
                    <option value="reccYw0fQtVigP4fh">Service clientèle</option>
                    <option value="recy7cDOqaHNHiu4y">Autre</option>
-                </SELECT>
+                </select>
 
                 <p class="wordingField">3 - Quel est le domaine de votre dernier métier (ou du métier avant votre reconversion) ?<span class="starObligatoryField">*</span></p>
                 <p id="validListdOfRetraining" class="errorMessage"></p>
-                <SELECT id="listOfRetraining" name="listOfRetraining">
+                <select id="listOfRetraining" name="listOfRetraining">
                    <option value="empty">-----choisissez un domaine dans la liste-----</option>
                    <option value="recGBpmIg7VhiVeOY">Agroalimentaire</option>
                    <option value="reck9Otc4TUOBMt8k">Banque / Assurance</option>
@@ -107,7 +105,7 @@
                    <option value="recTqwlHfxuBpAEyp">Administratif</option>
                    <option value="rece0nzqLKPjWFhet">Service clientèle</option>
                    <option value="rectVnzm3ct6BLW1C">Autre</option>
-                </SELECT>
+                </select>
 
                 <label for="jobBeforeRetraining" class="atLine wordingField">4 - Quel est l'intitulé exact de votre dernier métier (ou du métier avant votre reconversion) ? <span class="starObligatoryField">*</span></label>
                 <textarea name="jobBefore" id="jobBeforeRetraining" cols="38" rows="1"
@@ -255,7 +253,8 @@
                 <textarea name="additionalQuestionsArea" id="additionalQuestionsArea" cols="38" rows="4" class="blockSizeOfForm"></textarea>
                 <p id="validAdditionalQuestionsArea" class="errorMessage"></p>
 
-                <label id="CGU"><input type="checkbox" name="CGU" value="recJ0YqJzCBdZpWTC">En soumettant ce formulaire, j'accepte que les informations saisies soient traitées pour effectuer une enquête sur la reconversion. <a href="https://www.drawmyfutures.com/legal#cgu" target="_blank">Cliquer ici pour consulter les CGU </a><span class="starObligatoryField">*</span></label>
+                <div id="cguMargin">
+                <label id="CGU"><input type="checkbox" name="CGU" value="recJ0YqJzCBdZpWTC">En soumettant ce formulaire, j'accepte que les informations saisies soient traitées pour effectuer une enquête sur la reconversion. <a href="https://www.drawmyfutures.com/legal#cgu" target="_blank">Cliquer ici pour consulter les CGU </a><span class="starObligatoryField">*</span></label></div>
                 <p id="validCGU" class="errorMessage"></p>
                     
                 <p id="requiredField"><span class="starObligatoryField">*</span> Champs obligatoires</p>
@@ -270,6 +269,7 @@
             <h2>Merci, vos réponses ont bien été envoyées !</h2>
         </div>
     </div>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/airtable.browser.js"></script>
 </body>

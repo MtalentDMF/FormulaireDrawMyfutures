@@ -116,6 +116,10 @@ div#titre{
 
 /* Element du formulaire*/
 
+.professionalRetrainingText{
+    margin-top: 20px;
+}
+
 .starObligatoryField{
     color: #098d6c;
 }
@@ -186,9 +190,9 @@ input::placeholder{
     margin-top: 30px;
 }
 
-/* #CGU{
-    margin-top: 500px;
-} */
+#cguMargin{
+    margin-top: 30px;
+}
 
 /* Resultat du formulaire */
 
@@ -276,13 +280,28 @@ input::placeholder{
         div#titre{
             height: 140px;
         }
+        #list{
+            width: 100%;
+        }
+        #listOfRetraining{
+            width: 100%;
+        }
     }
-
 
     @media screen and (max-width: 350px){
         #logo1{
             display: none;
         }
+        #logo2{
+            margin-top: 6px;
+        }
+        #image{
+            height: 40px;
+        }    
+        div#titre{
+            margin-top: -10px;
+        }
+
     }
 
 
