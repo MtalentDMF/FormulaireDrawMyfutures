@@ -65,6 +65,7 @@ let validFieldOfStudy = document.getElementById("validFieldOfStudy");
 let validListdOfRetraining = document.getElementById("validListdOfRetraining");
 let validschoolFormation = document.getElementById('validschoolFormation');
 let validCGU = document.getElementById('validCGU');
+let validStudy = document.getElementById("validStudy");
 
 //Message d'erreur si l'envoi du formulaire n'est pas valide 
 
@@ -345,6 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ---------------------------------------------------------
      */
 
+
     for (i = 0; i < ageRangeRadioButton.length; i++) {
         ageRangeRadioButton[i].addEventListener('change', function () {
             validButton(ageRangeRadioButton, emptyCaseAge);
@@ -387,6 +389,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    for (i = 0; i < study.length; i++) {
+        study[i].addEventListener('change', function () {
+            validButton(study, validStudy);
+        });
+    }
+
     //JE FAIS DISPARAITRE LES DIV DE RECUPERATION DES DONNEES AU BAS DE MON FORMULAIRE
 
     document.getElementById('resultOk').classList.remove('block');
@@ -406,6 +414,8 @@ document.addEventListener('DOMContentLoaded', () => {
         emptyField(firstName,validFirstName);
 
         emptyField(CP,validCP);     
+
+        emptyField(jobBeforeRetraining,validJobBeforeRetraining);
 
         emptyField(retrainingJobArea,validRetrainingJobArea);
 
@@ -466,24 +476,11 @@ document.addEventListener('DOMContentLoaded', () => {
             emptyCaseNewsletter.textContent = 'Cette question est obligatoire';
         }
 
-        // VERIFICATION QUE LEMAIL EST BIEN RENSEIGNE QUAND ON A DEMANDE LA NEWSLETTER
-
-        let boolEmailRenseigne = true;
-
-        for (i = 0; i < newsletterRadioButton.length; i++) {
-            if (newsletterRadioButton[0].checked && email.value.length === 0) {
-                validEmail.textContent = "Pour recevoir la newsletter, veuillez renseigner votre email";
-                boolEmailRenseigne = false;
-            }
-            else{
-                boolEmailRenseigne;
-                }
-            }
-
+        
         //ProSituation 
-
+        
         let boolEmptyCaseProSituation = false;
-
+        
         for (i = 0; i < proSituationCheckbox.length; i++) {
             if (proSituationCheckbox[i].checked) {
                 boolEmptyCaseProSituation = true;
@@ -513,7 +510,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //SocialMedia   
 
         let boolEmptyCaseSocialMedia = false;
-
+        
         for (i = 0; i < socialMediaCheckbox.length; i++) {
             if (socialMediaCheckbox[i].checked) {
                 boolEmptyCaseSocialMedia = true;
@@ -539,36 +536,64 @@ document.addEventListener('DOMContentLoaded', () => {
             validCGU.innerHTML = 'Veuillez acceptez les conditions pour soumettre le formulaire';
 
         }
+
+        let boolEmptyCaseStudy = false;
+        
+
+        for (i = 0; i < study.length; i++) {
+            if (study[i].checked) {
+                boolEmptyCaseStudy = true;
+                validStudy.textContent = "";
+            }
+        }
+        if (boolEmptyCaseStudy == false) {
+            validStudy.textContent = 'Cette question est obligatoire';
+        }
+
+        // VERIFICATION QUE LEMAIL EST BIEN RENSEIGNE QUAND ON A DEMANDE LA NEWSLETTER
+ 
+        let boolEmailRenseigne = true;
+ 
+        for (i = 0; i < newsletterRadioButton.length; i++) {
+            if (newsletterRadioButton[0].checked && email.value.length === 0) {
+                validEmail.textContent = "Pour recevoir la newsletter, veuillez renseigner votre email";
+                boolEmailRenseigne = false;
+            }
+            else{
+                boolEmailRenseigne;
+                }
+            }
         //-----------------------------------------------------------------------------------
         /*
         LA VARIABLE FORMULAIRE VALID PERMET DE VERIFIER SI TOUS LES CHAMPS SONT VALIDES AVANT D'ENVOYER LE FORMULAIRE
         */ 
-        //-----------------------------------------------------------------------------------
-
-        //Champs obligatoires
+       //-----------------------------------------------------------------------------------
+       
+       //Champs obligatoires
 
         let nameValidSending = nameValidation();
         let firstNameValidSending = emptyField(firstName,validFirstName) && firstNameValidation();
         let emailValidSending = emailValidation();
         let cpValidSending =  emptyField(CP,validCP) && codePostalValidation();
         let retrainingJobAreaSending = textFields(retrainingJobArea,validRetrainingJobArea) && emptyField(retrainingJobArea,validRetrainingJobArea);
+        let jobBeforeRetrainingSending = emptyField(jobBeforeRetraining,validJobBeforeRetraining) && textFields(jobBeforeRetraining,validJobBeforeRetraining)
         let websitesRetrainingAreaSending = textFields(websitesRetrainingArea,validWebitesRetrainingArea) && emptyField(websitesRetrainingArea,validWebitesRetrainingArea);
         let fieldOfStudySending = click(list,validFieldOfStudy);
         let listOfRetrainingSending = click(listOfRetraining,validListdOfRetraining);
     
         //Champs non obligatoires
         
-        let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(jobBeforeRetraining,validJobBeforeRetraining) && textFields(professionalRetrainingText,validProfessionalRetrainingText) && textFields(formationText,validFormationText) && textFields(socialMediaText,validSocialMediaText) && textFields(interestingAccountsArea,validInterestingAccountsArea) && textFields(schoolFormation,validschoolFormation);
+        let areaNotRequired = textFields(situationProText,validSituationProText) && textFields(professionalRetrainingText,validProfessionalRetrainingText) && textFields(formationText,validFormationText) && textFields(socialMediaText,validSocialMediaText) && textFields(interestingAccountsArea,validInterestingAccountsArea) && textFields(schoolFormation,validschoolFormation);
         
         //boutons et checkbox
         
-        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining && boolEmptyCaseSocialMedia && boolEmptyCaseNewsletter && boolEmailRenseigne && boolEmptyCaseCGU;
+        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining && boolEmptyCaseSocialMedia && boolEmptyCaseNewsletter && boolEmailRenseigne && boolEmptyCaseCGU && boolEmptyCaseStudy;
 
         //Variable qui contient toutes les variables de vérification des champs du formulaire
 
-        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && retrainingJobAreaSending && websitesRetrainingAreaSending && fieldOfStudySending && listOfRetrainingSending && areaNotRequired && boolTrue;
+        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && retrainingJobAreaSending && jobBeforeRetrainingSending && websitesRetrainingAreaSending && fieldOfStudySending && listOfRetrainingSending && areaNotRequired && boolTrue;
         
-        if(formulaireValid || debugmode){
+        if(formulaireValid){
             updateData();
             invalidForm.textContent = "";
             document.getElementById('resultOk').classList.remove('none');
@@ -605,22 +630,23 @@ function updateData() {
 
     let fieldsJsonObject = {
         "fields": {
-            "Poste avant reconversion": jobBeforeRetraining.value,
-            "Nouveau métier visé": retrainingJobArea.value,
-            "Sites internet consultés pour reconversion": websitesRetrainingArea.value,
-            "Comptes intéressants": interestingAccountsArea.value,
-            "Ecole de formation": schoolFormation.value,
-            "Code postal": CP.value,
-            "Prénom": firstName.value,
-            "Nom": name.value,
-            "Email": email.value,
-            "Rapport à la reconversion Autre" : professionalRetrainingText.value,
-            "Réseaux sociaux Autre":socialMediaText.value,
-            "Découverte Formation Autre":formationText.value,
-            "Situation professionnelle Autre":situationProText.value,
-            "Questions supplémentaires": additionalQuestionsArea.value,
-            "Domaine étude": [list.options[list.selectedIndex].value],
-            "Domaine métier": [listOfRetraining.options[listOfRetraining.selectedIndex].value]
+            "1 - Rapport à la reconversion Autre" : professionalRetrainingText.value,
+            "2 - Domaine étude": [list.options[list.selectedIndex].value],
+            "3 - Domaine métier": [listOfRetraining.options[listOfRetraining.selectedIndex].value],
+            "4 - Poste avant reconversion": jobBeforeRetraining.value,
+            "5 - Nouveau métier visé": retrainingJobArea.value,
+            "6 - Sites internet consultés pour reconversion": websitesRetrainingArea.value,
+            "7 - Réseaux sociaux Autre":socialMediaText.value,
+            "8 - Comptes intéressants": interestingAccountsArea.value,
+            "9 - Ecole de formation": schoolFormation.value,
+            "10 - Découverte Formation Autre":formationText.value,
+            "12 - Situation professionnelle Autre":situationProText.value,
+            "15 - Code postal": CP.value,
+            "16 - Prénom": firstName.value,
+            "17 - Nom": name.value,
+            "18 - Email": email.value,
+            "20 - Questions supplémentaires": additionalQuestionsArea.value,
+            
         }
     };
     
@@ -628,55 +654,55 @@ function updateData() {
 
     for (i = 0; i < study.length; i++) {
         if (study[i].checked) {
-            fieldsJsonObject["fields"]["Niveau étude"] = [study[i].value];
+            fieldsJsonObject["fields"]["11 - Niveau étude"] = [study[i].value];
         }
     }
 
     for (i = 0; i < genderRadioButton.length; i++) {
         if (genderRadioButton[i].checked) {
-        fieldsJsonObject["fields"]["Genre"] = [genderRadioButton[i].value];
+        fieldsJsonObject["fields"]["13 - Genre"] = [genderRadioButton[i].value];
         }
     }
 
     for (i = 0; i < ageRangeRadioButton.length; i++) {
         if (ageRangeRadioButton[i].checked) {
-        fieldsJsonObject["fields"]["Age"] = [ageRangeRadioButton[i].value];
+        fieldsJsonObject["fields"]["14 - Age"] = [ageRangeRadioButton[i].value];
         }
     }
 
     for (i = 0; i < newsletterRadioButton.length; i++) {
         if (newsletterRadioButton[i].checked) {
-        fieldsJsonObject["fields"]["Newsletter"] = [newsletterRadioButton[i].value];
+        fieldsJsonObject["fields"]["19 - Newsletter"] = [newsletterRadioButton[i].value];
         }
     }
 
     // RECUPERATION DES CHECKBOX
     
-    fieldsJsonObject["fields"]["Rapport à la reconversion"] = [];
+    fieldsJsonObject["fields"]["1 - Rapport à la reconversion"] = [];
     for (i = 0; i < professionalRetrainingCheckbox.length; i++) {
         if (professionalRetrainingCheckbox[i].checked){
-            fieldsJsonObject["fields"]["Rapport à la reconversion"].push(professionalRetrainingCheckbox[i].value);
+            fieldsJsonObject["fields"]["1 - Rapport à la reconversion"].push(professionalRetrainingCheckbox[i].value);
         }
     }   
 
-    fieldsJsonObject["fields"]["Réseaux sociaux"] = [];
+    fieldsJsonObject["fields"]["7 - Réseaux sociaux"] = [];
     for (i = 0; i < socialMediaCheckbox.length; i++) {
         if (socialMediaCheckbox[i].checked){
-            fieldsJsonObject["fields"]["Réseaux sociaux"].push(socialMediaCheckbox[i].value);
+            fieldsJsonObject["fields"]["7 - Réseaux sociaux"].push(socialMediaCheckbox[i].value);
         }
     }   
 
-    fieldsJsonObject["fields"]["Formation"] = [];
+    fieldsJsonObject["fields"]["10 - Découverte Formation"] = [];
     for (i = 0; i < formationCheckbox.length; i++) {
         if (formationCheckbox[i].checked){
-            fieldsJsonObject["fields"]["Découverte Formation"].push(formationCheckbox[i].value);
+            fieldsJsonObject["fields"]["10 - Découverte Formation"].push(formationCheckbox[i].value);
         }
     }   
 
-    fieldsJsonObject["fields"]["Situation professionnelle"] = [];
+    fieldsJsonObject["fields"]["12 - Situation professionnelle"] = [];
     for (i = 0; i < proSituationCheckbox.length; i++) {
         if (proSituationCheckbox[i].checked){
-            fieldsJsonObject["fields"]["Situation professionnelle"].push(proSituationCheckbox[i].value);
+            fieldsJsonObject["fields"]["12 - Situation professionnelle"].push(proSituationCheckbox[i].value);
         }
     }   
 

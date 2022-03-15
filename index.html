@@ -74,6 +74,9 @@
                    <option value="recJyr1UdZaCmx2V1">Bien-être / Coaching / Bilan de compétences</option>
                    <option value="recDJHeENKDhbAhyf">Artisanat</option>
                    <option value="recR6DAk6aE6nIbqi">Numérique</option>
+                   <option value="recIBpuTlfB9hH8Pz">Public</option>
+                   <option value="recXsphzS0EZZUnlp">Administratif</option>
+                   <option value="reccYw0fQtVigP4fh">Service clientèle</option>
                    <option value="recy7cDOqaHNHiu4y">Autre</option>
                 </SELECT>
 
@@ -100,10 +103,13 @@
                    <option value="recEmCXsQ1WVg0uS5">Bien-être / Coaching / Bilan de compétences</option>
                    <option value="recyxSacqMpA53Jvj">Artisanat</option>
                    <option value="recMUOwSJcqphbDnm">Numérique</option>
+                   <option value="rec7WafjrRvbZW5Ae">Public</option>
+                   <option value="recTqwlHfxuBpAEyp">Administratif</option>
+                   <option value="rece0nzqLKPjWFhet">Service clientèle</option>
                    <option value="rectVnzm3ct6BLW1C">Autre</option>
                 </SELECT>
 
-                <label for="jobBeforeRetraining" class="atLine wordingField">4 - Quel est l'intitulé exact de votre dernier métier (ou du métier avant votre reconversion) ?</label>
+                <label for="jobBeforeRetraining" class="atLine wordingField">4 - Quel est l'intitulé exact de votre dernier métier (ou du métier avant votre reconversion) ? <span class="starObligatoryField">*</span></label>
                 <textarea name="jobBefore" id="jobBeforeRetraining" cols="38" rows="1"
                     class="blockSizeOfForm"></textarea>
                 <p id="validJobBeforeRetraining" class="errorMessage"></p>
@@ -161,14 +167,14 @@
                     l'emploi</label>
                 <label class="atLine"><input type="checkbox" name="formation" value="rec0CVnqeklmu3qax">Une personne de votre
                     entourage vous en a parlé</label>
-
+                <label class="atLine"><input type="checkbox" name="formation" value="recj9x97iOyi5aI0Z">Une personne travaillant dans le secteur du numérique me l'a conseillé</label>
                 <label class="atLine"><input type="checkbox" name="formation" value="rec72uoncjSrsN9g8">Autre. (Veuillez préciser ci-dessous)</label>
 
                 <!--champs texte pour autre-->
                 <textarea name="formationText" id="formationText" cols="38" rows="1" class="blockSizeOfForm"></textarea>
                 <p id="validFormationText" class="errorMessage"></p>
                 
-                <p class="wordingField">12 - Quel est votre niveau d'étude ?</p>
+                <p class="wordingField">11 - Quel est votre niveau d'étude ? <span class="starObligatoryField">*</span></p>
                 <label class="atLine"><input type="radio" name="study" value="rec2DjB7ZIdZtPTK0">sans le Bac</label>
                 <label class="atLine"><input type="radio" name="study" value="rec9FfsKhHGUhOMGh">Bac</label>
                 <label class="atLine"><input type="radio" name="study" value="recOLf1zA2WiMt29T">Bac +1</label>
@@ -177,8 +183,9 @@
                 <label class="atLine"><input type="radio" name="study" value="rec0sJ8SJSSauLVp0">Bac +4</label>
                 <label class="atLine"><input type="radio" name="study" value="recsyrWzE1Y16g6ri">Bac +5</label>
                 <label class="atLine"><input type="radio" name="study" value="recwT7T1DazbIFIKX">> Bac + 5</label>
-                
-                <p class="wordingField">13 - Quelle est votre situation professionnelle actuelle ? <span
+                <p id="validStudy" class="errorMessage"></p>
+
+                <p class="wordingField">12 - Quelle est votre situation professionnelle actuelle ? <span
                         class="starObligatoryField">*</span></p>
                 <p id="validSituationPro" class="errorMessage"></p>
                 <label class="atLine"><input type="checkbox" name="ProSituation" value="recnzjfP9JtwUiaW4">En contrat long
@@ -199,13 +206,13 @@
                 <textarea name="situationProTextArea" id="situationProText" cols="38" rows="1" class="blockSizeOfForm"></textarea>
                 <p id="validSituationProText" class="errorMessage"></p>
                 
-                <p class="wordingField">14 - Êtes-vous ?<span class="starObligatoryField">*</span></p>
+                <p class="wordingField">13 - Êtes-vous ?<span class="starObligatoryField">*</span></p>
                 <label for="woman"><input type="radio" name="gender" value="receb1Q9eNLRMQxil" id="woman">Une femme<label>
                 <label for="man" class="atLine"><input type="radio" name="gender" value="rec0NOagx7Zhav3JO" id="man">Un
                     homme</label>
                 <p id="emptyCaseGender" class="errorMessage"></p>
         
-                <p class="wordingField">15 - Quelle est votre tranche d'âge ?<span class="starObligatoryField">*</span></p>
+                <p class="wordingField">14 - Quelle est votre tranche d'âge ?<span class="starObligatoryField">*</span></p>
                 <label for="under18" class="atLine"><input type="radio" name="ageRange" value="recSWN28gctRzruWC" id="under18">Moins
                     de 18 ans</label>
                 <label for="18-25" class="atLine"><input type="radio" name="ageRange" value="recv341T2M32hg5Ts" id="18-25">18 - 25
@@ -220,31 +227,31 @@
                     ans</label>
                 <p id="emptyCaseAge" class="errorMessage"></p>
         
-                <label for="CP" class="atLine wordingField">16 - Code postal de résidence <span
+                <label for="CP" class="atLine wordingField">15 - Code postal de résidence <span
                         class="starObligatoryField">*</span></label>
                 <input type="text" name="CP" placeholder="75009" id="CP" class="blockSizeOfForm testFormValid">
                 <p id="validCP" class="errorMessage"></p>
         
-                <label for="firstName" class="atLine wordingField">17 - Prénom<span class="starObligatoryField">*</span></label>
+                <label for="firstName" class="atLine wordingField">16 - Prénom<span class="starObligatoryField">*</span></label>
                 <input type="text" name="firstName" placeholder="John" id="firstName" class="blockSizeOfForm testFormValid">
                 <p id="validFirstName" class="errorMessage"></p>
         
         
-                <label for="name" id="labelName" class="atLine wordingField">18 - Nom</label>
+                <label for="name" id="labelName" class="atLine wordingField">17 - Nom</label>
                 <input type="text" name="name" id="name" placeholder="Doe" class="blockSizeOfForm testFormValid">
                 <p id="validName" class="errorMessage"></p>
         
-                <label for="email" class="atLine wordingField">19 - Email</label>
+                <label for="email" class="atLine wordingField">18 - Email</label>
                 <input type="email" name="mail" placeholder="John.Doe@gmail.com" id="email"
                     class="blockSizeOfForm testFormValid">
                 <p id="validEmail" class="errorMessage"></p>
 
-                <p class="wordingField">20 - Souhaitez-vous recevoir des informations sur la reconversion et le secteur du numérique ? <span class="starObligatoryField">*</span></p>
+                <p class="wordingField">19 - Souhaitez-vous recevoir des informations sur la reconversion et le secteur du numérique ? <span class="starObligatoryField">*</span></p>
                 <label for="yes"><input type="radio" name="newsletter" value="recbXaaKHdYpFhMhT" id="yes">oui, je souhaite recevoir la newsletter Draw My Futures dédiée à la reconversion vers le numérique<label>
                 <label for="no" class="atLine"><input type="radio" name="newsletter" value="recKpVItPBCcrgfgY" id="no">non merci, je ne souhaite surtout pas recevoir d'informations sur le numérique</label>
                 <p id="emptyCaseNewsletter" class="errorMessage"></p>
 
-                <label for="additionalQuestionsArea" class="atLine wordingField">21 - Avez-vous des choses à ajouter ? Des questions ? Des remarques ? Des encouragements ? :-)</label>
+                <label for="additionalQuestionsArea" class="atLine wordingField">20 - Avez-vous des choses à ajouter ? Des questions ? Des remarques ? Des encouragements ? :-)</label>
                 <textarea name="additionalQuestionsArea" id="additionalQuestionsArea" cols="38" rows="4" class="blockSizeOfForm"></textarea>
                 <p id="validAdditionalQuestionsArea" class="errorMessage"></p>
 
