@@ -2,11 +2,10 @@
 AFFICHAGE DES DONNES SOUMISES PAR LE FORMULAIRE AU BAS DE LA PAGE
 */
 
-//Variables qui prend les id des champs input et des champs text Area
+//Variables qui prend les id et les names
 
 let buttonSubmit = document.getElementById('buttonSubmit');
 let study = document.getElementsByName('study');
-let ProSituation = document.getElementsByName('ProSituation');
 let situationProText = document.getElementById('situationProText');
 let jobBeforeRetraining = document.getElementById('jobBeforeRetraining');
 let name = document.getElementById("name");
@@ -35,6 +34,8 @@ let professionalRetrainingCheckbox = document.querySelectorAll('input[name="prof
 let formationCheckbox = document.querySelectorAll('input[name="formation"]');
 let socialMediaCheckbox = document.querySelectorAll('input[name="socialMedia"]');
 let newsletterRadioButton = document.querySelectorAll('input[name="newsletter"]');
+let CGUCheckbox = document.querySelectorAll('input[name="CGU"]');
+
 
 //Recuperation des listes
 
@@ -65,6 +66,7 @@ let validAdditionalQuestionsArea = document.getElementById("validAdditionalQuest
 let validFieldOfStudy = document.getElementById("validFieldOfStudy");
 let validListdOfRetraining = document.getElementById("validListdOfRetraining");
 let validschoolFormation = document.getElementById('validschoolFormation');
+let validCGU = document.getElementById('validCGU');
 
 //Message d'erreur si l'envoi du formulaire n'est pas valide 
 
@@ -389,6 +391,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    for (i = 0; i < CGUCheckbox.length; i++) {
+        CGUCheckbox[i].addEventListener('change', function () {
+            validButton(CGUCheckbox, validCGU);
+        });
+    }
+
     //JE FAIS DISPARAITRE LES DIV DE RECUPERATION DES DONNEES AU BAS DE MON FORMULAIRE
 
     document.getElementById('resultOk').classList.remove('block');
@@ -528,6 +536,21 @@ document.addEventListener('DOMContentLoaded', () => {
             validSocialMedia.innerHTML = 'Cette question est obligatoire';
 
         }
+
+        //CGU
+
+        let boolEmptyCaseCGU = false;
+
+        for (i = 0; i < CGUCheckbox.length; i++) {
+            if (CGUCheckbox[i].checked) {
+                boolEmptyCaseCGU = true;
+                validCGU.textContent = "";
+            }
+        }
+        if (boolEmptyCaseCGU == false) {
+            validCGU.innerHTML = 'Veuillez acceptez les conditions pour soumettre le formulaire';
+
+        }
         //-----------------------------------------------------------------------------------
         /*
         LA VARIABLE FORMULAIRE VALID PERMET DE VERIFIER SI TOUS LES CHAMPS SONT VALIDES AVANT D'ENVOYER LE FORMULAIRE
@@ -552,7 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         //boutons et checkbox
         
-        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining && boolEmptyCaseSocialMedia && boolEmptyCaseNewsletter && boolEmailRenseigne;
+        let boolTrue = boolEmptyCase && boolEmptyCaseGender && boolEmptyCaseProSituation && boolEmptyCaseProfessionalRetraining && boolEmptyCaseSocialMedia && boolEmptyCaseNewsletter && boolEmailRenseigne && boolEmptyCaseCGU;
 
         //Variable qui contient toutes les variables de vérification des champs du formulaire
 
@@ -665,13 +688,18 @@ function updateData() {
     }   
 
     fieldsJsonObject["fields"]["Situation professionnelle"] = [];
-    for (i = 0; i < ProSituation.length; i++) {
-        if (ProSituation[i].checked){
-            fieldsJsonObject["fields"]["Situation professionnelle"].push(ProSituation[i].value);
+    for (i = 0; i < proSituationCheckbox.length; i++) {
+        if (proSituationCheckbox[i].checked){
+            fieldsJsonObject["fields"]["Situation professionnelle"].push(proSituationCheckbox[i].value);
         }
     }   
 
-    // RECUPERATION DES CHAMPS AUTRE
+    fieldsJsonObject["fields"]["Consentement"] = [];
+    for (i = 0; i < CGUCheckbox.length; i++) {
+        if (CGUCheckbox[i].checked){
+            fieldsJsonObject["fields"]["Consentement"].push(CGUCheckbox[i].value);
+        }
+    }   
 
 
 

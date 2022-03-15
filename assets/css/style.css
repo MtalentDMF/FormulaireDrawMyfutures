@@ -1,8 +1,12 @@
 *{
     box-sizing: border-box;
     padding: 0;
-    margin:0;
     font-family: 'Quantico', 'Arial Narrow', Arial, sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: white;
 }
 
 /* PAGE*/
@@ -16,6 +20,7 @@ body{
     -moz-background-size: cover;
     -o-background-size: cover; */
     color: white;
+    margin:0;
 }
 
 #page{
@@ -54,7 +59,7 @@ div#titre{
 
 #box{
     margin-top: 30px;   
-    width: 50%;
+    width: 1018px;
     margin-left: auto; 
     margin-right: auto; 
     background-color: rgba(11,39,53,0.95);
@@ -71,10 +76,10 @@ div#titre{
     
 }
 
-#box .formBloc label.profil{
+/* #box .formBloc label{
     display: block;
     margin-top: 3px;
-}
+} */
 
 .formBloc .button{
     text-align: center;
@@ -102,6 +107,7 @@ div#titre{
 
 .errorMessage{
     color: red;
+    margin: 0;
 }
 
 #emailVerification{
@@ -180,6 +186,10 @@ input::placeholder{
     margin-top: 30px;
 }
 
+/* #CGU{
+    margin-top: 500px;
+} */
+
 /* Resultat du formulaire */
 
 #resultOk{
@@ -210,6 +220,29 @@ input::placeholder{
 }
 
 /* Mediaqueries pour mobile */
+/* @media screen and (max-width: 1080px) {
+    #box{
+        width: 100%;
+        margin-top: 10px; 
+    }
+} */
+@media screen and (max-width: 1135px) {
+    #box{
+        width: 100%;
+        margin-top: 10px; 
+    }
+    div#titre{
+        height: 100%;
+        /* margin-top: 0px; */
+    }
+
+    #page{
+        margin: 0 20px;
+    }
+    #logo2{
+        max-width: 100%;
+    }
+    }
 
 @media screen and (max-width: 1024px) {
 
