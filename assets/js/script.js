@@ -18,7 +18,6 @@ let professionalRetrainingText = document.getElementById('professionalRetraining
 let retrainingJobArea = document.getElementById('retrainingJobArea');
 let formationText = document.getElementById('formationText');
 let websitesRetrainingArea = document.getElementById('websitesRetrainingArea');
-let websitesFormationArea = document.getElementById('websitesFormationArea');
 let socialMediaText = document.getElementById('socialMediaText');
 let interestingAccountsArea = document.getElementById('interestingAccountsArea');
 let additionalQuestionsArea = document.getElementById('additionalQuestionsArea');
@@ -58,7 +57,6 @@ let validProfessionalRetrainingText = document.getElementById("validProfessional
 let validRetrainingJobArea = document.getElementById("validRetrainingJobArea");
 let validFormationText = document.getElementById("validFormationText");
 let validWebitesRetrainingArea = document.getElementById("validWebitesRetrainingArea");
-let validWebsitesFormationArea = document.getElementById("validWebsitesFormationArea");
 let validSocialMedia = document.getElementById("validSocialMedia");
 let validSocialMediaText = document.getElementById("validSocialMediaText");
 let validInterestingAccountsArea = document.getElementById("validInterestingAccountsArea");
@@ -254,10 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
         textFields(additionalQuestionsArea,validAdditionalQuestionsArea);
     });
 
-    form.websitesFormationArea.addEventListener('focusout', function () {
-        textFields(websitesFormationArea,validWebsitesFormationArea);
-    });
-
     form.socialMediaText.addEventListener('focusout', function () {
         textFields(socialMediaText,validSocialMediaText);
     });
@@ -313,10 +307,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     form.websitesRetrainingArea.addEventListener('focus', function () {
-        invalidForm.textContent = "";
-    });
-
-    form.websitesFormationArea.addEventListener('focus', function () {
         invalidForm.textContent = "";
     });
 
@@ -420,8 +410,6 @@ document.addEventListener('DOMContentLoaded', () => {
         emptyField(retrainingJobArea,validRetrainingJobArea);
 
         emptyField(websitesRetrainingArea,validWebitesRetrainingArea);
-
-        emptyField(websitesFormationArea,validWebsitesFormationArea);
 
         click(list,validFieldOfStudy);
 
@@ -565,7 +553,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let cpValidSending =  emptyField(CP,validCP) && codePostalValidation();
         let retrainingJobAreaSending = textFields(retrainingJobArea,validRetrainingJobArea) && emptyField(retrainingJobArea,validRetrainingJobArea);
         let websitesRetrainingAreaSending = textFields(websitesRetrainingArea,validWebitesRetrainingArea) && emptyField(websitesRetrainingArea,validWebitesRetrainingArea);
-        let websitesFormationAreaSending = textFields(websitesFormationArea,validWebsitesFormationArea) && emptyField(websitesFormationArea,validWebsitesFormationArea);
         let fieldOfStudySending = click(list,validFieldOfStudy);
         let listOfRetrainingSending = click(listOfRetraining,validListdOfRetraining);
     
@@ -579,9 +566,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Variable qui contient toutes les variables de vérification des champs du formulaire
 
-        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && retrainingJobAreaSending && websitesRetrainingAreaSending && websitesFormationAreaSending && fieldOfStudySending && listOfRetrainingSending && areaNotRequired && boolTrue;
+        let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && retrainingJobAreaSending && websitesRetrainingAreaSending && fieldOfStudySending && listOfRetrainingSending && areaNotRequired && boolTrue;
         
-        if(formulaireValid){
+        if(formulaireValid || debugmode){
             updateData();
             invalidForm.textContent = "";
             document.getElementById('resultOk').classList.remove('none');
@@ -623,14 +610,13 @@ function updateData() {
             "Sites internet consultés pour reconversion": websitesRetrainingArea.value,
             "Comptes intéressants": interestingAccountsArea.value,
             "Ecole de formation": schoolFormation.value,
-            "Sites internet consultés pour formation": websitesFormationArea.value,
             "Code postal": CP.value,
             "Prénom": firstName.value,
             "Nom": name.value,
             "Email": email.value,
             "Rapport à la reconversion Autre" : professionalRetrainingText.value,
             "Réseaux sociaux Autre":socialMediaText.value,
-            "Formation Autre":formationText.value,
+            "Découverte Formation Autre":formationText.value,
             "Situation professionnelle Autre":situationProText.value,
             "Questions supplémentaires": additionalQuestionsArea.value,
             "Domaine étude": [list.options[list.selectedIndex].value],
@@ -683,7 +669,7 @@ function updateData() {
     fieldsJsonObject["fields"]["Formation"] = [];
     for (i = 0; i < formationCheckbox.length; i++) {
         if (formationCheckbox[i].checked){
-            fieldsJsonObject["fields"]["Formation"].push(formationCheckbox[i].value);
+            fieldsJsonObject["fields"]["Découverte Formation"].push(formationCheckbox[i].value);
         }
     }   
 
