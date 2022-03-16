@@ -15,10 +15,6 @@ body{
     font: 1rem sans-serif;
     background: url('../pexels-sharad-kachhi-3937174_normal.jpg') no-repeat center center;
     background-size: cover; 
-    /* background-position: center; */
-    /* -webkit-background-size: cover; 
-    -moz-background-size: cover;
-    -o-background-size: cover; */
     color: white;
     margin:0;
 }
