@@ -108,6 +108,8 @@
 @media screen and (max-width: 426px){
     .anim-bloc {
         width: 350px;
+        top: 30%;
+        left: 50%;
     }
 
     #logo{
@@ -118,4 +120,9 @@
     #icones a img{
         width: 30px;
     }
+
+    .textMessage{
+        padding: 0 2px;
+    }
+
 }
