@@ -1,14 +1,4 @@
-*, ::before, ::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-
-    height: 100vh;
-}
-.load-container {
+#load-container {
     position: absolute;
     z-index: 100;
     width: 100%;
@@ -28,7 +18,7 @@ body {
  .bloc-txt {
     background: white;
     position: absolute;
-    bottom: -25px;
+    bottom: -35px;
     left: 50px;
     height: 0;
     z-index: 175;
@@ -87,7 +77,7 @@ body {
     background: #EAF9F9;
 }
 
-h1{
+#thankYou{
     text-align: center;
     margin-top: 100px;
     color:  #35B88F;
@@ -99,14 +89,13 @@ h1{
 }
 
 #thankYouMessage{
-    padding: 10px 10px 10px;
+    padding: 0 2px 0 2px;
     text-align: center;
     color:  #35B88F;
 }
 
 .textMessage{
     text-align: center;
-    padding:  0 30px 10px;
     color:  #35B88F;
 }
 
@@ -114,14 +103,19 @@ h1{
     color:  #5EADF2;
 }
 
+
+
 @media screen and (max-width: 426px){
-    .images-container {
-        width: 100%;
-        height: 0px;
-        position: absolute;
-        /* Pour faire monter la height de bas en haut */
-        bottom: 0px;
-        z-index: 150;
-        overflow: hidden;
+    .anim-bloc {
+        width: 350px;
+    }
+
+    #logo{
+        width: 80%;
+        margin-left: 35px;
+    }
+
+    #icones a img{
+        width: 30px;
     }
 }

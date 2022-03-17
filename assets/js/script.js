@@ -397,8 +397,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //JE FAIS DISPARAITRE LES DIV DE RECUPERATION DES DONNEES AU BAS DE MON FORMULAIRE
 
-    document.getElementById('resultOk').classList.remove('block');
-    document.getElementById('resultOk').classList.add('none');
+    document.getElementById('page').classList.remove('none');
+    document.getElementById('page').classList.add('block');
+    document.getElementById('image').classList.remove('none');
+    document.getElementById('image').classList.add('block');
+
+    document.getElementById('load-container').classList.remove('block');
+    document.getElementById('load-container').classList.add('none');
 
     buttonSubmit.addEventListener('click', e => {
         e.preventDefault();
@@ -593,11 +598,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && retrainingJobAreaSending && jobBeforeRetrainingSending && websitesRetrainingAreaSending && fieldOfStudySending && listOfRetrainingSending && areaNotRequired && boolTrue;
         
-        if(formulaireValid){
+        if(formulaireValid || debugmode){
             updateData();
             invalidForm.textContent = "";
-            document.getElementById('resultOk').classList.remove('none');
-            document.getElementById('resultOk').classList.add('block');
+            document.getElementById('page').classList.remove('block');
+            document.getElementById('page').classList.add('none');
+            document.getElementById('load-container').classList.remove('none');
+            document.getElementById('load-container').classList.add('block');
+            document.getElementById('image').classList.remove('block');
+            document.getElementById('image').classList.add('none');
+            //LANCEMENT DE LA PAGE DE REMERCIEMENT 
+
+            const TLLOAD = gsap.timeline();
+
+            TLLOAD
+                .to('.images-container', { height: '320px', duration: 1.3, delay: 0.4, ease: 'power2.out' })
+                .to('.bloc-txt', { height: 'auto', duration: 2, ease: 'power2.out' }, '-=0.8')
+                .to('.bloc-txt #icones', { ease: 'power2.out' })
+                .to('.f3', { y: 0, ease: 'power2.out' })
         }
         else{
             invalidForm.textContent = "Le formulaire est invalide";

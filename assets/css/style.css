@@ -72,10 +72,6 @@ div#titre{
     
 }
 
-/* #box .formBloc label{
-    display: block;
-    margin-top: 3px;
-} */
 
 .formBloc .button{
     text-align: center;
@@ -191,20 +187,6 @@ input::placeholder{
 }
 
 /* Resultat du formulaire */
-
-#resultOk{
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 100px;
-    background: rgb(53, 184, 143);
-    border-radius: 10px;
-    border: 2px solid rgb(184, 230, 216);
-    text-align: center;
-    color: #fff;
-    height: auto;
-    width: 30%;
-}
 
 .block{
     display: block;

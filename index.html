@@ -5,21 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/png" href="assets/img/logo_dmf.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
+    rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/thankYouPage.css" />
     <title>Formulaire</title>
 </head>
-
 <body>
-    <div id="image">
+    <div id="image" class="none" class="block">
         <img src="assets/img/logo_dmf.png" alt="drawMyFuturesLogo" id="logo1">
         <img src="assets/img/logo_dmf3.png" alt="drawMyFutures" id="logo2">
     </div>
-    <div id="page">
+    <div id="page" class="none" class="block">
         <div id="titre">
             <h1></h1>
         </div>
@@ -265,13 +265,60 @@
         
                 </div>
         </form>
-        <div id="resultOk" class="block" class="none">
-            <h2>Merci, vos réponses ont bien été envoyées !</h2>
-        </div>
     </div>
+
+    <!-- PAGE DE REMERCIEMENT -->
+
+    <div id="load-container" class="block" class="none">
+        <div class="anim-bloc">
+          <div class="images-container">
+              <div class="img-flip flip-img1">
+                <h1 id="thankYou">Merci !!</h1>
+              </div>
+              <div class="flip f2"></div>
+              <div class="flip f3">
+                  <img id="logo" src="assets/img/logo_dmf3.png">
+                  <p id="thankYouMessage">
+                      Vous connaissez quelqu'un en cours de reconversion vers le numérique ? 
+                  </p>
+                  <p class="textMessage">    
+                      Quelqu'un qui s'est reconverti vers un métier du numérique ? 
+                  </p>
+                  <p class="textMessage">    
+                      Aidez-nous à faire avancer notre enquête en lui transmettant le lien vers ce questionnaire. 
+                  </p>
+                  <p class="textMessage">Visitez notre site : 
+                  <a href="https://www.drawmyfutures.com/" target="blank" >www.DrawMyFutures.com</a>
+                  </p>
+              </div>
+          </div>
+          <div class="bloc-txt">
+          <div id="icones">
+              <a href="https://www.instagram.com/drawmyfutures/" target="_blank"><img
+                      src="https://uploads-ssl.webflow.com/6093ff7274b9f866e83a167b/60f18ff1e98f2b9e47eba3b3_Instagram.png"
+                      width="40" alt=""></a>
+              <a href="https://www.facebook.com/DrawMyFuturesReconversion/" target="_blank"><img
+                      src="https://uploads-ssl.webflow.com/6093ff7274b9f866e83a167b/60f18ff1a75e5a96d6cc0327_facebook.png"
+                      width="40" alt=""></a>
+              <a href="https://www.linkedin.com/company/draw-my-futures-reconversion/" target="_blank">
+                  <img src="https://uploads-ssl.webflow.com/6093ff7274b9f866e83a167b/60f18ff119a6aefa64dd7ebf_linkedin.png"
+                      width="40" alt=""></a>
+              <a href="https://www.pinterest.fr/drawmyf/_saved/" target="_blank">
+                  <img src="https://uploads-ssl.webflow.com/6093ff7274b9f866e83a167b/60f18ff1f1eda3360bc434a9_pinterest.png"
+                      width="40" alt=""></a>
+              <a href="https://www.youtube.com/channel/UCj_xrEMgGfBqubKz4m0gapg" target="blank"><img src="assets/img/youtube.png"
+                      width="40"></a>
+          </div>
+          </div>
+        </div>
+      </div>
     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/airtable.browser.js"></script>
+
+    <!-- Script page de remerciement -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.0/gsap.min.js"></script>
+    <!-- <script src="assets/js/app.js"></script> -->
 </body>
 
 </html>
