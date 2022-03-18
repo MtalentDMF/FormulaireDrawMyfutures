@@ -248,6 +248,10 @@ input::placeholder{
     }
     }
 
+    #webSite{
+        color: #6A66F2;
+    }
+
     @media screen and (max-width: 750px){
         div#titre{
             height: 92px;

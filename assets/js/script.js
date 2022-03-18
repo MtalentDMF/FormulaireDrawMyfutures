@@ -22,8 +22,6 @@ let socialMediaText = document.getElementById('socialMediaText');
 let interestingAccountsArea = document.getElementById('interestingAccountsArea');
 let additionalQuestionsArea = document.getElementById('additionalQuestionsArea');
 
-const debugmode = true;//TODO retirer ce hack lors de la livraison finale
-
 //QuerySelector de mes input type radio et checkbox 
 
 let ageRangeRadioButton = document.querySelectorAll('input[name="ageRange"]');
@@ -118,7 +116,7 @@ const codePostalValidation = () => {
 }
 
 const textFields = (id, field) => {
-    let regexText = /^[a-zA-Z0-9-'()",?;.!\u00C0-\u00FF\s]+$/;
+    let regexText = /^[a-zA-Z0-9-'()",?;_:.!\u00C0-\u00FF\s]+$/;
     if(regexText.exec(id.value) || id.value.length === 0) {
         field.textContent = "";
         return true;
@@ -598,9 +596,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let formulaireValid = nameValidSending && firstNameValidSending && emailValidSending && cpValidSending && retrainingJobAreaSending && jobBeforeRetrainingSending && websitesRetrainingAreaSending && fieldOfStudySending && listOfRetrainingSending && areaNotRequired && boolTrue;
         
-        if(formulaireValid || debugmode){
+        if(formulaireValid){
             updateData();
-            invalidForm.textContent = "";
             document.getElementById('page').classList.remove('block');
             document.getElementById('page').classList.add('none');
             document.getElementById('load-container').classList.remove('none');
