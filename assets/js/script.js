@@ -598,21 +598,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if(formulaireValid){
             updateData();
-            document.getElementById('page').classList.remove('block');
-            document.getElementById('page').classList.add('none');
-            document.getElementById('load-container').classList.remove('none');
-            document.getElementById('load-container').classList.add('block');
-            document.getElementById('image').classList.remove('block');
-            document.getElementById('image').classList.add('none');
-            //LANCEMENT DE LA PAGE DE REMERCIEMENT 
-
-            const TLLOAD = gsap.timeline();
-
-            TLLOAD
-                .to('.images-container', { height: '320px', duration: 1.3, delay: 0.4, ease: 'power2.out' })
-                .to('.bloc-txt', { height: 'auto', duration: 2, ease: 'power2.out' }, '-=0.8')
-                .to('.bloc-txt #icones', { ease: 'power2.out' })
-                .to('.f3', { y: 0, ease: 'power2.out' })
         }
         else{
             invalidForm.textContent = "Le formulaire est invalide";
@@ -635,7 +620,7 @@ function updateData() {
 
     var Airtable = require('airtable');
 
-    var base = new Airtable({ apiKey: 'keyJZoCXEOlsyQu2N' }).base('apprgKZR6URooGqFe');
+    var base = new Airtable({ apiKey: config.MY_AIRTABLE_API_KEY }).base(config.MY_AIRTABLE_BDD_ID);
 
     const profil = base('Profil');
 
@@ -740,12 +725,33 @@ function updateData() {
     ], function (err, records) {
         if (err) {
             console.error(err);
+            invalidForm.textContent = "Une erreur est survenue, nous n'avons pas reçu vos réponses. Veuillez réessayer plus tard ou contactez-nous sur notre site internet. Merci de votre compréhension.";
             return;
         }
+        displayThankYouMessage();
         records.forEach(function (record) {
             console.log(record.getId());
         });
     });
+}
+
+
+function displayThankYouMessage(){
+    //LANCEMENT DE LA PAGE DE REMERCIEMENT 
+    document.getElementById('page').classList.remove('block');
+    document.getElementById('page').classList.add('none');
+    document.getElementById('load-container').classList.remove('none');
+    document.getElementById('load-container').classList.add('block');
+    document.getElementById('image').classList.remove('block');
+    document.getElementById('image').classList.add('none');
+
+    const TLLOAD = gsap.timeline();
+
+    TLLOAD
+        .to('.images-container', { height: '320px', duration: 1.3, delay: 0.4, ease: 'power2.out' })
+        .to('.bloc-txt', { height: 'auto', duration: 2, ease: 'power2.out' }, '-=0.8')
+        .to('.bloc-txt #icones', { ease: 'power2.out' })
+        .to('.f3', { y: 0, ease: 'power2.out' })
 }
 
 
